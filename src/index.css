@@ -6,6 +6,10 @@ body {
     background-image: linear-gradient(180deg, #09F 0%, #68ACDA 26.92%, #B0DFFF 100%);
 }
 
+a:hover {
+    background-color: #ddd;
+}
+
 .container {
     width: 100%;
     height: 100vh;
@@ -75,6 +79,13 @@ body {
 .advisoryCard * {
     padding-left: 0.4rem;
     padding-right: 0.4rem;
+}
+
+.advisoryCard a {
+    border-radius: 20px;
+    color: black;
+    font-weight: 900;
+    text-decoration: none;
 }
 
 .advisoryCard .advisoryHeader {
