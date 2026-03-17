@@ -4,7 +4,7 @@ function WeatherForecastCell() {
   return (  
     <div className="weatherForecastCell">
       <div>23°C</div>
-      <WeatherPartlyCloudy size="10" />
+      <WeatherPartlyCloudy size="50" />
       <div>10 AM</div>
     </div>
   );

@@ -1,6 +1,6 @@
 function WeatherPartlyCloudy({size}) {
     return (  
-        <svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 44 35" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 44 35" fill="none">
             <circle cx="29.6487" cy="12.6487" r="12.6487" fill="url(#paint0_radial_19_415)"/>
             <circle cx="29.5337" cy="12.5337" r="10.4639" fill="#FFF700"/>
             <g filter="url(#filter0_d_19_415)">
