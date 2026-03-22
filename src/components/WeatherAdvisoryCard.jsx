@@ -12,6 +12,9 @@ function WeatherAdvisoryCard() {
                     💡- Additional clothing (e.g. rainwear and warm clothing) may not be necessary.
                 </div>
                 <div className="weatherAdviceLabel">
+                    💡- Stay hydrated! Bring a bottle of water or two for your journey.
+                </div>
+                <div className="weatherAdviceLabel">
                     💡- Be aware of possible sudden temperature changes at later times.
                 </div>
             </div>
