@@ -9,6 +9,7 @@ function App() {
 
   return (
     <>
+      <HomePage />
       <WeatherDisplayMain openMenu={() => setMenuOpen(true)} />
       {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
     </>

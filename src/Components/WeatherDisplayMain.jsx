@@ -3,15 +3,16 @@ import { useEffect, useState } from "react"
 
 function WeatherDisplayMain({ openMenu }) {
     const [CurrentLocation, setCurrentLocation] = useState({});
-    useEffect(()=> {
-        getLocation();
-    }, []);
+    
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position)=>{
             const { latitude, longitude } = position.coords;
             setCurrentLocation({latitude, longitude});
         });
     };
+    useEffect(()=> {
+        getLocation();
+    }, []);
     return (
         <div className="WeatherDisplay">
             <div className="TopBar">

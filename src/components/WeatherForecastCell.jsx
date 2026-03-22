@@ -1,6 +1,6 @@
 import WeatherPartlyCloudy from "./vector_icons/WeatherPartlyCloudy.jsx"
 
-function WeatherForecastCell({temperature, time, condition}) {
+function WeatherForecastCell({temperature, time}) {
   return (  
     <div className="weatherForecastCell">
       <div>{temperature}°C</div>

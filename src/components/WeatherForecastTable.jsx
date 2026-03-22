@@ -1,6 +1,6 @@
 import WeatherForecastCell from "./WeatherForecastCell";
 
-function WeatherForecastTable({data}) {
+function WeatherForecastTable() {
   return (
 	<div className="weatherForecastTableContainer">
 		<div className="weatherForecastTable">
