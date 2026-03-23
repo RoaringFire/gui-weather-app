@@ -1,0 +1,146 @@
+.settings_page{
+    width: 100vw;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    font-family: Inter;
+    background-color: transparent;
+    min-height: 100vh; 
+    box-sizing: border-box;
+}
+
+.settings_header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    
+}
+
+.settings_header span {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+h1 {
+    color: #fff;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.settings_section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.setting_row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+/* Widget Styles */
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget > span {
+    display: block;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag, .red_tag, .green_tag, .blue_tag, .available_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+}
+
+.tag {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+}
+
+.red_tag {
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+
+.green_tag {
+    background-color: #e8f5e8;
+    border-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.blue_tag {
+    background-color: #e3f2fd;
+    border-color: #bbdefb;
+    color: #1565c0;
+}
+
+.available_tag {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+    cursor: pointer;
+}
+
+.available_tag:hover {
+    background-color: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.back_button {
+    font-size: 32px;
+    cursor: pointer;
+    color: #fff;  
+    display: flex;
+    align-items: center;
+}
+
+.remove_item {
+    font-size: 14px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: #f44336;
+}
+
+.tick_add {
+    font-size: 14px;
+    margin-left: auto;
+    color: #4caf50;
+}

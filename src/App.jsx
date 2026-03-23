@@ -1,35 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Settings from './components/settings/settings.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState('home')
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      {page !== 'settings' && (
+        <nav className='navigation_panel'>
+          <button onClick={() => setPage('home')}>Home</button>
+          <button onClick={() => setPage('settings')}>Settings</button>
+        </nav>
+      )}
+ 
+
+      {page === 'home' && (
+        <div>
+          <h1>Weather App</h1>
+          <p>Main weather page content goes here</p>
+        </div>
+      )}
+
+      {page === 'settings' && (
+        <Settings goBack = {() => setPage('home')} />
+      )}
+    </div>
+
   )
 }
+
 
 export default App
