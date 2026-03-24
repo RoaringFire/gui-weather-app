@@ -5,7 +5,7 @@ import TrainIcon from "./vector_icons/TrainIcon.jsx"
 import TramIcon from "./vector_icons/TramIcon.jsx"
 
 // currently hardcoded. add actual data here (pass the data as parameters in this widget)
-
+// add them as tables or lists here, i'll try by best to style them :)
 function BusStatus() {
     return (
         <><h3>Bus status</h3></>
