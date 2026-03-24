@@ -1,3 +1,5 @@
+// currently hardcoded. add actual data here (pass the data as props in this widget)
+
 function AtmosConditionsCard() {
     return (
         <>

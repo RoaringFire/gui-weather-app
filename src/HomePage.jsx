@@ -1,7 +1,8 @@
-import "./HomePageStyles.css"
-import LocationHeaderSection from "./components/LocationHeaderSection.jsx"
-import WeatherHeaderSection from "./components/WeatherHeaderSection.jsx"
-import TemperatureHeaderSection from "./components/TemperatureHeaderSection.jsx"
+import { useState } from "react";
+
+import "./styles/HomePageStyles.css";
+import NavBar from "./components/NavBar.jsx";
+import WeatherDisplayMain from "./components/WeatherDisplayMain.jsx";
 
 import WeatherForecastTable from './components/WeatherForecastTable.jsx'
 import WeatherAdvisoryCard from './components/WeatherAdvisoryCard.jsx'
@@ -10,17 +11,14 @@ import TravelImpactsCard from './components/TravelImpactsCard.jsx'
 import AtmosConditionsCard from "./components/AtmosConditionsCard.jsx"
 
 function HomePage() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
       <div className="container">
-        <div className="hamburgerMenu">
+        <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
+        {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
           
-        </div>
-        <div className="mainHeader">
-          <LocationHeaderSection />
-          <TemperatureHeaderSection />
-          <WeatherHeaderSection />
-        </div>
         <main className="mainPanel">
           <h1>Today's forecast</h1>
           <WeatherForecastTable />

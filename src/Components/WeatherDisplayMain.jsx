@@ -1,21 +1,34 @@
-import "../ComponentCSS/WeatherDisplayMain.css"
+import "../styles/WeatherDisplayMain.css"
+import CloseIcon from "./vector_icons/CloseIcon.jsx";
 import { useEffect, useState } from "react"
 
-function WeatherDisplayMain({ openMenu }) {
+function WeatherDisplayMain({ menuOpen, openMenu, closeMenu }) {
     const [CurrentLocation, setCurrentLocation] = useState({});
+
+    // prompt location access when the widget is first loaded
     useEffect(()=> {
         getLocation();
     }, []);
+
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position)=>{
             const { latitude, longitude } = position.coords;
             setCurrentLocation({latitude, longitude});
         });
     };
+
+    const triggerMenuOpen = () => {
+        if(!menuOpen) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+    };
+
     return (
         <div className="WeatherDisplay">
             <div className="TopBar">
-                <button className="menu" onClick={openMenu}>☰</button>
+                {!menuOpen ? <a type="button" className="menu" onClick={triggerMenuOpen}>☰</a> : <></>}
                 <div className="Location">
                     <p > 
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">

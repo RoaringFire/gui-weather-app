@@ -5,69 +5,6 @@
     flex-flow: column;
 }
 
-.mainHeader {   
-    width: 100%;
-    flex: 2;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    font-weight: 1000;
-    font-size: 1.15rem;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-}
-
-#locationLabel {
-    display: flex;
-    justify-content: center;
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-style: normal;
-    line-height: 22px; /* 110% */
-}
-
-#locationLabel * {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0.3rem;
-    margin-right: 0.3rem;
-}
-
-#temperatureHeaderSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#temperatureHeaderSection .actualTemp {
-    display: flex;
-    align-items: center;
-    font-size: 4.5rem;
-}
-
-#temperatureHeaderSection .divider {
-    border: 1.5px solid black;
-    height: 6rem;
-    margin: 0.1rem;
-}
-
-#temperatureHeaderSection .feelsLikeTemp {
-    font-size: 1.5rem;
-}
-
-#temperatureHeaderSection * {
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
-}
-
-#weatherHeaderSection {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
 .mainPanel {
     flex: 2.5;
     padding: 2.5rem;
@@ -86,7 +23,7 @@
     overflow: auto;
     text-align: center;
     justify-content: flex-start;
-    align-content: center;
+    align-items: center;
 }
 
 .weatherForecastCell {

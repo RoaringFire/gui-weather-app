@@ -1,3 +1,5 @@
+// currently hardcoded. add actual data here (pass the data as parameters in this widget)
+
 function TravelConditionsCard() {
     return (  
         <div className="advisoryCard travelConditions">
