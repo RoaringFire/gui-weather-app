@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-import "./styles/HomePageStyles.css";
-import NavBar from "./components/NavBar.jsx";
-import WeatherDisplayMain from "./components/WeatherDisplayMain.jsx";
+// header components
+import NavBar from "./components/Navbar.jsx";
+import WeatherDisplayMain from "./components/FrontPageHeader.jsx";
 
+// main content components
+import "./styles/FrontPageMainStyles.css";
 import WeatherForecastTable from './components/WeatherForecastTable.jsx'
 import WeatherAdvisoryCard from './components/WeatherAdvisoryCard.jsx'
 import TravelConditionsCard from './components/TravelConditionsCard.jsx'
@@ -16,8 +18,10 @@ function HomePage() {
   return (
     <>
       <div className="container">
-        <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
-        {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
+        <header>
+          <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
+          {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
+        </header>
           
         <main className="mainPanel">
           <h1>Today's forecast</h1>

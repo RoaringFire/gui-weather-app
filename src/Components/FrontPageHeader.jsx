@@ -1,5 +1,4 @@
-import "../styles/WeatherDisplayMain.css"
-import CloseIcon from "./vector_icons/CloseIcon.jsx";
+import "../styles/FrontPageHeaderStyles.css"
 import { useEffect, useState } from "react"
 
 function WeatherDisplayMain({ menuOpen, openMenu, closeMenu }) {

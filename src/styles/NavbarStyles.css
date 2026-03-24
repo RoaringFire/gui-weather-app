@@ -6,16 +6,16 @@
     display: flex;
     justify-content: flex-start;
     align-items: stretch;
-    background: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.30);
     
 }
 
 .sideBar {
     position: fixed;
-    width: 40%;
+    width: 60vw;
     max-width: 20rem;
     height: 100vh;
-    background: rgba(131, 183, 255, 0.55); 
+    background: #fff; 
     display: flex;
     flex-direction: column;
     padding: 4rem 1rem 1rem 1rem;
@@ -35,22 +35,27 @@
 
 .closeButton:hover {
     opacity: 0.7;
-    background: rgba(191, 218, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .menuButton {
     width: 100%;
-    background: #7fc7b8;
+    background: none;
     border: none;
-    border-radius: 1rem;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
     font-size: 1.4rem;
-    font-weight: 700;
     color: rgba(0, 0, 0, 1.0);
-    padding: 1rem;
-    margin-top: 1rem;
+    padding: 1.5rem 1rem;
     cursor: pointer;
+    display: flex;
+}
+
+.menuButton * {
+    margin-right: 0.6rem;
 }
 
 .menuButton:hover {
     opacity: 0.9;
+    background-color: #eee;
 }

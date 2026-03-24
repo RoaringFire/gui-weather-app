@@ -1,4 +1,4 @@
-import "./settings.css"
+import "../../styles/Settings.css"
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 
