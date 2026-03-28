@@ -4,59 +4,9 @@ import axios from 'axios';
 const data = require('./key.json');
 const apiKey = data.tfl_key;
 
-//A tfl line (Underground, Overground, Elizabeth line)
-class Line {
-    constructor(name, priority, enable){
-        this.name = name;
-        this.status = "Good Service";
-        this.priority = priority;
-        this.enable = enable;
-    }
-
-    //Getters
-    getName(){
-        return this.name;
-    }
-    getStatus(){
-        return this.status;
-    }
-    getPriority(){
-        return this.priority;
-    }
-    getEnable(){
-        return this.enable;
-    }
-
-    //Setters
-    setStatus(status){
-        this.status = status;
-    }
-    setPriority(priority){
-        this.priority = priority;
-    }
-
-}
-
-//Array of lines
-const lines = [
-    new Line("bakerloo", 0.0, true), //Underground
-    new Line("central", 0.0, true),
-    new Line("circle", 0.0, true),
-    new Line("district", 0.0, true),
-    new Line("hammersmith-city", 0.0, true),
-    new Line("metropolitan", 0.0, true),
-    new Line("northern", 0.0, true),
-    new Line("piccadilly", 0.0, true),
-    new Line("victoria", 0.0, true),
-    new Line("waterloo-city", 0.0, true),
-    new Line("elizabeth", 0.0, true), //Elizabeth line
-    new Line("liberty", 0.0, true), //Overground
-    new Line("lioness", 0.0, true),
-    new Line("mildmay", 0.0, true),
-    new Line("suffragette", 0.0, true),
-    new Line("weaver", 0.0, true),
-    new Line("windrush", 0.0, true)
-];
+//Get lines from json file
+const lineFile = require("./lines.json");
+const lines = lineFile.lines;
 
 //Class that stores an array of lines that should be outputted
 class TflStatus {
@@ -72,22 +22,22 @@ class TflStatus {
 
         for (const line of lines){
             //Only consider lines which have "enable" set to true
-            if(line.getEnable()){
+            if(line.enable){
                 //Calls the getLineStatus function to get the status of the line
-                line.setStatus(await this.getLineStatus(line.getName()));
+                line.status = await this.getLineStatus(line.name);
 
                 //Changes the line's priority depending on its status
-                if(line.getStatus() == "Planned Closure"){
-                    line.setPriority(1.0);
+                if(line.status == "Planned Closure"){
+                    line.priority = 1.0;
                 }
-                else if(line.getStatus() == "Minor Delays"){
-                    line.setPriority(2.0);
+                else if(line.status == "Minor Delays"){
+                    line.priority = 2.0;
                 }
-                else if(line.getStatus() == "Severe Delays"){
-                    line.setPriority(3.0);
+                else if(line.status == "Severe Delays"){
+                    line.priority = 3.0;
                 }
                 else{
-                    line.setPriority(0.0);
+                    line.priority = 0.0;
                 }
 
                 //Puts line in array
@@ -97,8 +47,8 @@ class TflStatus {
 
         //Sort the output array by priority
         this.output.sort((a, b) => {
-            if (a.getPriority() > b.getPriority()) return -1;
-            if (a.getPriority() < b.getPriority()) return 1;
+            if (a.priority > b.priority) return -1;
+            if (a.priority < b.priority) return 1;
             return 0;
         });
 
