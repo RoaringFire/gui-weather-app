@@ -1,52 +1,107 @@
 import axios from 'axios';
 
-const OUTPUT_SIZE = 5;
-
 const data = require('./key.json');
 const apiKey = data.tfl_key;
 
-const UndergroundLines = {
-    BAKERLOO: 'bakerloo',
-    CENTRAL: 'central',
-    CIRCLE: 'circle',
-    DISTRICT: 'district',
-    HAMMERSMITH_AND_CITY: 'hammersmith-city',
-    JUBILEE: 'jubilee',
-    METROPOLITAN: 'metropolitan',
-    NORTHERN: 'northern',
-    PICCADILLY: 'piccadilly',
-    VICTORIA: 'victoria',
-    WATERLOO_AND_CITY: 'waterloo-city'
-};
+//A tfl line (Underground, Overground, Bus)
+class Line {
+    constructor(name, priority, enable){
+        this.name = name;
+        this.status = "Good Service";
+        this.priority = priority;
+        this.enable = enable;
+    }
 
-//Gives a list of important line statuses.
+    //Getters
+    getName(){
+        return this.name;
+    }
+    getStatus(){
+        return this.status;
+    }
+    getPriority(){
+        return this.priority;
+    }
+    getEnable(){
+        return this.enable;
+    }
+
+    //Setters
+    setStatus(status){
+        this.status = status;
+    }
+    setPriority(priority){
+        this.priority = priority;
+    }
+
+}
+
+const lines = [
+    new Line("bakerloo", 0.0, true), //Underground
+    new Line("central", 0.0, true),
+    new Line("circle", 0.0, true),
+    new Line("district", 0.0, true),
+    new Line("hammersmith-city", 0.0, true),
+    new Line("metropolitan", 0.0, true),
+    new Line("northern", 0.0, true),
+    new Line("piccadilly", 0.0, true),
+    new Line("victoria", 0.0, true),
+    new Line("waterloo-city", 0.0, true),
+    new Line("elizabeth", 0.0, true), //Elizabeth line
+    new Line("liberty", 0.0, true), //Overground
+    new Line("lioness", 0.0, true),
+    new Line("mildmay", 0.0, true),
+    new Line("suffragette", 0.0, true),
+    new Line("weaver", 0.0, true),
+    new Line("windrush", 0.0, true)
+];
+
+//Outputs an array of the lines that should be displayed
 class TflStatus {
-    outputName = [];
-    outputStatus = [];
+    output = [];
+
+    constructor(outputSize){
+        this.outputSize = outputSize;
+    }
 
     //fills the arrays for line names and line statuses that should be outputted
     async calculateOutput(){
-        this.outputName = [];
-        this.outputStatus = [];
+        this.output = [];
 
-        for (const element of Object.values(UndergroundLines)){
-            this.outputName.push(element);
-            this.outputStatus.push(await this.getLineStatus(element));
+        for (const element of lines){
+            if(element.getEnable()){
+                element.setStatus(await this.getLineStatus(element.getName()));
+
+                if(element.getStatus() == "Planned Closure"){
+                    element.setPriority(1.0);
+                }
+                else if(element.getStatus() == "Minor Delays"){
+                    element.setPriority(2.0);
+                }
+                else if(element.getStatus() == "Severe Delays"){
+                    element.setPriority(3.0);
+                }
+
+                this.output.push(element);
+            }
         }
 
-        //Sort list
+        //Sort the output array by priority
+        this.output.sort((a, b) => {
+            if (a.getPriority() > b.getPriority()) return -1;
+            if (a.getPriority() < b.getPriority()) return 1;
+            return 0;
+        });
 
-        while (this.outputName.length > OUTPUT_SIZE) {
-            this.outputName.pop();
-        }
-        while (this.outputStatus.length > OUTPUT_SIZE) {
-            this.outputStatus.pop();
+        //Reduce output array to determined size
+        while (this.output.length > this.outputSize) {
+            this.output.pop();
         }
     }
 
     //Returns the status of a particular line
-    async getLineStatus(undergroundLines){
-        const response = await axios.get('https://api.tfl.gov.uk/Line/'+ undergroundLines +'/Status' , {
+    async getLineStatus(lineName){
+        const response = await axios.get('https://api.tfl.gov.uk/Line/'+ lineName +'/Status' , {
             params: {
                 app_key: apiKey
             }
@@ -56,12 +111,8 @@ class TflStatus {
     }
 
     //Getters
-    async getOutputName(){
-        return this.outputName;
-    }
-
-    async getOutputStatus(){
-        return this.outputStatus;
+    getOutput(){
+        return this.output;
     }
 }
 
