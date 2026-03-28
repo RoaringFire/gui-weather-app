@@ -1,3 +1,5 @@
+/* main header styling */
+
 .WeatherDisplay {
     background: linear-gradient(to bottom, #7db3ff, #b7d6ff);
     box-sizing: border-box;
@@ -9,7 +11,6 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
 
 
 .TopBar {
@@ -27,11 +28,11 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    line-height: 1;
+    border-radius: 3rem;
 }
 
 .menu:hover {
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .Location {
@@ -40,6 +41,11 @@
     font-weight: 600;
     margin-bottom: 2rem;
     gap: 1rem;
+}
+
+.Location * {
+    margin-left: 0.6rem;
+    margin-right: 0.6rem;
 }
 
 .TemperatureSection {
@@ -57,7 +63,7 @@
 }
 
 .Temp {
-    font-size: 5rem; 
+    font-size: max(3.5rem, 5vw); 
     font-weight: 800;
     line-height: 1;
 }
@@ -73,8 +79,9 @@
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
-    line-height: 1rem;
+    line-height: 1.5rem;
 }
+
 .Condition {
     text-align: center;
     font-size: 1.5rem;

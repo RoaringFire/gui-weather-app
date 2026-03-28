@@ -1,71 +1,10 @@
+/* main front page panel styling */
+
 .container {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-flow: column;
-}
-
-.mainHeader {   
-    width: 100%;
-    flex: 2;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-content: center;
-    text-align: center;
-    font-weight: 1000;
-    font-size: 1.15rem;
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-}
-
-#locationLabel {
-    display: flex;
-    justify-content: center;
-    color: #000;
-    text-align: center;
-    font-family: Inter;
-    font-style: normal;
-    line-height: 22px; /* 110% */
-}
-
-#locationLabel * {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0.3rem;
-    margin-right: 0.3rem;
-}
-
-#temperatureHeaderSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#temperatureHeaderSection .actualTemp {
-    display: flex;
-    align-items: center;
-    font-size: 4.5rem;
-}
-
-#temperatureHeaderSection .divider {
-    border: 1.5px solid black;
-    height: 6rem;
-    margin: 0.1rem;
-}
-
-#temperatureHeaderSection .feelsLikeTemp {
-    font-size: 1.5rem;
-}
-
-#temperatureHeaderSection * {
-    margin-left: 1.2rem;
-    margin-right: 1.2rem;
-}
-
-#weatherHeaderSection {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
 }
 
 .mainPanel {
@@ -86,7 +25,7 @@
     overflow: auto;
     text-align: center;
     justify-content: flex-start;
-    align-content: center;
+    align-items: center;
 }
 
 .weatherForecastCell {
@@ -158,12 +97,21 @@
 
 .travelModeImpact {
     display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 20px;
     padding: 0.8rem;
     margin-top: 0.4rem;
     margin-bottom: 0.4rem;
     text-align: center;
     box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.travelModeImpact .group1 {
+    display: flex;
+    align-items: center;
 }
 
 .travelModeImpact:hover {
@@ -172,6 +120,10 @@
 
 .travelModeImpact * {
     margin-bottom: 0.2rem;
+}
+
+.travelModeImpact .railStatusTable {
+    
 }
 
 .travelModeGood {

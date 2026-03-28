@@ -1,0 +1,219 @@
+/* settings page styling */
+
+.settings_page {
+    width: 100vw;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    font-family: Inter;
+    background-color: transparent;
+    min-height: 100vh; 
+    box-sizing: border-box;
+}
+
+.settings_header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0rem 1rem;
+    margin-bottom: 30px;
+}
+
+.settings_header span {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.settings_page h1 {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.settings_section {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.setting_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+/* Widget Styles */
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget > span {
+    display: block;
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag, .available_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+}
+
+.tag {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+}
+
+.red_tag {
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+
+.green_tag {
+    background-color: #e8f5e8;
+    border-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.blue_tag {
+    background-color: #e3f2fd;
+    border-color: #bbdefb;
+    color: #1565c0;
+}
+
+.available_tag {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: #424242;
+    cursor: pointer;
+}
+
+.available_tag:hover {
+    background-color: #f5f5f5;
+    border-color: #e0e0e0;
+}
+
+.back_button {
+    font-size: 32px;
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+}
+
+.back_button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.remove_item {
+    font-size: 14px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: #f44336;
+}
+
+.tick_add {
+    font-size: 14px;
+    margin-left: auto;
+    color: #4caf50;
+}
+
+
+/* make the default "input" checkbox invisible */
+.checkboxContainer input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    height: 0;
+    width: 0; 
+}
+
+.checkboxContainer .checkmark {
+    background: #ccc;
+    border-radius: 7px;
+    height: 25px;
+    width: 25px;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    cursor: pointer;
+}
+
+.checkboxContainer .checkmark:hover {
+    background: #aaa;
+}
+
+/* by default, the check symbol should be invisible */
+.checkboxContainer .checkmark:after {
+    content: "";
+    position: absolute; /* position the checkmark inside the checkbox div */
+    left: 8px;
+    bottom: 6.5px;
+    width: 5px;
+    height: 12px;
+    border: 2px solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+/* colour the checkbox when the original hidden checkbox is clicked */
+.checkboxContainer input[type="checkbox"]:checked + .checkmark {
+    background: #3c88f4;
+}
+
+/* display the check symbol when the checkbox is ticked */
+.checkboxContainer input[type="checkbox"]:checked + .checkmark:after {
+    display: block;  
+}
+
+/* custom select box container styling - set the selectbox to fixed width */
+.customSelectContainer {
+    width: 160px;
+}
+
+.customSelectContainer select {
+    width: 100%;
+    padding: 10px 5px 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ddd;
+    cursor: pointer;
+    box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: Focus state */
+.customSelectContainer select:focus {
+    outline: none;
+    background-color: #ccc;
+}

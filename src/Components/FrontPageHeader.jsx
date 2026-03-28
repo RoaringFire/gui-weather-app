@@ -1,35 +1,45 @@
-import "../ComponentCSS/WeatherDisplayMain.css"
+import "../styles/FrontPageHeaderStyles.css"
 import { useEffect, useState } from "react"
 
-function WeatherDisplayMain({ openMenu }) {
+function WeatherDisplayMain({ menuOpen, openMenu, closeMenu }) {
     const [CurrentLocation, setCurrentLocation] = useState({});
-    
+
+    // prompt location access when the component is first loaded
+    useEffect(()=> {
+        getLocation();
+    }, []);
+
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position)=>{
             const { latitude, longitude } = position.coords;
             setCurrentLocation({latitude, longitude});
         });
     };
-    useEffect(()=> {
-        getLocation();
-    }, []);
+
+    const triggerMenuOpen = () => {
+        if(!menuOpen) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+    };
+
     return (
         <div className="WeatherDisplay">
             <div className="TopBar">
-                <button className="menu" onClick={openMenu}>☰</button>
+                {!menuOpen ? <a type="button" className="menu" onClick={triggerMenuOpen}>☰</a> : <></>}
                 <div className="Location">
                     <p > 
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16" fill="none">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M6 0C9.31371 0 12 2.68629 12 6C12 9.31371 6 16 6 16C6 16 0 9.31371 0 6C0 2.68629 2.68629 0 6 0ZM6 3C4.34315 3 3 4.34315 3 6C3 7.65685 4.34315 9 6 9C7.65685 9 9 7.65685 9 6C9 4.34315 7.65685 3 6 3Z" fill="black"/>
                         </svg>
                          London, UK
-                        
                     </p>
                 </div>
             </div>
             <div className="TemperatureSection">
                 <div className="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="71" viewBox="0 0 24 71" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="56" viewBox="0 0 24 71" fill="none">
                         <mask id="path-1-inside-1_16_32" fill="white">
                             <path d="M12 0C15.787 5.53166e-07 18.8572 3.29487 18.8574 7.35938C18.8574 7.50482 18.8525 7.64961 18.8447 7.79297H18.8574V51.2969C21.9653 53.2528 24 56.4995 24 60.1768C24 66.1542 18.6274 71 12 71C5.37258 71 0 66.1542 0 60.1768C2.42566e-05 56.4995 2.03471 53.2528 5.14258 51.2969V7.79297H5.15527C5.14752 7.64961 5.14258 7.50482 5.14258 7.35938C5.14277 3.29487 8.21302 0 12 0Z"/>
                         </mask>
@@ -41,15 +51,15 @@ function WeatherDisplayMain({ openMenu }) {
                 <div className="FeelsLike">Feels Like 20°C</div>
             </div>
             <div className="Condition">
-                <div className="Condition words"> Sunny </div>
+                <div>Sunny</div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
                     <circle cx="96" cy="96" r="96" fill="url(#paint0_radial_2_34)"/>
                     <circle cx="95.1273" cy="95.1273" r="79.4182" fill="#FFF700"/>
                     <defs>
                         <radialGradient id="paint0_radial_2_34" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 96) rotate(90) scale(96)">
-                        <stop offset="0.764423" stop-color="#FFFB7B"/>
-                        <stop offset="0.764523" stop-color="#FFFB7B"/>
-                        <stop offset="1" stop-color="#FFF700" stop-opacity="0"/>
+                            <stop offset="0.764423" stop-color="#FFFB7B"/>
+                            <stop offset="0.764523" stop-color="#FFFB7B"/>
+                            <stop offset="1" stop-color="#FFF700" stop-opacity="0"/>
                         </radialGradient>
                     </defs>
                 </svg>

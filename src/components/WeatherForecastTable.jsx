@@ -1,8 +1,8 @@
 import WeatherForecastCell from "./WeatherForecastCell";
 
-function WeatherForecastTable() {
+function WeatherForecastTable({data, onDragStart}) {
   return (
-	<div className="weatherForecastTableContainer">
+	<div className="weatherForecastTableContainer" onDragStart={onDragStart} draggable>
 		<div className="weatherForecastTable">
 			<WeatherForecastCell time="10:00" temperature="23" condition="" />
 			<WeatherForecastCell time="11:00" temperature="23" condition="" />
