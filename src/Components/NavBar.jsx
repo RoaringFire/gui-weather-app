@@ -1,4 +1,6 @@
-import "../styles/NavbarStyles.css"
+import "../styles/NavbarStyles.css";
+import { useNavigate } from "react-router-dom";
+
 import CloseIcon from "./vector_icons/CloseIcon.jsx";
 import HelpIcon from "./vector_icons/HelpIcon.jsx";
 import NotifyIcon from "./vector_icons/NotifyIcon.jsx";
@@ -6,16 +8,17 @@ import SettingsIcon from "./vector_icons/SettingsIcon.jsx";
 import CustomiseIcon from "./vector_icons/CustomiseIcon.jsx";
 
 function NavBar({ menuOpen, closeMenu }) {
+    const navigate = useNavigate();
     return (
         <div className={`menuOverlay ${menuOpen ? "showOverlay" : ""}`}>
             <div className={`sideBar ${menuOpen ? "showMenu" : ""}`}>
                 <button className="closeButton" onClick={closeMenu}><CloseIcon size="35" /></button>
                 <div className="menuItems">
-                    <button className="menuButton">
+                    <button onClick={() => navigate("/settings", { replace: true })} className="menuButton">
                         <SettingsIcon size="24" />
                         Settings
                     </button>
-                    <button className="menuButton">
+                    <button onClick={() => navigate("/customise", { replace: true })} className="menuButton">
                         <CustomiseIcon size="24" />
                         Customisation
                     </button>

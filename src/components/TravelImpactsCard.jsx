@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { useState } from "react";
 
 import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
@@ -24,53 +25,50 @@ function TramStatus() {
     )
 }
 
-function TravelImpactsCard() {
+function TravelImpactsCard({ onDragStart }) {
+    const [currentSec, setCurrentSec] = useState("rail");
+
     return ( 
-        <BrowserRouter>
-            <div className="advisoryCard travelImpacts">
-                <div className="advisoryHeader">Commute impact</div>
-                {/* setup navigation links for bus, rail and tram statuses */}
-                <nav className="travelModeImpactContainer">
-                    <NavLink to="/bus-status">
-                        <div className="travelModeImpact travelModeGood">
-                            <div className="group1">
-                                <BusIcon size="20" />
-                                Bus
-                            </div>
-                            <div>Good service</div>
+        <div className="advisoryCard travelImpacts" onDragStart={onDragStart} draggable>
+            <div className="advisoryHeader">Commute impact</div>
+            {/* setup navigation links for bus, rail and tram statuses */}
+            <nav className="travelModeImpactContainer">
+                <a type="button" onClick={() => setCurrentSec("bus")}>
+                    <div className="travelModeImpact travelModeGood">
+                        <div className="group1">
+                            <BusIcon size="20" />
+                            Bus
                         </div>
-                    </NavLink>
+                        <div>Good service</div>
+                    </div>
+                </a>
 
-                    <NavLink to="/rail-status">
-                        <div className="travelModeImpact travelModeWarning">
-                            <div className="group1">
-                                <TrainIcon size="20" />
-                                Rail
-                            </div>
-                            <div>Some delays</div>
+                <a type="button" onClick={() => setCurrentSec("rail")}>
+                    <div className="travelModeImpact travelModeWarning">
+                        <div className="group1">
+                            <TrainIcon size="20" />
+                            Rail
                         </div>
-                    </NavLink>
+                        <div>Some delays</div>
+                    </div>
+                </a>
 
-                    <NavLink to="/tram-status">
-                        <div className="travelModeImpact travelModeWarning">
-                            <div className="group1">
-                                <TramIcon size="20" />
-                                Trams
-                            </div>
-                            <div>Some delays</div>
+                <a type="button" onClick={() => setCurrentSec("tram")}>
+                    <div className="travelModeImpact travelModeWarning">
+                        <div className="group1">
+                            <TramIcon size="20" />
+                            Trams
                         </div>
-                    </NavLink>
-                </nav>
+                        <div>Some delays</div>
+                    </div>
+                </a>
+            </nav>
 
-                {/* setup appropriate components for each route */}
-                <Routes>
-                    <Route path="/bus-status" element={<BusStatus />} />
-                    <Route path="/" element={<RailStatus />} /> {/* show rail statuses by default */}
-                    <Route path="/rail-status" element={<RailStatus />} />
-                    <Route path="/tram-status" element={<TramStatus />} />
-                </Routes>
-            </div>
-        </BrowserRouter> 
+            {/* setup appropriate components for each section selected */}
+            {currentSec == "bus" && <BusStatus />}
+            {currentSec == "rail" && <RailStatus />}
+            {currentSec == "tram" && <TramStatus />}
+        </div>
     );
 }
 
