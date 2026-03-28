@@ -15,7 +15,12 @@ function BusStatus() {
 
 function RailStatus() {
     return (
-        <><h3>Rail status</h3></>
+        <>
+            <h3>Rail status</h3>
+            <table className="railStatusTable">
+                
+            </table>
+        </>
     );
 }
 
