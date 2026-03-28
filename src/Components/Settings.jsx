@@ -4,7 +4,7 @@ import { useData } from "./useData";
 
 function Settings({goBack}) {
 
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit } = useData();
+  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleNotifications,toggleDarkMode} = useData();
 
   return (
     <div className="settings_page">
@@ -15,18 +15,17 @@ function Settings({goBack}) {
 
 
       <div className="settings_section">
-        <div className="setting_row">
-          <span>Location</span>
-          <label className="checkboxContainer">
-            <input type="checkbox" className="checkbox" />
-            <div className="checkmark" />
-          </label>
-        </div>
 
         <div className="setting_row">
           <span>Notifications</span>
           <label className="checkboxContainer">
-            <input type="checkbox" className="checkbox" />
+            
+            <input 
+              type="checkbox" 
+              className="checkbox"
+              checked= {data.isNotifications}
+              onChange={(e) => toggleNotifications(e.target.checked)}
+            />
             <div className="checkmark" />
           </label>
         </div>   
@@ -34,7 +33,12 @@ function Settings({goBack}) {
         <div className="setting_row">
           <span>Dark Mode</span>
           <label className="checkboxContainer">
-            <input type="checkbox" className="checkbox" />
+            <input 
+              type="checkbox" 
+              className="checkbox" 
+              checked= {data.isDarkMode}
+              onChange={(e) => toggleDarkMode(e.target.checked)}
+            />
             <div className="checkmark" />
           </label>
         </div>
@@ -80,14 +84,6 @@ function Settings({goBack}) {
             </select>
           </div>
         </div>
-
-        <div className="setting_row">
-          <span>Low Battery Mode</span>
-          <label className="checkboxContainer">
-            <input type="checkbox" className="checkbox" />
-            <div className="checkmark" />
-          </label>
-        </div> 
       </div>
     </div>
   )
