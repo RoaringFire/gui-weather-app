@@ -1,9 +1,10 @@
 import axios from 'axios';
 
+//Get API key from json file
 const data = require('./key.json');
 const apiKey = data.tfl_key;
 
-//A tfl line (Underground, Overground, Bus)
+//A tfl line (Underground, Overground, Elizabeth line)
 class Line {
     constructor(name, priority, enable){
         this.name = name;
@@ -36,6 +37,7 @@ class Line {
 
 }
 
+//Array of lines
 const lines = [
     new Line("bakerloo", 0.0, true), //Underground
     new Line("central", 0.0, true),
@@ -56,33 +58,40 @@ const lines = [
     new Line("windrush", 0.0, true)
 ];
 
-//Outputs an array of the lines that should be displayed
+//Class that stores an array of lines that should be outputted
 class TflStatus {
     output = [];
 
     constructor(outputSize){
-        this.outputSize = outputSize;
+        this.outputSize = outputSize; //Sets size of the output array
     }
 
-    //fills the arrays for line names and line statuses that should be outputted
+    //Calculate what lines should be in the output array
     async calculateOutput(){
         this.output = [];
 
-        for (const element of lines){
-            if(element.getEnable()){
-                element.setStatus(await this.getLineStatus(element.getName()));
+        for (const line of lines){
+            //Only consider lines which have "enable" set to true
+            if(line.getEnable()){
+                //Calls the getLineStatus function to get the status of the line
+                line.setStatus(await this.getLineStatus(line.getName()));
 
-                if(element.getStatus() == "Planned Closure"){
-                    element.setPriority(1.0);
+                //Changes the line's priority depending on its status
+                if(line.getStatus() == "Planned Closure"){
+                    line.setPriority(1.0);
                 }
-                else if(element.getStatus() == "Minor Delays"){
-                    element.setPriority(2.0);
+                else if(line.getStatus() == "Minor Delays"){
+                    line.setPriority(2.0);
                 }
-                else if(element.getStatus() == "Severe Delays"){
-                    element.setPriority(3.0);
+                else if(line.getStatus() == "Severe Delays"){
+                    line.setPriority(3.0);
+                }
+                else{
+                    line.setPriority(0.0);
                 }
 
-                this.output.push(element);
+                //Puts line in array
+                this.output.push(line);
             }
         }
 
@@ -99,7 +108,7 @@ class TflStatus {
         }
     }
 
-    //Returns the status of a particular line
+    //Returns the status of a particular line using the tfl api
     async getLineStatus(lineName){
         const response = await axios.get('https://api.tfl.gov.uk/Line/'+ lineName +'/Status' , {
             params: {
