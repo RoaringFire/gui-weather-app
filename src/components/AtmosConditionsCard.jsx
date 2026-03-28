@@ -1,6 +1,8 @@
 // currently hardcoded. add actual data here (pass the data as props in this widget)
+import { useData } from "./useData";
 
-function AtmosConditionsCard({onDragStart}) {
+function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset}) {
+    const { data} = useData();
     return (
         <div onDragStart={onDragStart} draggable>
             <div className="statsTileContainer">
@@ -14,8 +16,8 @@ function AtmosConditionsCard({onDragStart}) {
                 </div>
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        5
-                        <sup>mph</sup>
+                        {windspeed}
+                        <sup>{data.windSpeedUnit}</sup>
                     </div>
                     <div className="statsTileDesc">
                         Wind speed.
@@ -26,7 +28,7 @@ function AtmosConditionsCard({onDragStart}) {
             <div className="statsTileContainer">
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        18
+                        {visibility}
                         <sup>mi</sup>
                     </div>
                     <div className="statsTileDesc">
@@ -36,8 +38,8 @@ function AtmosConditionsCard({onDragStart}) {
                 </div>
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        0
-                        <sup>mm</sup>
+                        {precipitation}
+                        <sup>{data.rainUnit}</sup>
                     </div>
                     <div className="statsTileDesc">Precipitation.</div>
                 </div>
@@ -46,13 +48,13 @@ function AtmosConditionsCard({onDragStart}) {
             <div className="statsTileContainer">
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        78
+                        {humidity}
                         <sup>%</sup>
                     </div>
                     <div className="statsTileDesc">Humidity</div>
                 </div>
                 <div className="statsTileCard">
-                    <div className="statsTileValue">18:13</div>
+                    <div className="statsTileValue">{sunset}</div>
                     <div className="statsTileDesc">Time of sunset.</div>
                 </div>
             </div>

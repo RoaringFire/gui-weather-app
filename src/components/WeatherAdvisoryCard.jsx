@@ -38,7 +38,7 @@ var weatherAdvicesList = {
     ]
 };
 
-function WeatherAdvisoryCard({onDragStart}) {
+function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
     // hardcoded stuff - this will be replaced with dynamic content. add the actual data as parameters here
     return (  
         <div className="advisoryCard weatherAdvisory" onDragStart={onDragStart} draggable>

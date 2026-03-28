@@ -15,6 +15,7 @@ import DragDropContainer from "./components/DragDropContainer.jsx";
 
 import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
+import { AppData } from "./components/AppData.jsx";
 
 function HomePage() {
   const draggableWidgetsList = [
@@ -70,39 +71,41 @@ function HomePage() {
 
   return (
     <>
-      <Routes>
-        <Route 
-          path="/" 
-          element={
-            <div className="container">
-              <header>
-                <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
-                {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
-              </header>
-                
-              <main className="mainPanel">
-                <h1>Today's forecast</h1>
-                {draggableWidgets.map((w, i) => (
-                  <DragDropContainer
-                    child={w.content}
-                    key={w.id}
-                    onDrop={handleDrop}
-                    onDragEnter={() => handleDragEntered(w.id)}
-                    onDragLeave={handleDragLeave}
-                    isDraggedOver={w.id == draggedOverContainerId}
-                  />
-                ))}
-                {/* <WeatherForecastTable />
-                <WeatherAdvisoryCard />
-                <AtmosConditionsCard />
-                <TravelImpactsCard /> */}
-              </main>
-            </div>
-          } 
-        />
-        <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
-        <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
-      </Routes>
+    <AppData>
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <div className="container">
+                <header>
+                  <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
+                  {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
+                </header>
+                  
+                <main className="mainPanel">
+                  <h1>Today's forecast</h1>
+                  {draggableWidgets.map((w, i) => (
+                    <DragDropContainer
+                      child={w.content}
+                      key={w.id}
+                      onDrop={handleDrop}
+                      onDragEnter={() => handleDragEntered(w.id)}
+                      onDragLeave={handleDragLeave}
+                      isDraggedOver={w.id == draggedOverContainerId}
+                    />
+                  ))}
+                  {/* <WeatherForecastTable />
+                  <WeatherAdvisoryCard />
+                  <AtmosConditionsCard />
+                  <TravelImpactsCard /> */}
+                </main>
+              </div>
+            } 
+          />
+          <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
+          <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
+        </Routes>
+      </AppData>
     </>
   )
 }
