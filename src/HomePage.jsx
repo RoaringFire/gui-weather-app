@@ -14,11 +14,22 @@ import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 import { AppData } from "./components/AppData.jsx";
 
-function HomePage() {
+function HomePage({ weatherData }) {
+
   const draggableWidgetsList = [
-    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)} />},
+    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  />},
     {id: 1, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
-    {id: 2, content: <AtmosConditionsCard onDragStart={() => handleDragStart(2)} />},
+    {
+      id: 2, 
+      content: <AtmosConditionsCard 
+        onDragStart={() => handleDragStart(2)} 
+        windspeed={weatherData.wind.speed} 
+        visibility ={weatherData.visibility} 
+        humidity={weatherData.main.humidity} 
+        sunset={weatherData.sys.sunset}
+        precipitation={weatherData.rain ?? "No rain"}
+      />
+    },
     {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
   ];
 
@@ -74,7 +85,15 @@ function HomePage() {
             element={
               <div className="container">
                 <header>
-                  <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
+                  <WeatherDisplayMain 
+                    menuOpen={menuOpen} 
+                    openMenu={() => setMenuOpen(true)} 
+                    closeMenu={() => setMenuOpen(false)}
+                    temp = {weatherData.main.temp} 
+                    feelsTemp={weatherData.main.feels_like}
+                    weatherType={weatherData.weather[0].main}
+                    cityName={weatherData.name}
+                  />
                   {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
                 </header>
                   
