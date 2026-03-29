@@ -12,15 +12,15 @@ function BusStatus() {
     return (
         <>
             <h3>Bus status</h3>
-            <div style={{ textAlign: "left"}}>
-                <p>Find a bus route to see its current status:</p>
-                <div class="busStatusForm">
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div>Find a bus route to see its current status:</div>
+                <div className="busStatusForm">
                     <input
                         type="text"
                         value={busRoute}
                         onChange={(e) => setBusRoute(e.target.value)}
                     />
-                    <button class="buttonPrimary">Get status report</button>
+                    <button class="buttonPrimary">Get status</button>
                 </div>
             </div>
         </>
