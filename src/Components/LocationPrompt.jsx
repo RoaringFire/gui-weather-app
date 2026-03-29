@@ -6,16 +6,15 @@ import HomePage from "../HomePage.jsx";
 
 function LocationPrompt() {
     const apiKey = import.meta.env.VITE_OPEN_WEATHER_KEY;
-    
 
     const [option, setOption] = useState("auto"); // option to either manually type the location or get the current location automatically
     const [locationsList, setLocationsList] = useState([]); // list to autocomplete locations fetched from the api
-    const [setLocationSelected] = useState(false);
+    const [locationSelected, setLocationSelected] = useState(false);
 
     // location information
     // use this to display the name of the location and send the coordinates of that location to the api
-    const [,locationName, setLocationName] = useState("");
-    const [,setLocationCoords] = useState({});
+    const [locationName, setLocationName] = useState("");
+    const [locationCoords, setLocationCoords] = useState({});
 
     const [weatherData, setWeatherData] = useState(null);
 
@@ -44,7 +43,6 @@ function LocationPrompt() {
     }; 
 
     const loadHomepageLocation = async (longitude,latitude) => {
-
         try {
             const response = await axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`

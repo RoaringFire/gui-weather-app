@@ -54,6 +54,7 @@ function HomePage({ weatherData }) {
     clearState();
   }
 
+  // move widget in the internal array so it can be rendered to the browser later
   const moveWidget = (widgetsList, fromIndex, toIndex) => {
     const listCopy = [...widgetsList];
     if(fromIndex < toIndex) {
