@@ -28,7 +28,7 @@ function LocationPrompt() {
             `https://geocoding-api.open-meteo.com/v1/search?name=${e.target.value}&count=5&language=en&format=json`
         );
 
-        console.log(response.data["results"]);
+        console.log(response.data["results"]); // printed the response to test whether i am getting the location data i want
 
         if(response.data && "results" in response.data)
             setLocationsList(response.data["results"]);
