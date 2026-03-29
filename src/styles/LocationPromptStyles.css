@@ -10,31 +10,6 @@
     row-gap: 10px;
 }
 
-.locationPrompt button {
-    font-family: Inter; 
-    font-size: 15px;
-    padding: 1.1rem;
-    font-weight: 700;
-    margin-top: 0.1rem;
-    margin-bottom: 0.1rem;
-}
-
-.locationPrompt .buttonPrimary {
-    border: none;
-    color: white;
-    border-radius: 30px;
-    background-color:#3c88f4;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-.locationPrompt .buttonPrimary svg path {
-    fill: white;
-}
-
-.locationPrompt .buttonPrimary:hover, .locationPrompt .buttonSecondary:hover {
-    opacity: 0.8;
-}
-
 .locationPrompt .buttonSecondary {
     color:#3c88f4;
     border: none;

@@ -1,5 +1,6 @@
 /* main front page panel styling */
 
+/* container styling - fill height to 100% of the viewport height */
 .container {
     width: 100%;
     height: 100vh;
@@ -62,6 +63,37 @@
     color: #444;
 }
 
+.advisoryCard button {
+    font-family: Inter; 
+    padding: 1rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.advisoryCard .buttonPrimary {
+    border: none;
+    color: white;
+    border-radius: 30px;
+    background-color:#3c88f4;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.advisoryCard .buttonPrimary svg path {
+    fill: white;
+}
+
+.advisoryCard .buttonPrimary:hover, .container .buttonSecondary:hover {
+    opacity: 0.8;
+}
+
+.advisoryCard input[type="text"] {
+    width: max(250px, 30vw);
+    font-family: Inter;
+    border-radius: 30px;
+    padding: 1rem;
+    border: 1px solid #aaa;
+}
+
 .advisoryCard .advisoryHeader {
     font-size: 1.3rem;
     font-weight: 1000;
@@ -122,8 +154,46 @@
     margin-bottom: 0.2rem;
 }
 
-.travelModeImpact .railStatusTable {
+.busStatusForm {
+    text-align: left;
+    display: flex;
+    column-gap: 12px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 
+.railStatusTable {
+    font-family: Inter;
+    font-size: 16px;
+    border-collapse: collapse;
+    width: 70vw;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    table-layout: fixed;
+}
+
+.railStatusTable tr {
+    border-bottom: 1px solid #ccc;
+}
+
+.railStatusTable th, .railStatusTable td {
+    padding: 1.05rem;
+    text-align: left;
+}
+
+.railStatusTable td .statusGood {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+.railStatusTable td .statusWarning {
+    color: #8e8e00;
+    font-weight: 700;
+}
+
+.railStatusTable td .statusDanger {
+    color: #940c00;
+    font-weight: 700;
 }
 
 .travelModeGood {
