@@ -1,10 +1,8 @@
 import { BrowserRouter, Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 // header components
 import NavBar from "./components/NavBar.jsx";
 import WeatherDisplayMain from "./components/FrontPageHeader.jsx";
-
 // main content components
 import "./styles/FrontPageMainStyles.css";
 import WeatherForecastTable from './components/WeatherForecastTable.jsx';
@@ -12,7 +10,6 @@ import WeatherAdvisoryCard from './components/WeatherAdvisoryCard.jsx';
 import TravelImpactsCard from './components/TravelImpactsCard.jsx';
 import AtmosConditionsCard from "./components/AtmosConditionsCard.jsx";
 import DragDropContainer from "./components/DragDropContainer.jsx";
-
 import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 
@@ -42,7 +39,6 @@ function HomePage() {
     const fromIndex = draggableWidgets.findIndex((w) => w.id == draggedWidgetId); 
     const toIndex = draggableWidgets.findIndex((w) => w.id == draggedOverContainerId); 
     setDraggableWidgets((w) => moveWidget(w, fromIndex, toIndex));
-
     clearState();
   }
 

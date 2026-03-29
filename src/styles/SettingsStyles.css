@@ -198,22 +198,32 @@
 
 /* custom select box container styling - set the selectbox to fixed width */
 .customSelectContainer {
+    position: relative; /* "position: relative;" so the arrow can be placed inside the select box*/
     width: 160px;
 }
 
 .customSelectContainer select {
+    appearance: none;
+    font-family: Inter;
     width: 100%;
     padding: 10px 5px 10px 15px;
     font-size: 16px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #ddd;
-    cursor: pointer;
-    box-shadow: 0 3px 3px 2px rgba(0, 0, 0, 0.15);
 }
 
-/* Optional: Focus state */
+.customSelectContainer::after {
+    content: "▶";
+    font-size: 16px;
+    position: absolute;
+    right: 15px;
+    top: 25%;
+}
+
+.customSelectContainer:focus-within::after { /* change arrow when container's descendant select button is focused */
+    content: "▼";
+}
+
 .customSelectContainer select:focus {
-    outline: none;
-    background-color: #ccc;
+    background-color: #eee;
 }

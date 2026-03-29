@@ -1,0 +1,83 @@
+.locationPrompt {
+    font-size: 16px;
+    display: flex;
+    flex-flow: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    row-gap: 10px;
+}
+
+.locationPrompt button {
+    font-family: Inter; 
+    font-size: 15px;
+    padding: 1.1rem;
+    font-weight: 700;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.locationPrompt .buttonPrimary {
+    border: none;
+    color: white;
+    border-radius: 30px;
+    background-color:#3c88f4;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.locationPrompt .buttonPrimary svg path {
+    fill: white;
+}
+
+.locationPrompt .buttonPrimary:hover, .locationPrompt .buttonSecondary:hover {
+    opacity: 0.8;
+}
+
+.locationPrompt .buttonSecondary {
+    color:#3c88f4;
+    border: none;
+    background: none;
+}
+
+.locationPrompt input[type="text"] {
+    width: max(250px, 30vw);
+    font-family: Inter;
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 1.1rem;
+    border: 1px solid #aaa;
+}
+
+.locationPrompt .locationForm {
+    display: flex;
+    column-gap: 0.5rem;
+}
+
+.locationPrompt .searchDropdown {
+    background-color: white;
+    width: max(250px, 30vw);
+    display: flex;
+    flex-flow: column;
+    text-align: left;
+    box-shadow: 3px 4px 4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.locationPrompt .searchDropdownItem {
+    cursor: pointer;
+    background: none;
+    border: none;
+    align-items: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 12px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.locationPrompt .searchDropdownItem:hover {
+    background: #ddd;
+}
