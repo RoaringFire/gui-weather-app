@@ -1,8 +1,37 @@
 // currently hardcoded. add actual data here (pass the data as props in this widget)
 import { useData } from "./useData";
 
-function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset}) {
+function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset,timeZone}) {
     const { data} = useData();
+
+    const convertedSunset = new Date((sunset + timeZone) * 1000).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        });;
+    
+    const convertWindSpeed = () => {
+        if (data.windSpeedUnit === "mph") {
+            return Math.round(windspeed * 2.24);
+        }
+
+        if (data.windSpeedUnit === "kmh") {
+            return Math.round(windspeed * 3.6);
+        }
+
+        return Math.round(windspeed);
+    };
+
+    const convertedWindSpeed = convertWindSpeed(); 
+
+    const convertRainFall = () =>{
+        if (data.rainUnit === "in"){
+            return Math.round(precipitation * 0.04 * 100) / 100
+        }
+        return precipitation
+    }
+
+    const convertedRainfall = convertRainFall();
+
     return (
         <div onDragStart={onDragStart} draggable>
             <div className="statsTileContainer">
@@ -16,7 +45,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                 </div>
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        {windspeed}
+                        {convertedWindSpeed}
                         <sup>{data.windSpeedUnit}</sup>
                     </div>
                     <div className="statsTileDesc">
@@ -29,7 +58,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                 <div className="statsTileCard">
                     <div className="statsTileValue">
                         {visibility}
-                        <sup>mi</sup>
+                        <sup>m</sup>
                     </div>
                     <div className="statsTileDesc">
                         Visibility.
@@ -38,7 +67,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                 </div>
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        {precipitation}
+                        {convertedRainfall}
                         <sup>{data.rainUnit}</sup>
                     </div>
                     <div className="statsTileDesc">Precipitation.</div>
@@ -54,7 +83,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                     <div className="statsTileDesc">Humidity</div>
                 </div>
                 <div className="statsTileCard">
-                    <div className="statsTileValue">{sunset}</div>
+                    <div className="statsTileValue">{convertedSunset}</div>
                     <div className="statsTileDesc">Time of sunset.</div>
                 </div>
             </div>

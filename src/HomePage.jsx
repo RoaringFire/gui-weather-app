@@ -14,11 +14,23 @@ import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 import { AppData } from "./components/AppData.jsx";
 
-function HomePage() {
+function HomePage({ weatherData }) {
+
   const draggableWidgetsList = [
-    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)} />},
+    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  />},
     {id: 1, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
-    {id: 2, content: <AtmosConditionsCard onDragStart={() => handleDragStart(2)} />},
+    {
+      id: 2, 
+      content: <AtmosConditionsCard 
+        onDragStart={() => handleDragStart(2)} 
+        windspeed={weatherData.wind.speed} 
+        visibility ={weatherData.visibility} 
+        humidity={weatherData.main.humidity} 
+        sunset={weatherData.sys.sunset}
+        precipitation={weatherData.rain?.["1h"] ?? 0}
+        timeZone = {weatherData.timezone}
+      />
+    },
     {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
   ];
 
@@ -43,6 +55,7 @@ function HomePage() {
     clearState();
   }
 
+  // move widget in the internal array so it can be rendered to the browser later
   const moveWidget = (widgetsList, fromIndex, toIndex) => {
     const listCopy = [...widgetsList];
     if(fromIndex < toIndex) {
@@ -67,41 +80,47 @@ function HomePage() {
 
   return (
     <>
-    <AppData>
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <div className="container">
-                <header>
-                  <WeatherDisplayMain menuOpen={menuOpen} openMenu={() => setMenuOpen(true)} closeMenu={() => setMenuOpen(false)} />
-                  {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
-                </header>
-                  
-                <main className="mainPanel">
-                  <h1>Today's forecast</h1>
-                  {draggableWidgets.map((w, i) => (
-                    <DragDropContainer
-                      child={w.content}
-                      key={w.id}
-                      onDrop={handleDrop}
-                      onDragEnter={() => handleDragEntered(w.id)}
-                      onDragLeave={handleDragLeave}
-                      isDraggedOver={w.id == draggedOverContainerId}
-                    />
-                  ))}
-                  {/* <WeatherForecastTable />
-                  <WeatherAdvisoryCard />
-                  <AtmosConditionsCard />
-                  <TravelImpactsCard /> */}
-                </main>
-              </div>
-            } 
-          />
-          <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
-          <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
-        </Routes>
-      </AppData>
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <div className="container">
+              <header>
+                <WeatherDisplayMain 
+                  menuOpen={menuOpen} 
+                  openMenu={() => setMenuOpen(true)} 
+                  closeMenu={() => setMenuOpen(false)}
+                  temp = {weatherData.main.temp} 
+                  feelsTemp={weatherData.main.feels_like}
+                  weatherType={weatherData.weather[0].main}
+                  cityName={weatherData.name}
+                />
+                {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
+              </header>
+                
+              <main className="mainPanel">
+                <h1>Today's forecast</h1>
+                {draggableWidgets.map((w, i) => (
+                  <DragDropContainer
+                    child={w.content}
+                    key={w.id}
+                    onDrop={handleDrop}
+                    onDragEnter={() => handleDragEntered(w.id)}
+                    onDragLeave={handleDragLeave}
+                    isDraggedOver={w.id == draggedOverContainerId}
+                  />
+                ))}
+                {/* <WeatherForecastTable />
+                <WeatherAdvisoryCard />
+                <AtmosConditionsCard />
+                <TravelImpactsCard /> */}
+              </main>
+            </div>
+          } 
+        />
+        <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
+        <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
+      </Routes>
     </>
   )
 }

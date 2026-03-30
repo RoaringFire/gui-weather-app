@@ -1,7 +1,7 @@
 /* main header styling */
 
 .WeatherDisplay {
-    background: linear-gradient(to bottom, #7db3ff, #b7d6ff);
+    background: var(--frontpage-header-bg-gradient);
     box-sizing: border-box;
     width: 100%;
     height: 25vh;
@@ -39,6 +39,7 @@
     cursor: pointer;
     padding: 0;
     border-radius: 3rem;
+    color: var(--text-primary);
 }
 
 .menu:hover {
@@ -51,6 +52,7 @@
     font-weight: 600;
     margin-bottom: 2rem;
     gap: 1rem;
+    color: var(--text-primary);
 }
 
 .Location * {
@@ -76,16 +78,17 @@
     font-size: max(3.5rem, 5vw); 
     font-weight: 800;
     line-height: 1;
+    color: var(--text-primary);
 }
 
 .Divider {
     width: 0.2rem;
     height: 4rem;
-    background: black;
+    background: var(--frontpage-header-divider-color);
 }
 
 .FeelsLike {
-    color: #000;
+    color: var(--text-primary);
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
@@ -96,5 +99,6 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
+    color: var(--text-primary);
 }
 

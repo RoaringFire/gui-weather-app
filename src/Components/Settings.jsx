@@ -4,7 +4,7 @@ import { useData } from "./useData";
 
 function Settings({goBack}) {
 
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleNotifications,toggleDarkMode} = useData();
+  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleNotifications,toggleDarkMode } = useData();
 
   return (
     <div className="settings_page">
@@ -13,23 +13,7 @@ function Settings({goBack}) {
         <h1>Settings</h1>
       </div>
 
-
       <div className="settings_section">
-
-        <div className="setting_row">
-          <span>Notifications</span>
-          <label className="checkboxContainer">
-            
-            <input 
-              type="checkbox" 
-              className="checkbox"
-              checked= {data.isNotifications}
-              onChange={(e) => toggleNotifications(e.target.checked)}
-            />
-            <div className="checkmark" />
-          </label>
-        </div>   
-          
         <div className="setting_row">
           <span>Dark Mode</span>
           <label className="checkboxContainer">
@@ -62,9 +46,10 @@ function Settings({goBack}) {
           <div className="customSelectContainer">
             <select 
               className="selectBox"
-              value={data.windSpeedUnits}
+              value={data.windSpeedUnit}
               onChange={(e) => setWindspeedUnit(e.target.value)}
             >
+              <option value="ms">m/s</option>
               <option value="mph">mph</option>
               <option value="kmh">km/h</option>
             </select>
@@ -76,7 +61,7 @@ function Settings({goBack}) {
           <div className="customSelectContainer">
             <select 
               className="selectBox"
-              value={data.rainUnits}
+              value={data.rainUnit}
               onChange={(e) => setRainUnit(e.target.value)}
             >
               <option value="mm">mm</option>

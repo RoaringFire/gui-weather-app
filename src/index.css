@@ -1,8 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
+@import "./styles/GlobalStyleVars.css";
 
 /* added styles */
 body {
     font-family: Inter;
     font-size: 0.85rem;
     margin: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+svg path {
+    fill: var(--svg-primary);
 }

@@ -1,9 +1,12 @@
+import "../styles/LocationPromptStyles.css";
 import { useState } from "react";
 import LocationPin from "./vector_icons/LocationPin.jsx";
 import axios from "axios";
-import "../styles/LocationPromptStyles.css";
+import HomePage from "../HomePage.jsx";
 
 function LocationPrompt() {
+    const apiKey = import.meta.env.VITE_OPEN_WEATHER_KEY;
+
     const [option, setOption] = useState("auto"); // option to either manually type the location or get the current location automatically
     const [locationsList, setLocationsList] = useState([]); // list to autocomplete locations fetched from the api
     const [locationSelected, setLocationSelected] = useState(false);
@@ -13,10 +16,13 @@ function LocationPrompt() {
     const [locationName, setLocationName] = useState("");
     const [locationCoords, setLocationCoords] = useState({});
 
+    const [weatherData, setWeatherData] = useState(null);
+
     const getLocationAuto  = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
             setLocationCoords({latitude, longitude});
+            loadHomepageLocation(latitude, longitude)
         });
     };
 
@@ -35,6 +41,39 @@ function LocationPrompt() {
         else
             setLocationsList([])
     }; 
+
+    const loadHomepageLocation = async (longitude,latitude) => {
+        try {
+            const response = await axios.get(
+<<<<<<< HEAD
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
+=======
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+>>>>>>> 56850a7b97f3588208369847b0df933458d8cffe
+            )
+            setWeatherData(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const loadHomepageName = async (cityName) => {
+
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
+            )
+            setWeatherData(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    if (weatherData) {
+        console.log(weatherData)
+        return <HomePage weatherData={weatherData} />;
+    }
+    
 
     return (  
         <>
@@ -57,7 +96,7 @@ function LocationPrompt() {
                             }}
                         />
                         <button className="buttonPrimary" onClick={() => {
-
+                            loadHomepageName(locationName)
                         }}><LocationPin size="20" /></button>
                     </div>
 
