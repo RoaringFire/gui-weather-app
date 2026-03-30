@@ -11,6 +11,24 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
         getLocation();
     }, []);
 
+     useEffect(()=> {
+        let theme = "default";
+        if (weatherType === "Cloudy") {
+            theme = "cloudy";
+        } else if (weatherType === "sunny") {
+            theme = "sunny";
+        } else if (weatherType === "Rainy") {
+            theme = "rainy";
+        } else if (weatherType === "Snowy") {
+            theme = "snowy";
+        }
+        setHeaderWeatherTheme(theme);
+    }, [weatherType]); //only change theme if the weather type changes so not updating unnecessarily
+
+    const getWeatherClass = () => {
+        return `WeatherDisplay ${data.headerWeatherTheme}`;
+    }; ///sdbnhsdbvshbsd
+
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position)=>{
             const { latitude, longitude } = position.coords;

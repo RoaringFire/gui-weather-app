@@ -8,6 +8,7 @@ export const AppData = ({ children }) => {
     rainUnit: "mm",
     isDarkMode: true,
     isNotifications: true,
+    headerWeatherTheme: "default",
   });
 
   const setTempUnit = (newUnit) =>
@@ -25,9 +26,12 @@ export const AppData = ({ children }) => {
   const toggleNotifications = (newValue) =>
     setData(prev => ({...prev, isNotifications : newValue}))
 
+  const setHeaderWeatherTheme = (newTheme) =>
+    setData(prev =>({...prev, headerWeatherTheme : newTheme}))
+
   
   return (
-    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode, toggleNotifications }}>
+    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode, toggleNotifications, setHeaderWeatherTheme }}>
       {children}
     </DataContext.Provider>
   );
