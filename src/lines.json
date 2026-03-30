@@ -1,0 +1,21 @@
+{
+    "lines":[
+        {"name":"bakerloo", "priority": 0.0, "enable": true},
+        {"name":"central", "priority": 0.0, "enable": true},
+        {"name":"circle", "priority": 0.0, "enable": true},
+        {"name":"district", "priority": 0.0, "enable": true},
+        {"name":"hammersmith-city", "priority": 0.0, "enable": true},
+        {"name":"metropolitan", "priority": 0.0, "enable": true},
+        {"name":"northern", "priority": 0.0, "enable": true},
+        {"name":"piccadilly", "priority": 0.0, "enable": true},
+        {"name":"victoria", "priority": 0.0, "enable": true},
+        {"name":"waterloo-city", "priority": 0.0, "enable": true},
+        {"name":"elizabeth", "priority": 0.0, "enable": true},
+        {"name":"liberty", "priority": 0.0, "enable": true},
+        {"name":"lioness", "priority": 0.0, "enable": true},
+        {"name":"mildmay", "priority": 0.0, "enable": true},
+        {"name":"suffragette", "priority": 0.0, "enable": true},
+        {"name":"weaver", "priority": 0.0, "enable": true},
+        {"name":"windrush", "priority": 0.0, "enable": true}
+    ]
+}
