@@ -18,8 +18,10 @@ function LocationPrompt() {
     const [locationCoords, setLocationCoords] = useState({});
 
     const [isFormError, setIsFormError] = useState(false);
-    const [weatherData, setWeatherData] = useState(null);
 
+    const [currentWeatherData, setCurrentWeatherData] = useState(null);
+    const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
+    
     const getLocationAuto  = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
@@ -50,10 +52,18 @@ function LocationPrompt() {
         // get weather data for location by coordinates
         // used when the browser automatically detects the user's location
         try {
-            const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+            const response = await axios.get( 
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
             )
-            setWeatherData(response.data);
+            setCurrentWeatherData(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+        try {
+            const response = await axios.get(
+                `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
+            )
+            setHourlyWeatherData(response.data);
         } catch (error) {
             console.error(error);
         }
@@ -77,12 +87,12 @@ function LocationPrompt() {
         }
     };
 
-    if (weatherData) {
-        console.log(weatherData)
-        return <HomePage weatherData={weatherData} />;
+
+    if (hourlyWeatherData) {
+        console.log(hourlyWeatherData)
+        return <HomePage currentWeatherData={currentWeatherData} hourlyWeatherData={hourlyWeatherData}/>;
     }
     
-
     return (  
         <>
             <div className="locationPrompt">
