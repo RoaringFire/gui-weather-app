@@ -1,7 +1,7 @@
+import "../styles/LocationPromptStyles.css";
 import { useState } from "react";
 import LocationPin from "./vector_icons/LocationPin.jsx";
 import axios from "axios";
-import "../styles/LocationPromptStyles.css";
 import HomePage from "../HomePage.jsx";
 
 function LocationPrompt() {
@@ -45,7 +45,7 @@ function LocationPrompt() {
     const loadHomepageLocation = async (longitude,latitude) => {
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
             )
             setWeatherData(response.data);
         } catch (error) {
@@ -91,9 +91,7 @@ function LocationPrompt() {
                                 setLocationSelected(false);
                             }}
                         />
-                        <button className="buttonPrimary" onClick={() => {
-
-                        }}><LocationPin size="20" /></button>
+                        <button className="buttonPrimary" onClick={() => {}}><LocationPin size="20" /></button>
                     </div>
 
                     { locationsList.length > 0 &&

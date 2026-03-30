@@ -37,53 +37,57 @@ function RailStatus() {
         <>
             <h3>Rail status</h3>
             <table className="railStatusTable">
-                <tr>
-                    <th>Line</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>Central</td>
-                    <td><div className="statusGood">Good service</div></td>
-                </tr>
-                <tr>
-                    <td>Circle</td>
-                    <td><div className="statusWarning">Minor delays</div></td>
-                </tr>
-                <tr>
-                    <td>District</td>
-                    <td>
-                        <div className="statusDanger">Severe delays</div>
-                        <div>District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hammersmith & City</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Metropolitan</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Waterloo & City</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Piccadilly</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Bakerloo</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Northern</td>
-                    <td>Good service</td>
-                </tr>
-                <tr>
-                    <td>Elizabeth line</td>
-                    <td>Good service</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Line</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Central</td>
+                        <td><div className="statusGood">Good service</div></td>
+                    </tr>
+                    <tr>
+                        <td>Circle</td>
+                        <td><div className="statusWarning">Minor delays</div></td>
+                    </tr>
+                    <tr>
+                        <td>District</td>
+                        <td>
+                            <div className="statusDanger">Severe delays</div>
+                            <div>District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Hammersmith & City</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Metropolitan</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Waterloo & City</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Piccadilly</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Bakerloo</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Northern</td>
+                        <td>Good service</td>
+                    </tr>
+                    <tr>
+                        <td>Elizabeth line</td>
+                        <td>Good service</td>
+                    </tr>
+                </tbody>
             </table>
         </>
     );
@@ -99,22 +103,20 @@ function TravelImpactsCard({ onDragStart }) {
             {/* setup navigation links for bus, rail and tram statuses */}
             <nav className="travelModeImpactContainer">
                 <a type="button" onClick={() => setCurrentSec("bus")}>
-                    <div className="travelModeImpact travelModeGood">
+                    <div className="travelModeImpact">
                         <div className="group1">
                             <BusIcon size="20" />
                             Bus
                         </div>
-                        <div>Good service</div>
                     </div>
                 </a>
 
                 <a type="button" onClick={() => setCurrentSec("rail")}>
-                    <div className="travelModeImpact travelModeWarning">
+                    <div className="travelModeImpact">
                         <div className="group1">
                             <TrainIcon size="20" />
                             Rail
                         </div>
-                        <div>Some delays</div>
                     </div>
                 </a>
             </nav>

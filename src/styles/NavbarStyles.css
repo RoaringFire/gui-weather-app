@@ -16,12 +16,13 @@
     width: 60vw;
     max-width: 20rem;
     height: 100vh;
-    background: #fff; 
+    background: var(--card-bg); 
     display: flex;
     flex-direction: column;
     padding: 4rem 1rem 1rem 1rem;
-    
+    color: var(--text-primary);
 }
+
 .closeButton {
     position: absolute;
     top: 1rem;
@@ -32,21 +33,21 @@
     border-radius: 3rem;
     background: none;
     cursor: pointer;
+    color: var(--text-primary);
 }
 
 .closeButton:hover {
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.1);
+    opacity: 0.5;
 }
 
 .menuButton {
     width: 100%;
     background: none;
     border: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--menu-button-border);
     text-align: left;
     font-size: 1.4rem;
-    color: rgba(0, 0, 0, 1.0);
+    color: var(--text-primary);
     padding: 1.5rem 1rem;
     cursor: pointer;
     display: flex;
@@ -59,5 +60,5 @@
 
 .menuButton:hover {
     opacity: 0.9;
-    background-color: #ddd;
+    background-color: var(--menu-button-hover);
 }

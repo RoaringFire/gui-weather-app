@@ -8,10 +8,36 @@
     width: 100vw;
     height: 100vh;
     row-gap: 10px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.locationPrompt button {
+    font-size: 16px;
+    font-family: Inter; 
+    padding: 1rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.locationPrompt .buttonPrimary {
+    border: none;
+    color: var(--button-primary-text);
+    border-radius: 30px;
+    background-color: var(--button-primary-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.locationPrompt .buttonPrimary svg path {
+    fill: var(--svg-primary);
+}
+
+.locationPrompt .buttonPrimary:hover, .locationPrompt .buttonSecondary:hover {
+    opacity: 0.8;
 }
 
 .locationPrompt .buttonSecondary {
-    color:#3c88f4;
+    color: var(--button-secondary-text);
     border: none;
     background: none;
 }
@@ -22,7 +48,9 @@
     font-size: 16px;
     border-radius: 30px;
     padding: 1.1rem;
-    border: 1px solid #aaa;
+    border: 1px solid var(--border-primary);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .locationPrompt .locationForm {
@@ -31,7 +59,7 @@
 }
 
 .locationPrompt .searchDropdown {
-    background-color: white;
+    background-color: var(--card-bg);
     width: max(250px, 30vw);
     display: flex;
     flex-flow: column;
@@ -50,9 +78,10 @@
     font-weight: 500;
     line-height: 22px;
     padding: 12px;
-    border-bottom: 1px solid #f1f3f4;
+    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-primary);
 }
 
 .locationPrompt .searchDropdownItem:hover {
-    background: #ddd;
+    background: var(--bg-primary);
 }

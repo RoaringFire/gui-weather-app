@@ -79,49 +79,47 @@ function HomePage({ weatherData }) {
 
   return (
     <>
-    <AppData>
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <div className="container">
-                <header>
-                  <WeatherDisplayMain 
-                    menuOpen={menuOpen} 
-                    openMenu={() => setMenuOpen(true)} 
-                    closeMenu={() => setMenuOpen(false)}
-                    temp = {weatherData.main.temp} 
-                    feelsTemp={weatherData.main.feels_like}
-                    weatherType={weatherData.weather[0].main}
-                    cityName={weatherData.name}
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <div className="container">
+              <header>
+                <WeatherDisplayMain 
+                  menuOpen={menuOpen} 
+                  openMenu={() => setMenuOpen(true)} 
+                  closeMenu={() => setMenuOpen(false)}
+                  temp = {weatherData.main.temp} 
+                  feelsTemp={weatherData.main.feels_like}
+                  weatherType={weatherData.weather[0].main}
+                  cityName={weatherData.name}
+                />
+                {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
+              </header>
+                
+              <main className="mainPanel">
+                <h1>Today's forecast</h1>
+                {draggableWidgets.map((w, i) => (
+                  <DragDropContainer
+                    child={w.content}
+                    key={w.id}
+                    onDrop={handleDrop}
+                    onDragEnter={() => handleDragEntered(w.id)}
+                    onDragLeave={handleDragLeave}
+                    isDraggedOver={w.id == draggedOverContainerId}
                   />
-                  {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
-                </header>
-                  
-                <main className="mainPanel">
-                  <h1>Today's forecast</h1>
-                  {draggableWidgets.map((w, i) => (
-                    <DragDropContainer
-                      child={w.content}
-                      key={w.id}
-                      onDrop={handleDrop}
-                      onDragEnter={() => handleDragEntered(w.id)}
-                      onDragLeave={handleDragLeave}
-                      isDraggedOver={w.id == draggedOverContainerId}
-                    />
-                  ))}
-                  {/* <WeatherForecastTable />
-                  <WeatherAdvisoryCard />
-                  <AtmosConditionsCard />
-                  <TravelImpactsCard /> */}
-                </main>
-              </div>
-            } 
-          />
-          <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
-          <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
-        </Routes>
-      </AppData>
+                ))}
+                {/* <WeatherForecastTable />
+                <WeatherAdvisoryCard />
+                <AtmosConditionsCard />
+                <TravelImpactsCard /> */}
+              </main>
+            </div>
+          } 
+        />
+        <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
+        <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
+      </Routes>
     </>
   )
 }
