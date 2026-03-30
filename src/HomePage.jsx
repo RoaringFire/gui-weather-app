@@ -27,7 +27,8 @@ function HomePage({ weatherData }) {
         visibility ={weatherData.visibility} 
         humidity={weatherData.main.humidity} 
         sunset={weatherData.sys.sunset}
-        precipitation={weatherData.rain ?? "No rain"}
+        precipitation={weatherData.rain?.["1h"] ?? 0}
+        timeZone = {weatherData.timezone}
       />
     },
     {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}

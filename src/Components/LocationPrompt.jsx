@@ -45,7 +45,7 @@ function LocationPrompt() {
     const loadHomepageLocation = async (longitude,latitude) => {
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
             )
             setWeatherData(response.data);
         } catch (error) {
@@ -57,7 +57,7 @@ function LocationPrompt() {
 
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
             )
             setWeatherData(response.data);
         } catch (error) {
@@ -92,7 +92,7 @@ function LocationPrompt() {
                             }}
                         />
                         <button className="buttonPrimary" onClick={() => {
-
+                            loadHomepageName(locationName)
                         }}><LocationPin size="20" /></button>
                     </div>
 

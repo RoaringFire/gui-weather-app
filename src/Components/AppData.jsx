@@ -4,7 +4,7 @@ import { DataContext } from "./DataContext";
 export const AppData = ({ children }) => {
   const [data, setData] = useState({
     tempUnit: "°C",
-    windSpeedUnit: "mph",
+    windSpeedUnit: "ms",
     rainUnit: "mm",
     isDarkMode: true,
     isNotifications: true,

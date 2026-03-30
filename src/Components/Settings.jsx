@@ -65,6 +65,7 @@ function Settings({goBack}) {
               value={data.windSpeedUnits}
               onChange={(e) => setWindspeedUnit(e.target.value)}
             >
+              <option value="ms">m/s</option>
               <option value="mph">mph</option>
               <option value="kmh">km/h</option>
             </select>
