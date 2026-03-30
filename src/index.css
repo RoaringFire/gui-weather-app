@@ -13,3 +13,8 @@ body {
 svg path {
     fill: var(--svg-primary);
 }
+
+/* prevents svg shapes that turn black from becoming transparent */
+svg mask * {
+    fill: #fff;
+}

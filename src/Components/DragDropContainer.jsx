@@ -1,5 +1,4 @@
 // the container widget where draggable children widgets can be placed
-
 function DragDropContainer({
     child,
     onDrop,  // called when the user drops a widget into the container
@@ -12,7 +11,7 @@ function DragDropContainer({
         <div 
             style={
                 isDraggedOver ? {
-                    border: "dashed 2px #000",
+                    border: "dashed 2px #999",
                     borderRadius: "20px",
                     minHeight: "5rem",
                     boxSizing: "border-box",
