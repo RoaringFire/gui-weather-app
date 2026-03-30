@@ -16,8 +16,9 @@ function LocationPrompt() {
     const [locationName, setLocationName] = useState("");
     const [locationCoords, setLocationCoords] = useState({});
 
-    const [weatherData, setWeatherData] = useState(null);
-
+    const [currentWeatherData, setCurrentWeatherData] = useState(null);
+    const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
+    
     const getLocationAuto  = () => {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
@@ -45,33 +46,31 @@ function LocationPrompt() {
     const loadHomepageLocation = async (longitude,latitude) => {
         try {
             const response = await axios.get(
-<<<<<<< HEAD
+                
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
-=======
-                `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
->>>>>>> 56850a7b97f3588208369847b0df933458d8cffe
             )
-            setWeatherData(response.data);
+            setCurrentWeatherData(response.data);
         } catch (error) {
             console.error(error);
         }
-    };
-
-    const loadHomepageName = async (cityName) => {
 
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
+                `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
             )
-            setWeatherData(response.data);
+            setHourlyWeatherData(response.data);
         } catch (error) {
             console.error(error);
         }
     };
 
-    if (weatherData) {
-        console.log(weatherData)
-        return <HomePage weatherData={weatherData} />;
+    const loadHomepageName = async () => {
+        loadHomepageLocation(locationCoords[0],locationCoords[1])
+    };
+
+    if (hourlyWeatherData) {
+        console.log(hourlyWeatherData)
+        return <HomePage currentWeatherData={currentWeatherData} hourlyWeatherData={hourlyWeatherData}/>;
     }
     
 
