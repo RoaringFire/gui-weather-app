@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // header components
 import NavBar from "./components/NavBar.jsx";
 import WeatherDisplayMain from "./components/FrontPageHeader.jsx";
@@ -13,14 +13,39 @@ import DragDropContainer from "./components/DragDropContainer.jsx";
 import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 import { AppData } from "./components/AppData.jsx";
+import { useData } from "./components/useData";
 
 function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
+  const { data } = useData();
 
-  const draggableWidgetsList = [
-    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
-    {id: 1, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+  useEffect(() => {
+    setDraggableWidgets([
+      {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+      {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+      {
+        id: 2, 
+        condition: true,
+        content: <AtmosConditionsCard 
+          onDragStart={() => handleDragStart(2)} 
+          windspeed={currentWeatherData.wind.speed} 
+          visibility ={currentWeatherData.visibility} 
+          humidity={currentWeatherData.main.humidity} 
+          sunset={currentWeatherData.sys.sunset}
+          precipitation={currentWeatherData.rain?.["1h"] ?? 0}
+          timeZone = {currentWeatherData.timezone}
+          airIndex = {airPollutionData.list[0].main.aqi}
+        />
+      },
+      {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+    ]);
+  }, [data, hourlyWeatherData, currentWeatherData, airPollutionData]);
+
+  const [draggableWidgets, setDraggableWidgets] = useState([
+    {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+    {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
     {
       id: 2, 
+      condition: true,
       content: <AtmosConditionsCard 
         onDragStart={() => handleDragStart(2)} 
         windspeed={currentWeatherData.wind.speed} 
@@ -32,10 +57,9 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
         airIndex = {airPollutionData.list[0].main.aqi}
       />
     },
-    {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
-  ];
+    {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+  ]);
 
-  const [draggableWidgets, setDraggableWidgets] = useState(draggableWidgetsList);
   const [draggedWidgetId, setDraggedWidgetId] = useState(null); // assume no item is initially dragged
   const [draggedOverContainerId, setDraggedOverContainerId] = useState(null); // widget container where the widget is currently being dragged over
 
@@ -101,7 +125,8 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
                 
               <main className="mainPanel">
                 <h1>Today's forecast</h1>
-                {draggableWidgets.map((w, i) => (
+                {draggableWidgets.map((w, i) => 
+                  (w.condition &&
                   <DragDropContainer
                     child={w.content}
                     key={w.id}
@@ -109,8 +134,8 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
                     onDragEnter={() => handleDragEntered(w.id)}
                     onDragLeave={handleDragLeave}
                     isDraggedOver={w.id == draggedOverContainerId}
-                  />
-                ))}
+                  />)
+                )}
                 {/* <WeatherForecastTable />
                 <WeatherAdvisoryCard />
                 <AtmosConditionsCard />

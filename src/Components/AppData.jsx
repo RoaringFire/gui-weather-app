@@ -9,10 +9,10 @@ export const AppData = ({ children }) => {
       windSpeedUnit: "mph",
       rainUnit: "mm",
       isDarkMode: false,
-      isNotifications: true,
       weatherAdviceVisible: true,
       isForecastVisible: true,
       airPollutionVisible: true,
+      windSpeedVisible: true,
       visibilityMetricVisible: true,
       precipitationVisible: true,
       humidityVisible: true,
@@ -49,7 +49,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode])
+  }, [data])
 
 
   const setTempUnit = (newUnit) =>
@@ -63,9 +63,52 @@ export const AppData = ({ children }) => {
   
   const toggleDarkMode = (newValue) =>
     setData(prev => ({...prev, isDarkMode : newValue}))
+
+  const setWeatherAdviceVisible = (newValue) =>
+    setData(prev => ({...prev, weatherAdviceVisible : newValue}))
   
+  const setIsForecastVisible = (newValue) =>
+    setData(prev => ({...prev, isForecastVisible : newValue}))
+
+  const setAirPollutionVisible = (newValue) =>
+    setData(prev => ({...prev, airPollutionVisible : newValue}))
+
+  const setWindSpeedVisible = (newValue) =>
+    setData(prev => ({...prev, windSpeedVisible : newValue}))
+
+  const setVisibilityMetricVisible = (newValue) =>
+    setData(prev => ({...prev, visibilityMetricVisible : newValue}))
+
+  const setPrecipitationVisible = (newValue) =>
+    setData(prev => ({...prev, precipitationVisible : newValue}))
+
+  const setHumidityVisible = (newValue) =>
+    setData(prev => ({...prev, humidityVisible : newValue}))
+
+  const setSunsetTimeVisible = (newValue) =>
+    setData(prev => ({...prev, sunsetTimeVisible : newValue}))
+
+  const setCommuteConditionsVisible = (newValue) =>
+    setData(prev => ({...prev, commuteConditionsVisible : newValue}))
+
+
   return (
-    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode }}>
+    <DataContext.Provider value={{ 
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setWindSpeedVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+    }}>
       {children}
     </DataContext.Provider>
   );

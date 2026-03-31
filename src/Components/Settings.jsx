@@ -3,8 +3,21 @@ import { Icon } from "@iconify/react";
 import { useData } from "./useData";
 
 function Settings({goBack}) {
-
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleDarkMode } = useData();
+  const { 
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+    } = useData();
 
   return (
     <div className="settings_page">

@@ -6,6 +6,11 @@
     --text-primary: #000000;
     --svg-primary: #000000;
 
+    --tag-hover: #e0e0e0;
+    --tag-hover-text: #000000;
+    --tag-latched: #1e1e1e;
+    --tag-latched-text: #eee;
+
     --border-primary: #ccc;
     --shadow-color: rgba(0, 0, 0, 0.25);
 
@@ -33,6 +38,11 @@ html.darkMode {
     --bg-primary: #1e1e1e;
     --text-primary: #ffffff;
     --svg-primary: #ffffff;
+
+    --tag-hover: #dddddd;
+    --tag-hover-text: #000000;
+    --tag-latched: #ffffff;
+    --tag-latched-text: #1e1e1e;
 
     --border-primary: #4e4e4e;
     --shadow-color: rgba(0, 0, 0, 0.5);
