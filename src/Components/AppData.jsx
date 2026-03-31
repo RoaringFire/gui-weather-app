@@ -10,6 +10,14 @@ export const AppData = ({ children }) => {
       rainUnit: "mm",
       isDarkMode: false,
       isNotifications: true,
+      weatherAdviceVisible: true,
+      isForecastVisible: true,
+      airPollutionVisible: true,
+      visibilityMetricVisible: true,
+      precipitationVisible: true,
+      humidityVisible: true,
+      sunsetTimeVisible: true,
+      commuteConditionsVisible: true,
     };
 
     try {
