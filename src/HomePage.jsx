@@ -12,6 +12,7 @@ import AtmosConditionsCard from "./components/AtmosConditionsCard.jsx";
 import DragDropContainer from "./components/DragDropContainer.jsx";
 import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
+import HelpPage from "./components/HelpPage.jsx";
 import { AppData } from "./components/AppData.jsx";
 import { useData } from "./components/useData";
 
@@ -143,6 +144,7 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
         />
         <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
         <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
+        <Route path="/help" element={<HelpPage goBack={() => {navigate("/")}}/>} />
       </Routes>
     </>
   )

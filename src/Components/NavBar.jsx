@@ -26,7 +26,7 @@ function NavBar({ menuOpen, closeMenu }) {
                         <NotifyIcon size="24" />
                         Notification
                     </button>
-                    <button className="menuButton">
+                    <button onClick={() => navigate("/help", {replace: true })} className="menuButton">
                         <HelpIcon size="24" />
                         Help
                     </button>
