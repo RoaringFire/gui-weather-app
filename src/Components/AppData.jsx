@@ -113,8 +113,9 @@ export const AppData = ({ children }) => {
       setHumidityVisible,
       setSunsetTimeVisible,
       setCommuteConditionsVisible,
+      setHeaderWeatherTheme
     }}>
-    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode, toggleNotifications, setHeaderWeatherTheme}}>
+    
       {children}
     </DataContext.Provider>
   );
