@@ -81,15 +81,12 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
   }
 
   // move widget in the internal array so it can be rendered to the browser later
+  // it should swap positions with the widget being dropped into and the widget the user has dragged and dropped
   const moveWidget = (widgetsList, fromIndex, toIndex) => {
     const listCopy = [...widgetsList];
-    if(fromIndex < toIndex) {
-      listCopy.splice(toIndex + 1, 0, listCopy[fromIndex]);
-      listCopy.splice(fromIndex, 1);
-    } else if(fromIndex > toIndex) {
-      listCopy.splice(toIndex, 0, listCopy[fromIndex]);
-      listCopy.splice(fromIndex + 1, 1);
-    }
+    let temp = listCopy[fromIndex];
+    listCopy[fromIndex] = listCopy[toIndex];
+    listCopy[toIndex] = temp;
     return listCopy;
   };
 
