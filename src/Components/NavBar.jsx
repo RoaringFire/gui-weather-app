@@ -22,10 +22,6 @@ function NavBar({ menuOpen, closeMenu }) {
                         <CustomiseIcon size="24" />
                         Customisation
                     </button>
-                    <button className="menuButton">
-                        <NotifyIcon size="24" />
-                        Notification
-                    </button>
                     <button onClick={() => navigate("/help", {replace: true })} className="menuButton">
                         <HelpIcon size="24" />
                         Help
