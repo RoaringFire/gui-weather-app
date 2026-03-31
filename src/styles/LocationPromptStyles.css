@@ -29,7 +29,7 @@
 }
 
 .locationPrompt .buttonPrimary svg path {
-    fill: var(--svg-primary);
+    fill: #fff;
 }
 
 .locationPrompt .buttonPrimary:hover, .locationPrompt .buttonSecondary:hover {
@@ -56,6 +56,21 @@
 .locationPrompt .locationForm {
     display: flex;
     column-gap: 0.5rem;
+}
+
+.locationPrompt .formError {
+    background-color: rgba(255, 131, 131, 0.5);
+    display: flex;
+    column-gap: 0.4rem;
+    align-items: center;
+    width: 20vw;
+    padding: 1.1rem;
+    text-align: left;
+    border: 1px solid rgb(106, 0, 0);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 0.5rem;
 }
 
 .locationPrompt .searchDropdown {

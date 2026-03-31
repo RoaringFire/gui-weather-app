@@ -99,7 +99,7 @@ function TravelImpactsCard({ onDragStart }) {
 
     return ( 
         <div className="advisoryCard travelImpacts" onDragStart={onDragStart} draggable>
-            <div className="advisoryHeader">Commute impact</div>
+            <div className="advisoryHeader">Commuting conditions</div>
             {/* setup navigation links for bus, rail and tram statuses */}
             <nav className="travelModeImpactContainer">
                 <a type="button" onClick={() => setCurrentSec("bus")}>

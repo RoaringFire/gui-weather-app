@@ -3,22 +3,23 @@ import { useState } from "react";
 import LocationPin from "./vector_icons/LocationPin.jsx";
 import axios from "axios";
 import HomePage from "../HomePage.jsx";
+import { Icon } from "@iconify/react";
 
 function LocationPrompt() {
     const apiKey = import.meta.env.VITE_OPEN_WEATHER_KEY;
 
     const [option, setOption] = useState("auto"); // option to either manually type the location or get the current location automatically
     const [locationsList, setLocationsList] = useState([]); // list to autocomplete locations fetched from the api
-    const [locationSelected, setLocationSelected] = useState(false);
+    const [isLocationSelected, setIsLocationSelected] = useState(false);
     
 
     // location information
     // use this to display the name of the location and send the coordinates of that location to the api
     const [locationName, setLocationName] = useState("");
-    const [locationCoords, setLocationCoords] = useState({});
+    const [locationCoords, setLocationCoords] = useState([]);
 
+    const [isFormError, setIsFormError] = useState(false);
 
-    // Data for the homepage
     const [currentWeatherData, setCurrentWeatherData] = useState(null);
     const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
     const [airPollutionData, setairPollutionData] = useState(null);
@@ -27,12 +28,14 @@ function LocationPrompt() {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
             setLocationCoords({latitude, longitude});
-            loadHomepageLocation(latitude, longitude)
+            console.log(locationCoords); // test to see the coordinates
+            loadWeather(latitude, longitude);
         });
     };
 
     const getLocationByName = async (e) => {
         // get the first 5 results from the openweather's geocoding api
+        // use this to location name suggestion as the user types in the manual location form
         setLocationName(e.target.value);
 
         const response = await axios.get(
@@ -47,17 +50,17 @@ function LocationPrompt() {
             setLocationsList([])
     }; 
 
-    const loadHomepageLocation = async (longitude,latitude) => {
+    const loadWeather = async (latitude, longitude) => {
+        // get weather data for location by coordinates
+        // used when the browser automatically detects the user's location
         try {
-            const response = await axios.get(
-                
+            const response = await axios.get( 
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
             )
             setCurrentWeatherData(response.data);
         } catch (error) {
             console.error(error);
         }
-
         try {
             const response = await axios.get(
                 `https://pro.openweathermap.org/data/2.5/forecast/hourly?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
@@ -77,8 +80,16 @@ function LocationPrompt() {
         }
     };
 
-    const loadHomepageName = async () => {
-        loadHomepageLocation(locationCoords[0],locationCoords[1])
+    const loadWeatherFromManual = async () => {
+        if(locationName === "" || !isLocationSelected) {
+            setIsFormError(true);
+            return;
+        }
+
+        setIsFormError(false);
+        
+        console.log(locationCoords);
+        loadWeather(locationCoords[0], locationCoords[1])
     };
 
     if (airPollutionData) {
@@ -89,7 +100,6 @@ function LocationPrompt() {
         />;
     }
     
-
     return (  
         <>
             <div className="locationPrompt">
@@ -101,18 +111,24 @@ function LocationPrompt() {
                 </>
                 : <>
                     <p>Please enter your location here:</p>
+                    {isFormError && 
+                    <div className="formError">
+                        <Icon icon="mdi:error-outline" fontSize="24"/>
+                        Please select a valid location!
+                    </div>}
+
                     <div className="locationForm">
                         <input 
                             type="text" 
                             value={locationName} 
                             onChange={(e) => {
                                 getLocationByName(e);
-                                setLocationSelected(false);
+                                setIsLocationSelected(false);
                             }}
                         />
-                        <button className="buttonPrimary" onClick={() => {
-                            loadHomepageName(locationName)
-                        }}><LocationPin size="20" /></button>
+                        <button className="buttonPrimary" onClick={() => loadWeatherFromManual()}>
+                            <LocationPin size="20" />
+                        </button>
                     </div>
 
                     { locationsList.length > 0 &&
@@ -124,7 +140,7 @@ function LocationPrompt() {
                                     setLocationName(`${l["name"]}, ${l["admin1"]}, ${l["country"]}`);
                                     setLocationCoords([ l["latitude"], l["longitude"] ]);
                                     setLocationsList([]);
-                                    setLocationSelected(true);
+                                    setIsLocationSelected(true);
                                 }}
                             >
                                 {l["name"]}, {l["admin1"]}, {l["country"]}
