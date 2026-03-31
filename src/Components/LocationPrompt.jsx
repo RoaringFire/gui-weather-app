@@ -10,14 +10,18 @@ function LocationPrompt() {
     const [option, setOption] = useState("auto"); // option to either manually type the location or get the current location automatically
     const [locationsList, setLocationsList] = useState([]); // list to autocomplete locations fetched from the api
     const [locationSelected, setLocationSelected] = useState(false);
+    
 
     // location information
     // use this to display the name of the location and send the coordinates of that location to the api
     const [locationName, setLocationName] = useState("");
     const [locationCoords, setLocationCoords] = useState({});
 
+
+    // Data for the homepage
     const [currentWeatherData, setCurrentWeatherData] = useState(null);
     const [hourlyWeatherData, setHourlyWeatherData] = useState(null);
+    const [airPollutionData, setairPollutionData] = useState(null);
     
     const getLocationAuto  = () => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -62,15 +66,27 @@ function LocationPrompt() {
         } catch (error) {
             console.error(error);
         }
+
+        try {
+            const response = await axios.get(
+                `http://api.openweathermap.org/data/2.5/air_pollution?lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+            )
+            setairPollutionData(response.data);
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     const loadHomepageName = async () => {
         loadHomepageLocation(locationCoords[0],locationCoords[1])
     };
 
-    if (hourlyWeatherData) {
-        console.log(hourlyWeatherData)
-        return <HomePage currentWeatherData={currentWeatherData} hourlyWeatherData={hourlyWeatherData}/>;
+    if (airPollutionData) {
+        return <HomePage 
+            currentWeatherData={currentWeatherData} 
+            hourlyWeatherData={hourlyWeatherData} 
+            airPollutionData={airPollutionData}
+        />;
     }
     
 

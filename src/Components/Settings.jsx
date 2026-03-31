@@ -4,7 +4,7 @@ import { useData } from "./useData";
 
 function Settings({goBack}) {
 
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleNotifications,toggleDarkMode } = useData();
+  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleDarkMode } = useData();
 
   return (
     <div className="settings_page">
