@@ -12,23 +12,23 @@
     justify-content: space-between;
 }
 
-.WeatherDisplay.default {background: linear-gradient(to bottom, #7db3ff, #b7d6ff);}
+.WeatherDisplay.default {background: linear-gradient(to bottom, #6668ee, #4c92e2);}
 
-.WeatherDisplay.cloudy {background: linear-gradient(to bottom, steelblue, lightgray);}
+.WeatherDisplay.cloudy {background: linear-gradient(to bottom, #4d93e3, #b7c4d8);}
 
-.WeatherDisplay.sunny {background: linear-gradient(to bottom, #ffa723, orange);}
+.WeatherDisplay.sunny {background: linear-gradient(to bottom, #ffd93d, #ff6b35);}
 
-.WeatherDisplay.rainy {background: linear-gradient(to bottom, darkgray, gray);}
+.WeatherDisplay.rainy {background: linear-gradient(to bottom, #2d3748, #6d7380);}
 
-.WeatherDisplay.snowy {background: linear-gradient(to bottom, lightgray, silver);}
+.WeatherDisplay.snowy {background: linear-gradient(to bottom, #e3f2fd, #ffffff);}
 
-.WeatherDisplay.thunderstorm {background: linear-gradient(to bottom, #1e3c72, #2a5298);}
+.WeatherDisplay.thunderstorm {background: linear-gradient(to bottom, #1c3a8b, #110e3c);}
 
-.WeatherDisplay.drizzle {background: linear-gradient(to bottom, #8bf3fa, #65a4fb);}
+.WeatherDisplay.drizzle {background: linear-gradient(to bottom, #71bffa, #93c5fd);}
 
-.WeatherDisplay.mist {background: linear-gradient(to bottom, #dce7ee, #e2ebf0);}
+.WeatherDisplay.mist {background: linear-gradient(to bottom, #89cff4, #ced1da);}
 
-.WeatherDisplay.fog {background: linear-gradient(to bottom, #77809a, #d9dee7);}
+.WeatherDisplay.fog {background: linear-gradient(to bottom, #94a3b8, #c6d393);}
 
 
 .TopBar {

@@ -100,7 +100,7 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
             </div>
             <div className="Condition">
                 <div>{weatherType == "Clear" ? "Sunny" : weatherType}</div>
-                {weatherType == "Clear" && (
+                {(weatherType == "Clear") && (
                     <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
                         <circle cx="96" cy="96" r="96" fill="url(#paint0_radial_2_34)"/>
                         <circle cx="95.1273" cy="95.1273" r="79.4182" fill="#FFF700"/>
