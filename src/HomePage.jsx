@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // header components
 import NavBar from "./components/NavBar.jsx";
 import WeatherDisplayMain from "./components/FrontPageHeader.jsx";
@@ -14,28 +14,53 @@ import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 import HelpPage from "./components/HelpPage.jsx";
 import { AppData } from "./components/AppData.jsx";
+import { useData } from "./components/useData";
 
-function HomePage({ weatherData }) {
+function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
+  const { data } = useData();
 
-  const draggableWidgetsList = [
-    {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  />},
-    {id: 1, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+  useEffect(() => {
+    setDraggableWidgets([
+      {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+      {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+      {
+        id: 2, 
+        condition: true,
+        content: <AtmosConditionsCard 
+          onDragStart={() => handleDragStart(2)} 
+          windspeed={currentWeatherData.wind.speed} 
+          visibility ={currentWeatherData.visibility} 
+          humidity={currentWeatherData.main.humidity} 
+          sunset={currentWeatherData.sys.sunset}
+          precipitation={currentWeatherData.rain?.["1h"] ?? 0}
+          timeZone = {currentWeatherData.timezone}
+          airIndex = {airPollutionData.list[0].main.aqi}
+        />
+      },
+      {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+    ]);
+  }, [data, hourlyWeatherData, currentWeatherData, airPollutionData]);
+
+  const [draggableWidgets, setDraggableWidgets] = useState([
+    {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+    {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
     {
       id: 2, 
+      condition: true,
       content: <AtmosConditionsCard 
         onDragStart={() => handleDragStart(2)} 
-        windspeed={weatherData.wind.speed} 
-        visibility ={weatherData.visibility} 
-        humidity={weatherData.main.humidity} 
-        sunset={weatherData.sys.sunset}
-        precipitation={weatherData.rain?.["1h"] ?? 0}
-        timeZone = {weatherData.timezone}
+        windspeed={currentWeatherData.wind.speed} 
+        visibility ={currentWeatherData.visibility} 
+        humidity={currentWeatherData.main.humidity} 
+        sunset={currentWeatherData.sys.sunset}
+        precipitation={currentWeatherData.rain?.["1h"] ?? 0}
+        timeZone = {currentWeatherData.timezone}
+        airIndex = {airPollutionData.list[0].main.aqi}
       />
     },
-    {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
-  ];
+    {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+  ]);
 
-  const [draggableWidgets, setDraggableWidgets] = useState(draggableWidgetsList);
   const [draggedWidgetId, setDraggedWidgetId] = useState(null); // assume no item is initially dragged
   const [draggedOverContainerId, setDraggedOverContainerId] = useState(null); // widget container where the widget is currently being dragged over
 
@@ -91,17 +116,18 @@ function HomePage({ weatherData }) {
                   menuOpen={menuOpen} 
                   openMenu={() => setMenuOpen(true)} 
                   closeMenu={() => setMenuOpen(false)}
-                  temp = {weatherData.main.temp} 
-                  feelsTemp={weatherData.main.feels_like}
-                  weatherType={weatherData.weather[0].main}
-                  cityName={weatherData.name}
+                  temp = {currentWeatherData.main.temp} 
+                  feelsTemp={currentWeatherData.main.feels_like}
+                  weatherType={currentWeatherData.weather[0].main}
+                  cityName={currentWeatherData.name}
                 />
                 {menuOpen && <NavBar closeMenu={() => setMenuOpen(false)} />}
               </header>
                 
               <main className="mainPanel">
                 <h1>Today's forecast</h1>
-                {draggableWidgets.map((w, i) => (
+                {draggableWidgets.map((w, i) => 
+                  (w.condition &&
                   <DragDropContainer
                     child={w.content}
                     key={w.id}
@@ -109,8 +135,8 @@ function HomePage({ weatherData }) {
                     onDragEnter={() => handleDragEntered(w.id)}
                     onDragLeave={handleDragLeave}
                     isDraggedOver={w.id == draggedOverContainerId}
-                  />
-                ))}
+                  />)
+                )}
                 {/* <WeatherForecastTable />
                 <WeatherAdvisoryCard />
                 <AtmosConditionsCard />

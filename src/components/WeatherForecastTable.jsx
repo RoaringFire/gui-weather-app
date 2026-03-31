@@ -1,24 +1,29 @@
 import WeatherForecastCell from "./WeatherForecastCell";
+import { useData } from "./useData"
 
-function WeatherForecastTable({data, onDragStart}) {
+function WeatherForecastTable({dataList, onDragStart}) {
+	const {data} = useData();
+	const convertTemp = (temperature) => {
+        if (data.tempUnit === "°F") {
+            return Math.round((temperature * 9) / 5 + 32);
+        }
+        return Math.round(temperature);
+    };
   return (
 	<div className="weatherForecastTableContainer" onDragStart={onDragStart} draggable>
 		<div className="weatherForecastTable">
-			<WeatherForecastCell time="10:00" temperature="23" condition="" />
-			<WeatherForecastCell time="11:00" temperature="23" condition="" />
-			<WeatherForecastCell time="12:00" temperature="22" condition="" />
-			<WeatherForecastCell time="13:00" temperature="22" condition="" />
-			<WeatherForecastCell time="14:00" temperature="22" condition="" />
-			<WeatherForecastCell time="15:00" temperature="21" condition="" />
-			<WeatherForecastCell time="16:00" temperature="20" condition="" />
-			<WeatherForecastCell time="17:00" temperature="20" condition="" />
-			<WeatherForecastCell time="18:00" temperature="20" condition="" />
-			<WeatherForecastCell time="19:00" temperature="20" condition="" />
-			<WeatherForecastCell time="20:00" temperature="20" condition="" />
-			<WeatherForecastCell time="21:00" temperature="19" condition="" />
-			<WeatherForecastCell time="22:00" temperature="19" condition="" />
-			<WeatherForecastCell time="23:00" temperature="19" condition="" />
-			<WeatherForecastCell time="00:00" temperature="19" condition="" />
+			<WeatherForecastCell time={dataList[1].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[1].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[2].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[2].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[3].dt_txt.slice(11, 16)}temperature={convertTemp(dataList[3].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[4].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[4].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[5].dt_txt.slice(11, 16)}temperature={convertTemp(dataList[5].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[6].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[6].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[7].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[7].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[8].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[8].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[9].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[9].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[10].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[10].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[11].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[11].main.temp)} condition="" />
+			<WeatherForecastCell time={dataList[12].dt_txt.slice(11, 16)} temperature={convertTemp(dataList[12].main.temp)} condition="" />
 		</div>
 	</div>
   );

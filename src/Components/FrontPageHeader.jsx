@@ -5,15 +5,16 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
     const { data} = useData();
 
 
-    const convertFeelsTemp = (temperature) => {
+    const convertTemp = (temperature) => {
         if (data.tempUnit === "°F") {
-            return Math.round((temperature * 9) / 5 + 32); // C → F
+            return Math.round((temperature * 9) / 5 + 32);
         }
         return Math.round(temperature);
     };
 
-    const convertedFeelsTemp = convertFeelsTemp(feelsTemp);
-    const convertedCurrentTemp = convertFeelsTemp(temp);
+    const convertedFeelsTemp = convertTemp(feelsTemp);
+    const convertedCurrentTemp = convertTemp(temp);
+
 
     const triggerMenuOpen = () => {
         if(!menuOpen) {
@@ -28,7 +29,6 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
             return "You"
         }
         return cityName
-
     }
 
     const locationNameDisplay = locationName();

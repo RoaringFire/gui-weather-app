@@ -3,8 +3,21 @@ import { Icon } from "@iconify/react";
 import { useData } from "./useData";
 
 function Settings({goBack}) {
-
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleNotifications,toggleDarkMode } = useData();
+  const { 
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+    } = useData();
 
   return (
     <div className="settings_page">
@@ -49,7 +62,7 @@ function Settings({goBack}) {
               value={data.windSpeedUnit}
               onChange={(e) => setWindspeedUnit(e.target.value)}
             >
-              <option value="ms">m/s</option>
+              <option value="m/s">m/s</option>
               <option value="mph">mph</option>
               <option value="kmh">km/h</option>
             </select>
