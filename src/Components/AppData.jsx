@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DataContext } from "./DataContext";
+import { DataContext } from "./DataContext.js";
 
 export const AppData = ({ children }) => {
   const [data, setData] = useState(() => {
@@ -42,7 +42,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode, data.isNotifications])
+  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode, data.isNotifications, data.headerWeatherTheme])
 
 
   const setTempUnit = (newUnit) =>

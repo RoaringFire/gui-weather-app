@@ -22,6 +22,14 @@
 
 .WeatherDisplay.snowy {background: linear-gradient(to bottom, lightgray, silver);}
 
+.WeatherDisplay.thunderstorm {background: linear-gradient(to bottom, #1e3c72, #2a5298);}
+
+.WeatherDisplay.drizzle {background: linear-gradient(to bottom, #8bf3fa, #65a4fb);}
+
+.WeatherDisplay.mist {background: linear-gradient(to bottom, #dce7ee, #e2ebf0);}
+
+.WeatherDisplay.fog {background: linear-gradient(to bottom, #77809a, #d9dee7);}
+
 
 .TopBar {
     position: relative;

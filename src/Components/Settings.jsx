@@ -1,6 +1,6 @@
 import "../styles/SettingsStyles.css"
 import { Icon } from "@iconify/react";
-import { useData } from "./useData";
+import { useData } from "./useData.js";
 
 function Settings({goBack}) {
 
