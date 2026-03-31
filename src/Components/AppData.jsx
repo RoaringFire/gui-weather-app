@@ -9,6 +9,7 @@ export const AppData = ({ children }) => {
       windSpeedUnit: "mph",
       rainUnit: "mm",
       isDarkMode: false,
+<<<<<<< HEAD
       isNotifications: true,
       weatherAdviceVisible: true,
       isForecastVisible: true,
@@ -18,6 +19,8 @@ export const AppData = ({ children }) => {
       humidityVisible: true,
       sunsetTimeVisible: true,
       commuteConditionsVisible: true,
+=======
+>>>>>>> f93f9ec71d2ad555c5bbc9df08c244e4cb938282
     };
 
     try {
@@ -49,7 +52,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode, data.isNotifications])
+  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode])
 
 
   const setTempUnit = (newUnit) =>
@@ -64,12 +67,8 @@ export const AppData = ({ children }) => {
   const toggleDarkMode = (newValue) =>
     setData(prev => ({...prev, isDarkMode : newValue}))
   
-  const toggleNotifications = (newValue) =>
-    setData(prev => ({...prev, isNotifications : newValue}))
-
-  
   return (
-    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode, toggleNotifications }}>
+    <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode }}>
       {children}
     </DataContext.Provider>
   );

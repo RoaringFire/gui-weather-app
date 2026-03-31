@@ -1,13 +1,21 @@
 // currently hardcoded. add actual data here (pass the data as props in this widget)
 import { useData } from "./useData";
 
-function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset,timeZone}) {
+function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset,timeZone,airIndex}) {
     const { data} = useData();
+    const airPollutionType = ["Good","Fair","Moderate","Poor","Very Poor"]
+    const airPollutionMessage = [
+        "Enjoy your usual outdoor activities.",
+        "Air quality is acceptable; consider limiting prolonged outdoor exertion if you're sensitive.",
+        "Moderate risk: sensitive individuals should reduce prolonged or heavy outdoor activity.",
+        "Poor air quality: limit outdoor activities, especially strenuous exercise.",
+        "Very poor air quality: avoid outdoor activities and stay indoors as much as possible."
+    ];
 
     const convertedSunset = new Date((sunset + timeZone) * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
-        });;
+    });;
     
     const convertWindSpeed = () => {
         if (data.windSpeedUnit === "mph") {
@@ -36,11 +44,11 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
         <div onDragStart={onDragStart} draggable>
             <div className="statsTileContainer">
                 <div className="statsTileCard">
-                    <div className="statsTileValue">2</div>
+                    <div className="statsTileValue">{airIndex}</div>
                     <div className="statsTileDesc">
                         Air pollution.
-                        <p>Low pollution.</p>
-                        <p>Enjoy your usual outdoor activities.</p>
+                        <p>{airPollutionType[airIndex -1]}</p>
+                        <p>{airPollutionMessage[airIndex -1]}</p>
                     </div>
                 </div>
                 <div className="statsTileCard">

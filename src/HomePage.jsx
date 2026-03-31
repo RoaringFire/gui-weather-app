@@ -14,7 +14,7 @@ import Customisation from "./components/Customisation.jsx";
 import Settings from "./components/Settings.jsx";
 import { AppData } from "./components/AppData.jsx";
 
-function HomePage({ currentWeatherData,hourlyWeatherData}) {
+function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
 
   const draggableWidgetsList = [
     {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
@@ -29,6 +29,7 @@ function HomePage({ currentWeatherData,hourlyWeatherData}) {
         sunset={currentWeatherData.sys.sunset}
         precipitation={currentWeatherData.rain?.["1h"] ?? 0}
         timeZone = {currentWeatherData.timezone}
+        airIndex = {airPollutionData.list[0].main.aqi}
       />
     },
     {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
