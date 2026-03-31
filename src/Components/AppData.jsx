@@ -9,6 +9,15 @@ export const AppData = ({ children }) => {
       windSpeedUnit: "mph",
       rainUnit: "mm",
       isDarkMode: false,
+      weatherAdviceVisible: true,
+      isForecastVisible: true,
+      airPollutionVisible: true,
+      windSpeedVisible: true,
+      visibilityMetricVisible: true,
+      precipitationVisible: true,
+      humidityVisible: true,
+      sunsetTimeVisible: true,
+      commuteConditionsVisible: true,
       isNotifications: true,
       headerWeatherTheme: "default",
     };
@@ -56,14 +65,55 @@ export const AppData = ({ children }) => {
   
   const toggleDarkMode = (newValue) =>
     setData(prev => ({...prev, isDarkMode : newValue}))
+
+  const setWeatherAdviceVisible = (newValue) =>
+    setData(prev => ({...prev, weatherAdviceVisible : newValue}))
   
-  const toggleNotifications = (newValue) =>
-    setData(prev => ({...prev, isNotifications : newValue}))
+  const setIsForecastVisible = (newValue) =>
+    setData(prev => ({...prev, isForecastVisible : newValue}))
+
+  const setAirPollutionVisible = (newValue) =>
+    setData(prev => ({...prev, airPollutionVisible : newValue}))
+
+  const setWindSpeedVisible = (newValue) =>
+    setData(prev => ({...prev, windSpeedVisible : newValue}))
+
+  const setVisibilityMetricVisible = (newValue) =>
+    setData(prev => ({...prev, visibilityMetricVisible : newValue}))
+
+  const setPrecipitationVisible = (newValue) =>
+    setData(prev => ({...prev, precipitationVisible : newValue}))
+
+  const setHumidityVisible = (newValue) =>
+    setData(prev => ({...prev, humidityVisible : newValue}))
+
+  const setSunsetTimeVisible = (newValue) =>
+    setData(prev => ({...prev, sunsetTimeVisible : newValue}))
+
+  const setCommuteConditionsVisible = (newValue) =>
+    setData(prev => ({...prev, commuteConditionsVisible : newValue}))
 
   const setHeaderWeatherTheme = (newTheme) =>
     setData(prev =>({...prev, headerWeatherTheme : newTheme}))
   
+
   return (
+    <DataContext.Provider value={{ 
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setWindSpeedVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+    }}>
     <DataContext.Provider value={{ data, setTempUnit,setRainUnit,setWindspeedUnit, toggleDarkMode, toggleNotifications, setHeaderWeatherTheme}}>
       {children}
     </DataContext.Provider>

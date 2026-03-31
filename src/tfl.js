@@ -1,22 +1,12 @@
 import axios from 'axios';
 
 //Get API key from json file
-import data from "./key.json";
+const data = require('./key.json');
 const apiKey = data.tfl_key;
 
 //Get lines from json file
-import lineFile from "./lines.json";
+const lineFile = require("./lines.json");
 const lines = lineFile.lines;
-
-async function getBusStatus(route){
-    const response = await axios.get('https://api.tfl.gov.uk/Line/'+ route +'/Status' , {
-        params: {
-            app_key: apiKey
-        }
-    });
-
-    return response.data[0];
-}
 
 //Class that stores an array of lines that should be outputted
 class TflStatus {
@@ -79,10 +69,10 @@ class TflStatus {
         return response.data[0].lineStatuses[0].statusSeverityDescription;
     }
 
-    //Getter
+    //Getters
     getOutput(){
         return this.output;
     }
 }
 
-export {TflStatus, getBusStatus};
+export default TflStatus;

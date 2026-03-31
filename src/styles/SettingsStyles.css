@@ -124,8 +124,18 @@
 }
 
 .available_tag:hover {
-    background-color: var(--bg-primary);
+    background-color: var(--tag-hover);
+    color: var(--tag-hover-text);
     border-color: var(--border-primary);
+}
+
+.tag_latched {
+    background-color: var(--tag-latched);
+    color: var(--tag-latched-text);
+}
+
+.tag_latched svg path {
+    fill: var(--tag-latched-text);
 }
 
 .back_button {

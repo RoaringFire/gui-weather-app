@@ -5,19 +5,15 @@ import { useData } from "./useData";
 function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, weatherType,cityName}) {
     const { data, setHeaderWeatherTheme } = useData();
 
-    const convertFeelsTemp = (temperature) => {
+    const convertTemp = (temperature) => {
         if (data.tempUnit === "°F") {
-            return Math.round((temperature * 9) / 5 + 32); // C → F
+            return Math.round((temperature * 9) / 5 + 32);
         }
         return Math.round(temperature);
     };
 
-    const convertedFeelsTemp = convertFeelsTemp(feelsTemp);
-    const convertedCurrentTemp = convertFeelsTemp(temp);
-    // prompt location access when the component is first loaded
-    useEffect(()=> {
-        getLocation();
-    }, []);
+    const convertedFeelsTemp = convertTemp(feelsTemp);
+    const convertedCurrentTemp = convertTemp(temp);
 
      useEffect(()=> {
         let theme = "default";
@@ -67,7 +63,6 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
             return "You"
         }
         return cityName
-
     }
 
     const locationNameDisplay = locationName();
