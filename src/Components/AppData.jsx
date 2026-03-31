@@ -9,7 +9,6 @@ export const AppData = ({ children }) => {
       windSpeedUnit: "mph",
       rainUnit: "mm",
       isDarkMode: false,
-<<<<<<< HEAD
       isNotifications: true,
       weatherAdviceVisible: true,
       isForecastVisible: true,
@@ -19,8 +18,6 @@ export const AppData = ({ children }) => {
       humidityVisible: true,
       sunsetTimeVisible: true,
       commuteConditionsVisible: true,
-=======
->>>>>>> f93f9ec71d2ad555c5bbc9df08c244e4cb938282
     };
 
     try {
