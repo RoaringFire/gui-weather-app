@@ -1,9 +1,9 @@
 import "../styles/FrontPageHeaderStyles.css"
+import { useState, useEffect } from "react";
 import { useData } from "./useData";
 
 function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, weatherType,cityName}) {
-    const { data} = useData();
-
+    const { data, setHeaderWeatherTheme } = useData();
 
     const convertFeelsTemp = (temperature) => {
         if (data.tempUnit === "°F") {
@@ -21,13 +21,14 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
 
      useEffect(()=> {
         let theme = "default";
-        if (weatherType === "Cloudy") {
+        
+        if (weatherType === "Clouds") {
             theme = "cloudy";
-        } else if (weatherType === "sunny") {
+        } else if (weatherType === "Clear") {
             theme = "sunny";
-        } else if (weatherType === "Rainy") {
+        } else if (weatherType === "Rain") {
             theme = "rainy";
-        } else if (weatherType === "Snowy") {
+        } else if (weatherType === "Snow") {
             theme = "snowy";
         }
         setHeaderWeatherTheme(theme);
@@ -35,7 +36,7 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
 
     const getWeatherClass = () => {
         return `WeatherDisplay ${data.headerWeatherTheme}`;
-    }; ///sdbnhsdbvshbsd
+    }; /// deals with teh changing of header colour
 
     const getLocation = () => {
         navigator.geolocation.getCurrentPosition((position)=>{
@@ -63,7 +64,7 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
     const locationNameDisplay = locationName();
 
     return (
-        <div className="WeatherDisplay">
+        <div className={getWeatherClass()}>
             <div className="TopBar">
                 {!menuOpen ? <a type="button" className="menu" onClick={triggerMenuOpen}>☰</a> : <></>}
                 <div className="Location">

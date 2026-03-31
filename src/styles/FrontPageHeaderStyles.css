@@ -14,13 +14,13 @@
 
 .WeatherDisplay.default {background: linear-gradient(to bottom, #7db3ff, #b7d6ff);}
 
-.WeatherDisplay.cloudy {background: linear-gradient(to bottom, #d2d9e1, #b7d6ff);}
+.WeatherDisplay.cloudy {background: linear-gradient(to bottom, steelblue, lightgray);}
 
-.WeatherDisplay.sunny {background: linear-gradient(to bottom, #daee7f, #b7d6ff);}
+.WeatherDisplay.sunny {background: linear-gradient(to bottom, #ffa723, orange);}
 
-.WeatherDisplay.rainy {background: linear-gradient(to bottom, #47505c, #b7d6ff);}
+.WeatherDisplay.rainy {background: linear-gradient(to bottom, darkgray, gray);}
 
-.WeatherDisplay.snowy {background: linear-gradient(to bottom, #7db3ff, #b7d6ff);}
+.WeatherDisplay.snowy {background: linear-gradient(to bottom, lightgray, silver);}
 
 
 .TopBar {
