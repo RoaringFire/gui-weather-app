@@ -76,23 +76,44 @@ export const AppData = ({ children }) => {
     setData(prev => ({...prev, weatherAdviceVisible : newValue}))
   
   const setMinimumHotTemp = (newValue) => {
-    setData(prev => ({
-      ...prev,
-      minimumHotTemp: newValue
-    }));
+
+    setData(prev => {
+      let minimumChillyTemp = prev.minimumChillyTemp;
+      let minimumWarmTemp = prev.minimumWarmTemp;
+      
+      if (newValue <= minimumChillyTemp){
+        minimumChillyTemp = newValue -2
+        minimumWarmTemp = newValue -1
+      }
+      else if (newValue <= minimumWarmTemp){
+        minimumWarmTemp = newValue -1
+      }
+      return {
+        ...prev,
+        minimumHotTemp: newValue,
+        minimumChillyTemp,
+        minimumWarmTemp,
+      };
+    });
   };
 
   const setMinimumWarmTemp = (newValue) => {
     setData(prev => {
       let minimumHotTemp = prev.minimumHotTemp;
+      let minimumChillyTemp = prev.minimumChillyTemp;
 
       if (newValue >= minimumHotTemp) {
         minimumHotTemp = newValue + 1;
       }
 
+      if (newValue <= minimumChillyTemp) {
+        minimumChillyTemp = newValue - 1;
+      }
+
       return {
         ...prev,
         minimumWarmTemp: newValue,
+        minimumChillyTemp,
         minimumHotTemp
       };
     });
