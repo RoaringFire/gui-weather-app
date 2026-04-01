@@ -38,7 +38,7 @@ function Customisation({goBack}) {
       <div className="settings_section">
         <div className="widget">
           <span>Weather dashboard</span>
-          <p>Click to set each widget to visible or invisible</p>
+          <p>Click to hide or show each weather widget</p>
           <div className="tagsContainer">
             <button 
               className={`available_tag ${data.isForecastVisible && "tag_latched"}`} 
