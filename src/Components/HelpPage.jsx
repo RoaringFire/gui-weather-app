@@ -8,15 +8,20 @@ function HelpPage({goBack}) {
 
   return (
     <>
+      {/* The overhanging section that everything in the help page is contained in*/}
       <div className="HelpOverlay">
+        {/* The top part of the help section that holds the back button and title for the page */}
         <div className="helpTop">
           <span className="back_button" onClick={goBack}>
             <Icon icon="mdi:arrow-left" fontSize={30} />
           </span>
           <h2 className="HelpTitle">Help</h2>
         </div>
+        {/*The box which contains the 4 sections of help descriptions */}
         <div className="HelpHeader">
+          {/* Weather information description that is used for listing what the weather part of the application does.*/}
           <div className="HelpSection">
+            
             <h3>Weather Information</h3>
               <ul>
                 <li>
@@ -30,6 +35,7 @@ function HelpPage({goBack}) {
                 </li>
               </ul>
           </div>
+          {/* Commute impact description that is used for listing what the commuting part of our application does.*/}
           <div className="HelpSection">
             <h3>Commute Impact</h3>
               <ul>
@@ -45,6 +51,7 @@ function HelpPage({goBack}) {
 
               </ul>
           </div>
+          {/*Settings description section used for listing what the settings page on our application does */}
           <div className="HelpSection">
             <h3>Settings</h3>
               <ul>
@@ -59,14 +66,16 @@ function HelpPage({goBack}) {
                 </li>
               </ul>
           </div>
+          
+          {/*Customisation description section used for listing what the customisation part of our application does.*/}
           <div className="HelpSection">
             <h3>Customisation</h3>
               <ul>
                 <li>
-                  The Customisation section, accessed through the navigation bar, will allow you to edit what weather conditions you want displayed.
+                  The Customisation section, accessed through the navigation bar, will allow you to edit what weather and travel metrics you want displayed.
                 </li>
                 <li>
-                  You can edit the weather metrics by clicking the red x to remove metrics that are already active, and the green tick to add metrics not already active.
+                  You can edit the weather and travel metrics by clicking the icons of each one you want to be active or inactive.
                   
                 </li>
               </ul>
