@@ -74,13 +74,14 @@ export const AppData = ({ children }) => {
 
   const setWeatherAdviceVisible = (newValue) =>
     setData(prev => ({...prev, weatherAdviceVisible : newValue}))
-  
+   
   const setMinimumHotTemp = (newValue) => {
 
     setData(prev => {
       let minimumChillyTemp = prev.minimumChillyTemp;
       let minimumWarmTemp = prev.minimumWarmTemp;
       
+      // Ensures that the values of ranges remain in the correct order
       if (newValue <= minimumChillyTemp){
         minimumChillyTemp = newValue -2
         minimumWarmTemp = newValue -1
@@ -88,6 +89,7 @@ export const AppData = ({ children }) => {
       else if (newValue <= minimumWarmTemp){
         minimumWarmTemp = newValue -1
       }
+
       return {
         ...prev,
         minimumHotTemp: newValue,
@@ -102,6 +104,7 @@ export const AppData = ({ children }) => {
       let minimumHotTemp = prev.minimumHotTemp;
       let minimumChillyTemp = prev.minimumChillyTemp;
 
+      // Ensures that the values of ranges remain in the correct order
       if (newValue >= minimumHotTemp) {
         minimumHotTemp = newValue + 1;
       }
@@ -124,6 +127,7 @@ export const AppData = ({ children }) => {
       let minimumWarmTemp = prev.minimumWarmTemp;
       let minimumHotTemp = prev.minimumHotTemp;
 
+      // Ensures that the values of ranges remain in the correct order
       if (newValue >= minimumWarmTemp) {
         minimumWarmTemp = newValue + 1;
       }

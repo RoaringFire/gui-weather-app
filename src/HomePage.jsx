@@ -30,7 +30,12 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
 
   useEffect(() => {
     setDraggableWidgets([
-      {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+      {id: 0, condition: data.isForecastVisible, 
+        content: <WeatherForecastTable 
+          data={[]} onDragStart={() => handleDragStart(0)}  
+          dataList={hourlyWeatherData.list}
+        />
+      },
       {
         id: 1, 
         condition: data.weatherAdviceVisible, 
@@ -54,12 +59,25 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
           airIndex = {airPollutionData.list[0].main.aqi}
         />
       },
-      {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)}/>}
+      {
+        id: 3, 
+        condition: data.commuteConditionsVisible, 
+        content: <TravelImpactsCard 
+          onDragStart={() => handleDragStart(3)}
+        />
+      }
     ]);
   }, [data, hourlyWeatherData, currentWeatherData, airPollutionData]);
 
   const [draggableWidgets, setDraggableWidgets] = useState([
-    {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
+    {
+      id: 0, 
+      condition: data.isForecastVisible, 
+      content: <WeatherForecastTable 
+      onDragStart={() => handleDragStart(0)}  
+      dataList={hourlyWeatherData.list}
+      />
+    },
     {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
     {
       id: 2, 

@@ -27,7 +27,6 @@ function LocationPrompt() {
         navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
             setLocationCoords({latitude, longitude});
-            console.log(locationCoords); // test to see the coordinates
             loadWeather(latitude, longitude);
         });
     };
@@ -41,8 +40,6 @@ function LocationPrompt() {
             `https://geocoding-api.open-meteo.com/v1/search?name=${e.target.value}&count=5&language=en&format=json`
         );
 
-        console.log(response.data["results"]); // printed the response to test whether i am getting the location data i want
-
         if(response.data && "results" in response.data)
             setLocationsList(response.data["results"]);
         else
@@ -50,8 +47,7 @@ function LocationPrompt() {
     }; 
 
     const loadWeather = async (latitude, longitude) => {
-        // get weather data for location by coordinates
-        // used when the browser automatically detects the user's location
+        // get all the weather data for location by coordinates
         try {
             const response = await axios.get( 
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`
@@ -87,10 +83,10 @@ function LocationPrompt() {
 
         setIsFormError(false);
         
-        console.log(locationCoords);
         loadWeather(locationCoords[0], locationCoords[1])
     };
 
+    // Renders the homescreen when the data is set
     if (airPollutionData) {
         return <HomePage 
             currentWeatherData={currentWeatherData} 
