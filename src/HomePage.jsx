@@ -18,7 +18,14 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
 
   const draggableWidgetsList = [
     {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
-    {id: 1, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+    {
+      id: 1, 
+      content: <WeatherAdvisoryCard 
+        onDragStart={() => handleDragStart(1)} 
+        temperature = {currentWeatherData.main.temp}
+        weatherType ={currentWeatherData.weather[0].main}
+      />
+    },
     {
       id: 2, 
       content: <AtmosConditionsCard 

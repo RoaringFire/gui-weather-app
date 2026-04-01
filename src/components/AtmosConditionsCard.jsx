@@ -40,6 +40,19 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
 
     const convertedRainfall = convertRainFall();
 
+    const convertVisibility = () =>{
+        if (data.visibilityUnit === "km"){
+            return Math.round(visibility * 0.001 * 100) / 100
+        }
+
+        if (data.visibilityUnit === "mile"){
+            return Math.round(visibility * 0.000621 * 100) / 100
+        }
+        return 10
+    }
+
+    const convertedVisibility = convertVisibility();
+
     return (
         <div onDragStart={onDragStart} draggable>
             <div className="statsTileContainer">
@@ -65,12 +78,11 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
             <div className="statsTileContainer">
                 <div className="statsTileCard">
                     <div className="statsTileValue">
-                        {visibility}
-                        <sup>m</sup>
+                        {convertedVisibility}
+                        <sup>{data.visibilityUnit}</sup>
                     </div>
                     <div className="statsTileDesc">
                         Visibility.
-                        <p>Perfectly clear view.</p>
                     </div>
                 </div>
                 <div className="statsTileCard">

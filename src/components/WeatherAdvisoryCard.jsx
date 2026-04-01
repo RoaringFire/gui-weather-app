@@ -1,4 +1,6 @@
 import WeatherPartlyCloudy from "./vector_icons/WeatherPartlyCloudy.jsx"
+import { useData } from "./useData";
+import { data } from "react-router-dom";
 
 var tempAdvicesList = {
     "freezing": "It's freezing! Wear gloves, a scarf and a thick coat before your journey.",
@@ -8,11 +10,11 @@ var tempAdvicesList = {
 };
 
 var weatherAdvicesList = {
-    "rainy": [
+    "Rain": [
         "Don't get wet! Bring an umbrella, raincoat and waterproof shoes for your journey.",
         "Expect potential delays with bus and rail. Allow plenty of time for your journey.",
     ],
-    "sunny": [
+    "Clear": [
         "Avoid direct contact with the sunlight during the day when possible.",
     ],
     "windy": [
@@ -20,25 +22,44 @@ var weatherAdvicesList = {
         "Secure loose items well, including umbrellas, paper and clothing before proceeding.",
         "Stay clear of construction areas. Sudden gusts of wind can unsettle them."
     ],
-    "thunderstorm": [
+    "Thunderstorm": [
         "Stay safe! Use public transport when possible.",
         "Avoid waiting near metal poles, railings and inside open spaces."
     ],
-    "cloudy": [
+    "Clouds": [
         "Be aware of sudden temperature changes and short showers at later times.",
         "Try and bring additional clothing with you in case of any sudden weather changes."
     ],
-    "snow": [
+    "Snow": [
         "Expect major delays with most public transport, including bus and rail. Allow ample journey time.",
         "Snow can be slippery! Wear a pair of good grip shoes before your journey."
     ],
-    "fog": [
+    "Fog": [
         "Low visibility conditions. Expect public transport delays and allow ample time for your journey.",
         "Stay alert at crossings and platforms for any oncoming traffic."
     ]
 };
 
 function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
+
+    const{data} = useData();
+    const getWeatherRange = () => {
+
+        if (temperature > data.minimumHotTemp){
+            return tempAdvicesList["hot"]
+        }
+
+        if (temperature > data.minimumWarmTemp){
+            return tempAdvicesList["warm"]
+        }
+
+        if (temperature > data.minimumChillyTemp){
+            return tempAdvicesList["chilly"]
+        }
+
+        return tempAdvicesList["freezing"]
+    }
+
     // hardcoded stuff - this will be replaced with dynamic content. add the actual data as parameters here
     return (  
         <div className="advisoryCard weatherAdvisory" onDragStart={onDragStart} draggable>
@@ -47,13 +68,10 @@ function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
                 <p>Partly cloudy conditions expected for the rest of the day.</p>
                 <p><strong>Advice:</strong></p>
                 <div className="weatherAdviceLabel">
-                    💡- Additional clothing (e.g. rainwear and warm clothing) may not be necessary.
+                    💡- {weatherAdvicesList[weatherType] ?? "No advice"}
                 </div>
                 <div className="weatherAdviceLabel">
-                    💡- Stay hydrated! Bring a bottle of water or two for your journey.
-                </div>
-                <div className="weatherAdviceLabel">
-                    💡- Be aware of possible sudden temperature changes at later times.
+                    💡- {getWeatherRange()}
                 </div>
             </div>
         </div>
