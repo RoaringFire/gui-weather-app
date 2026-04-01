@@ -12,6 +12,31 @@
     color: var(--text-primary);
 }
 
+
+/* number input styling - for both light and dark modes */
+.settings_page input[type="number"] {
+    width: max(100px, 10vw);
+    font-size: 16px;
+    font-family: Inter;
+    border-radius: 30px;
+    padding: 1rem;
+    border: 1px solid var(--border-primary);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+
+/* hide the built in number spinner buttons in the number input boxes in chromium based browsers */
+.settings_page input[type="number"]::-webkit-outer-spin-button,
+.settings_page input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* hide the spinner in firefox */
+.settings_page input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
 .settings_header {
     display: flex;
     align-items: center;
@@ -124,8 +149,18 @@
 }
 
 .available_tag:hover {
-    background-color: var(--bg-primary);
+    background-color: var(--tag-hover);
+    color: var(--tag-hover-text);
     border-color: var(--border-primary);
+}
+
+.tag_latched {
+    background-color: var(--tag-latched);
+    color: var(--tag-latched-text);
+}
+
+.tag_latched svg path {
+    fill: var(--tag-latched-text);
 }
 
 .back_button {

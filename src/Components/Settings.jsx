@@ -1,10 +1,27 @@
 import "../styles/SettingsStyles.css"
 import { Icon } from "@iconify/react";
-import { useData } from "./useData";
+import { useData } from "./useData.js";
 
 function Settings({goBack}) {
-
-  const { data, setTempUnit,setWindspeedUnit,setRainUnit,toggleDarkMode,setMinimumHotTemp,setMinimumWarmTemp,setMinimumChillyTemp,setVisibilityUnit } = useData();
+  const { 
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+      setMinimumHotTemp,
+      setMinimumWarmTemp,
+      setMinimumChillyTemp,
+      setVisibilityUnit
+    } = useData();
 
   return (
     <div className="settings_page">
@@ -85,39 +102,33 @@ function Settings({goBack}) {
         </div>
 
         <div className="setting_row">
-          <span>Min Hot temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Hot" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumHotTemp}
                 onChange={(e) => setMinimumHotTemp(Number(e.target.value))}
               />
-          </div>
         </div>
 
         <div className="setting_row">
-          <span>Min Warm temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Warm" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumWarmTemp}
                 onChange={(e) => setMinimumWarmTemp(Number(e.target.value))}
               />
-          </div>
         </div>
 
         <div className="setting_row">
-          <span>Min Chilly temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Chilly" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumChillyTemp}
                 onChange={(e) => setMinimumChillyTemp(Number(e.target.value))}
               />
-          </div>
         </div>
       </div>
     </div>

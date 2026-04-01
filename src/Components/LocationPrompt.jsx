@@ -12,7 +12,6 @@ function LocationPrompt() {
     const [locationsList, setLocationsList] = useState([]); // list to autocomplete locations fetched from the api
     const [isLocationSelected, setIsLocationSelected] = useState(false);
     
-
     // location information
     // use this to display the name of the location and send the coordinates of that location to the api
     const [locationName, setLocationName] = useState("");

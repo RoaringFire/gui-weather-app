@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DataContext } from "./DataContext";
+import { DataContext } from "./DataContext.js";
 
 export const AppData = ({ children }) => {
   const [data, setData] = useState(() => {
@@ -10,6 +10,17 @@ export const AppData = ({ children }) => {
       rainUnit: "mm",
       visibilityUnit: "km",
       isDarkMode: false,
+      weatherAdviceVisible: true,
+      isForecastVisible: true,
+      airPollutionVisible: true,
+      windSpeedVisible: true,
+      visibilityMetricVisible: true,
+      precipitationVisible: true,
+      humidityVisible: true,
+      sunsetTimeVisible: true,
+      commuteConditionsVisible: true,
+      isNotifications: true,
+      headerWeatherTheme: "default",
       minimumHotTemp: 20,
       minimumWarmTemp: 19,
       minimumChillyTemp: 18,
@@ -44,8 +55,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode,data.minimumHotTemp,data.minimumWarmTemp,data.minimumChillyTemp])
-
+  }, [data])
 
   const setTempUnit = (newUnit) =>
     setData(prev => ({...prev, tempUnit: newUnit}))
@@ -62,6 +72,9 @@ export const AppData = ({ children }) => {
   const toggleDarkMode = (newValue) =>
     setData(prev => ({...prev, isDarkMode : newValue}))
 
+  const setWeatherAdviceVisible = (newValue) =>
+    setData(prev => ({...prev, weatherAdviceVisible : newValue}))
+  
   const setMinimumHotTemp = (newValue) => {
     setData(prev => ({
       ...prev,
@@ -108,18 +121,57 @@ export const AppData = ({ children }) => {
   };
       
   
+  const setIsForecastVisible = (newValue) =>
+    setData(prev => ({...prev, isForecastVisible : newValue}))
+
+  const setAirPollutionVisible = (newValue) =>
+    setData(prev => ({...prev, airPollutionVisible : newValue}))
+
+  const setWindSpeedVisible = (newValue) =>
+    setData(prev => ({...prev, windSpeedVisible : newValue}))
+
+  const setVisibilityMetricVisible = (newValue) =>
+    setData(prev => ({...prev, visibilityMetricVisible : newValue}))
+
+  const setPrecipitationVisible = (newValue) =>
+    setData(prev => ({...prev, precipitationVisible : newValue}))
+
+  const setHumidityVisible = (newValue) =>
+    setData(prev => ({...prev, humidityVisible : newValue}))
+
+  const setSunsetTimeVisible = (newValue) =>
+    setData(prev => ({...prev, sunsetTimeVisible : newValue}))
+
+  const setCommuteConditionsVisible = (newValue) =>
+    setData(prev => ({...prev, commuteConditionsVisible : newValue}))
+
+  const setHeaderWeatherTheme = (newTheme) =>
+    setData(prev =>({...prev, headerWeatherTheme : newTheme}))
+  
+
   return (
     <DataContext.Provider value={{ 
-        data, 
-        setTempUnit,
-        setRainUnit,
-        setWindspeedUnit, 
-        toggleDarkMode,
-        setMinimumHotTemp, 
-        setMinimumWarmTemp,
-        setMinimumChillyTemp,
-        setVisibilityUnit
-      }}>
+      data, 
+      setTempUnit, 
+      setRainUnit, 
+      setWindspeedUnit, 
+      toggleDarkMode,
+      setWeatherAdviceVisible,
+      setIsForecastVisible,
+      setAirPollutionVisible,
+      setWindSpeedVisible,
+      setVisibilityMetricVisible,
+      setPrecipitationVisible,
+      setHumidityVisible,
+      setSunsetTimeVisible,
+      setCommuteConditionsVisible,
+      setHeaderWeatherTheme,
+      setMinimumHotTemp, 
+      setMinimumWarmTemp,
+      setMinimumChillyTemp,
+      setVisibilityUnit
+    }}>
+    
       {children}
     </DataContext.Provider>
   );

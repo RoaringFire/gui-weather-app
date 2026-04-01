@@ -10,18 +10,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: #000;
 }
 
-.WeatherDisplay.default {background: linear-gradient(to bottom, #7db3ff, #b7d6ff);}
+.WeatherDisplay.default {background: linear-gradient(to bottom, #6668ee, #4c92e2);}
 
-.WeatherDisplay.cloudy {background: linear-gradient(to bottom, #d2d9e1, #b7d6ff);}
+.WeatherDisplay.cloudy {background: linear-gradient(to bottom, #4d93e3, #b7c4d8);}
 
-.WeatherDisplay.sunny {background: linear-gradient(to bottom, #daee7f, #b7d6ff);}
+.WeatherDisplay.sunny {background: linear-gradient(to bottom, #ffd93d, #ff6b35);}
 
-.WeatherDisplay.rainy {background: linear-gradient(to bottom, #47505c, #b7d6ff);}
+.WeatherDisplay.rainy {background: linear-gradient(to bottom, #2d3748, #6d7380);}
 
-.WeatherDisplay.snowy {background: linear-gradient(to bottom, #7db3ff, #b7d6ff);}
+.WeatherDisplay.snowy {background: linear-gradient(to bottom, #e3f2fd, #ffffff);}
 
+.WeatherDisplay.thunderstorm {background: linear-gradient(to bottom, #1c3a8b, #110e3c);}
+
+.WeatherDisplay.drizzle {background: linear-gradient(to bottom, #71bffa, #93c5fd);}
+
+.WeatherDisplay.mist {background: linear-gradient(to bottom, #89cff4, #ced1da);}
+
+.WeatherDisplay.fog {background: linear-gradient(to bottom, #94a3b8, #c6d393);}
+
+
+.WeatherDisplay svg path {
+    fill: #000;
+}
+
+/* prevents svg shapes that turn black from becoming transparent */
+.WeatherDisplay svg mask * {
+    fill: #fff;
+}
 
 .TopBar {
     position: relative;
@@ -39,7 +57,6 @@
     cursor: pointer;
     padding: 0;
     border-radius: 3rem;
-    color: var(--text-primary);
 }
 
 .menu:hover {
@@ -52,7 +69,6 @@
     font-weight: 600;
     margin-bottom: 2rem;
     gap: 1rem;
-    color: var(--text-primary);
 }
 
 .Location * {
@@ -78,17 +94,15 @@
     font-size: max(2.25rem, 5vw); 
     font-weight: 800;
     line-height: 1;
-    color: var(--text-primary);
 }
 
 .Divider {
     width: 0.2rem;
     height: 4rem;
-    background: var(--frontpage-header-divider-color);
+    background: #000;
 }
 
 .FeelsLike {
-    color: var(--text-primary);
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
@@ -99,6 +113,5 @@
     text-align: center;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary);
 }
 

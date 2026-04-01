@@ -1,0 +1,75 @@
+
+.HelpOverlay {
+    min-height: 100vh;
+    background-color:var(--bg-primary) ;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.back_button {
+    display: inline-flex;  
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.HelpTitle {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--svg-primary);
+}
+
+.HelpHeader {
+    background-color: var(--card-bg);
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 8px var(--shadow-color);
+    overflow: hidden;
+}
+
+.HelpHeader h2 {
+    font-size: 2rem;
+    margin: 1.5rem 1.75rem 1rem 1.75rem;
+    color: var(--svg-primary) ;
+    text-align: left;
+}
+
+.HelpSection {
+    padding: 1.5rem 1.75rem;
+    margin: 1rem;
+    border: 0.1rem solid var(--border-primary); 
+    border-radius: 1rem;
+    gap: 1rem;
+}
+
+.helpTop {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0rem 1rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+.helpTop h2{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.HelpSection h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight:400;
+    color:var(--svg-primary);
+    text-align: left;
+}
+
+.HelpSection p,ul,ol,li {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    font-size: 16px;
+    color:var(--svg-primary);
+    text-align: left;
+}

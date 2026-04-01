@@ -1,9 +1,9 @@
 import "../styles/FrontPageHeaderStyles.css"
+import { useState, useEffect } from "react";
 import { useData } from "./useData";
 
 function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, weatherType,cityName}) {
-    const { data} = useData();
-
+    const { data, setHeaderWeatherTheme } = useData();
 
     const convertTemp = (temperature) => {
         if (data.tempUnit === "°F") {
@@ -15,6 +15,40 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
     const convertedFeelsTemp = convertTemp(feelsTemp);
     const convertedCurrentTemp = convertTemp(temp);
 
+     useEffect(()=> {
+        let theme = "default";
+        
+        if (weatherType === "Clouds") {
+            theme = "cloudy";
+        } else if (weatherType === "Clear") {
+            theme = "sunny";
+        } else if (weatherType === "Rain") {
+            theme = "rainy";
+        } else if (weatherType === "Snow") {
+            theme = "snowy";
+        } else if (weatherType === "Thunderstorm") {
+            theme = "thunderstorm";
+        }  else if (weatherType === "Mist") {
+            theme = "mist";
+        } else if (weatherType === "Fog") {
+            theme = "fog";
+        } else if (weatherType === "Drizzle") {
+            theme = "drizzle";
+        }
+      
+        setHeaderWeatherTheme(theme);
+    }, [weatherType]); //only change theme if the weather type changes so not updating unnecessarily
+
+    const getWeatherClass = () => {
+        return `WeatherDisplay ${data.headerWeatherTheme}`;
+    }; /// deals with teh changing of header colour
+
+    const getLocation = () => {
+        navigator.geolocation.getCurrentPosition((position)=>{
+            const { latitude, longitude } = position.coords;
+            setCurrentLocation({latitude, longitude});
+        });
+    };
 
     const triggerMenuOpen = () => {
         if(!menuOpen) {
@@ -34,7 +68,7 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
     const locationNameDisplay = locationName();
 
     return (
-        <div className="WeatherDisplay">
+        <div className={getWeatherClass()}>
             <div className="TopBar">
                 {!menuOpen ? <a type="button" className="menu" onClick={triggerMenuOpen}>☰</a> : <></>}
                 <div className="Location">
@@ -60,8 +94,8 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
                 <div className="FeelsLike">Feels Like {convertedFeelsTemp} {data.tempUnit}</div>
             </div>
             <div className="Condition">
-                <div>{weatherType}</div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
+                <div>{weatherType == "Clear" ? "Sunny" : weatherType}</div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" style={{ visibility: weatherType === "Clear" ? "visible" : "hidden" }}>
                     <circle cx="96" cy="96" r="96" fill="url(#paint0_radial_2_34)"/>
                     <circle cx="95.1273" cy="95.1273" r="79.4182" fill="#FFF700"/>
                     <defs>

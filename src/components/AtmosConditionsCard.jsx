@@ -2,7 +2,8 @@
 import { useData } from "./useData";
 
 function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,humidity,sunset,timeZone,airIndex}) {
-    const { data} = useData();
+    const { data } = useData();
+
     const airPollutionType = ["Good","Fair","Moderate","Poor","Very Poor"]
     const airPollutionMessage = [
         "Enjoy your usual outdoor activities.",
@@ -56,6 +57,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
     return (
         <div onDragStart={onDragStart} draggable>
             <div className="statsTileContainer">
+                {data.airPollutionVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">{airIndex}</div>
                     <div className="statsTileDesc">
@@ -63,7 +65,9 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                         <p>{airPollutionType[airIndex -1]}</p>
                         <p>{airPollutionMessage[airIndex -1]}</p>
                     </div>
-                </div>
+                </div>}
+
+                {data.windSpeedVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">
                         {convertedWindSpeed}
@@ -72,10 +76,11 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                     <div className="statsTileDesc">
                         Wind speed.
                     </div>
-                </div>
+                </div>}
             </div>
 
             <div className="statsTileContainer">
+                {data.visibilityMetricVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">
                         {convertedVisibility}
@@ -84,28 +89,33 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
                     <div className="statsTileDesc">
                         Visibility.
                     </div>
-                </div>
+                </div>}
+
+                {data.precipitationVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">
                         {convertedRainfall}
                         <sup>{data.rainUnit}</sup>
                     </div>
                     <div className="statsTileDesc">Precipitation.</div>
-                </div>
+                </div>}
             </div>
 
             <div className="statsTileContainer">
+                {data.humidityVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">
                         {humidity}
                         <sup>%</sup>
                     </div>
                     <div className="statsTileDesc">Humidity</div>
-                </div>
+                </div>}
+
+                {data.sunsetTimeVisible &&
                 <div className="statsTileCard">
                     <div className="statsTileValue">{convertedSunset}</div>
                     <div className="statsTileDesc">Time of sunset.</div>
-                </div>
+                </div>}
             </div>
         </div>
     );
