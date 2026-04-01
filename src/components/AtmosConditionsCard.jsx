@@ -13,11 +13,13 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
         "Very poor air quality: avoid outdoor activities and stay indoors as much as possible."
     ];
 
+    // converts api value into viewable value
     const convertedSunset = new Date((sunset + timeZone) * 1000).toLocaleTimeString([], {
         hour: "2-digit",
         minute: "2-digit",
     });;
     
+    // converts displayed wind speed value based on the selected unit
     const convertWindSpeed = () => {
         if (data.windSpeedUnit === "mph") {
             return Math.round(windspeed * 2.24);
@@ -32,6 +34,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
 
     const convertedWindSpeed = convertWindSpeed(); 
 
+    // converts displayed rainfall value based on the selected unit
     const convertRainFall = () =>{
         if (data.rainUnit === "in"){
             return Math.round(precipitation * 0.04 * 100) / 100
@@ -41,6 +44,7 @@ function AtmosConditionsCard({onDragStart,windspeed,visibility,precipitation,hum
 
     const convertedRainfall = convertRainFall();
 
+    // converts displayed visbility based on the selected units
     const convertVisibility = () =>{
         if (data.visibilityUnit === "km"){
             return Math.round(visibility * 0.001 * 100) / 100

@@ -17,11 +17,6 @@ var weatherAdvicesList = {
     "Clear": [
         "Avoid direct contact with the sunlight during the day when possible.",
     ],
-    "windy": [
-        "Expect potential delays with rail transport and allow ample time for your journey.",
-        "Secure loose items well, including umbrellas, paper and clothing before proceeding.",
-        "Stay clear of construction areas. Sudden gusts of wind can unsettle them."
-    ],
     "Thunderstorm": [
         "Stay safe! Use public transport when possible.",
         "Avoid waiting near metal poles, railings and inside open spaces."
@@ -43,8 +38,9 @@ var weatherAdvicesList = {
 function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
 
     const{data} = useData();
-    const getWeatherRange = () => {
 
+    // uses the values of the settings to display an appropriate temp value
+    const getWeatherRange = () => {
         if (temperature > data.minimumHotTemp){
             return tempAdvicesList["hot"]
         }
@@ -60,12 +56,9 @@ function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
         return tempAdvicesList["freezing"]
     }
 
-    // hardcoded stuff - this will be replaced with dynamic content. add the actual data as parameters here
     return (  
         <div className="advisoryCard weatherAdvisory" onDragStart={onDragStart} draggable>
             <div>
-                <div className="advisoryHeader">Weather conditions</div>
-                <p>Partly cloudy conditions expected for the rest of the day.</p>
                 <p><strong>Advice:</strong></p>
                 <div className="weatherAdviceLabel">
                     💡- {weatherAdvicesList[weatherType] ?? "No advice"}
