@@ -1,11 +1,12 @@
-
+/* Help Page Styling*/
+/*Styling for the helpOverlay class which sets the height, background color, padding, and sizing  */
 .HelpOverlay {
     min-height: 100vh;
     background-color:var(--bg-primary) ;
     padding: 1rem;
     box-sizing: border-box;
 }
-
+/*Styling for th button that takes you back a page, which includes a display type, alignment, and a margin */
 .back_button {
     display: inline-flex;  
     align-items: center;
@@ -13,7 +14,7 @@
     cursor: pointer;
     margin-right: 1rem;
 }
-
+/*Styling for the title at the top of the page, which includes its font size weight and colour. */
 .HelpTitle {
     display: inline-block;
     vertical-align: middle;
@@ -22,21 +23,21 @@
     font-weight: 600;
     color: var(--svg-primary);
 }
-
+/*Styling for the header of the help page box, which includes the background colour, radius of the border, and a shadow for more depth */
 .HelpHeader {
     background-color: var(--card-bg);
     border-radius: 1.25rem;
     box-shadow: 0 8px 8px var(--shadow-color);
     overflow: hidden;
 }
-
+/*Styling of h2 titles within the help header section, which includes the font size, margin, a colour, and text-alignment. */
 .HelpHeader h2 {
     font-size: 2rem;
     margin: 1.5rem 1.75rem 1rem 1.75rem;
     color: var(--svg-primary) ;
     text-align: left;
 }
-
+/*Styling for the individual help sections, which includes padding, margins, borders, and gaps between each one. */
 .HelpSection {
     padding: 1.5rem 1.75rem;
     margin: 1rem;
@@ -44,7 +45,7 @@
     border-radius: 1rem;
     gap: 1rem;
 }
-
+/* Styking for the helpTop section which includes display types, alignment, gaps, padding, margins, and colour assignment*/
 .helpTop {
     display: flex;
     align-items: center;
@@ -53,11 +54,12 @@
     margin-bottom: 30px;
     color: var(--text-primary);
 }
+/*styling for the top of the pages header h2, which has font size and weight */
 .helpTop h2{
     font-size: 24px;
     font-weight: 700;
 }
-
+/* styling for any h3 titles within the help sections, which includes font sizing, weight, colour, alignment and a margin set.*/
 .HelpSection h3 {
     margin: 0;
     font-size: 20px;
@@ -65,7 +67,7 @@
     color:var(--svg-primary);
     text-align: left;
 }
-
+/*Styling for the rest of the information that could be placed within help Section, which would include margins, font sizes, colour, and text-alignment to match the titles alignment. */
 .HelpSection p,ul,ol,li {
     margin-top: 0.5rem;
     margin-bottom: 0;

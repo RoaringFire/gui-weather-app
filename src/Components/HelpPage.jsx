@@ -56,13 +56,16 @@ function HelpPage({goBack}) {
             <h3>Settings</h3>
               <ul>
                 <li>
-                  The Settings section, accessed through the navigation bar, will allow you to customise the units you wish to view, and change the colour scheme of the app from light to dark mode.
+                  The Settings section, accessed through the navigation bar, will allow you to customise the units you wish to view, change your minimum thresholds for temperatures, and change the colour scheme of the app from light to dark mode.
                 </li>
                 <li>
                   To change the colour scheme of your weather app, you can click the toggle button labelled as dark mode to on/ off.
                 </li>
                 <li>
                   To change the units shown on your weather app, you can click the drop down buttons in the settings page, and then choose the unit you wish to see.
+                </li>
+                <li>
+                  Additionally, the settings page allows you to set the minimum hot, warm, and chilly temperatures of your app, so our advice can be closer tailoured to you and not just to an average.
                 </li>
               </ul>
           </div>

@@ -1,5 +1,5 @@
 /* navigation bar styling */
-
+/* The overarching styling for the navigation bar, which mainly deals with sizes and positioning, aswell as setting a background colour.*/
 .menuOverlay {
     position: fixed;
     top: 0;
@@ -10,7 +10,7 @@
     align-items: stretch;
     background: rgba(0, 0, 0, 0.30);
 }
-
+/*Styling for the side bar that comes out and is the background for the navigation menu, which sets how much of the screen is taken up, the height, background, display, padding, and  colour */
 .sideBar {
     position: fixed;
     width: 60vw;
@@ -22,7 +22,7 @@
     padding: 4rem 1rem 1rem 1rem;
     color: var(--text-primary);
 }
-
+/*Styling for the close button, which controls the font size , border, background, colour, and position. */
 .closeButton {
     position: absolute;
     top: 1rem;
@@ -35,11 +35,11 @@
     cursor: pointer;
     color: var(--text-primary);
 }
-
+/*styling that controls the opacity of a button when hovered over */
 .closeButton:hover {
     opacity: 0.5;
 }
-
+/*Main styling for the buttons for the navigation menu, declaring their width, background, border, alignment, text , colour, padding, and the transition(animation speed). */
 .menuButton {
     width: 100%;
     background: none;
@@ -53,11 +53,11 @@
     display: flex;
     transition: 0.3s;
 }
-
+/* Styling to give the menu Buttons a margin*/
 .menuButton * {
     margin-right: 0.6rem;
 }
-
+/*Styling for when you hover you mouse over a button */
 .menuButton:hover {
     opacity: 0.9;
     background-color: var(--menu-button-hover);
