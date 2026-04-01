@@ -6,8 +6,7 @@ import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
 import {TflStatus, getBusStatus} from "../tfl.jsx";
 
-// currently hardcoded. add actual data here (pass the data as parameters in this widget)
-// add them as tables or lists here, i'll try by best to style them :)
+//Use to search for and display bus statuses
 function BusStatus() {
     const inputRef = useRef("");
 
@@ -78,6 +77,7 @@ function BusStatus() {
     );
 }
 
+//Use to display rail statuses
 function RailStatus() {
     const STATUS_LIST = [
         "statusGood",
