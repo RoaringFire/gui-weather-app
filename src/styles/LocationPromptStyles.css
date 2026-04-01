@@ -40,12 +40,14 @@
     opacity: 0.8;
 }
 
+/* secondary button - no background*/
 .locationPrompt .buttonSecondary {
     color: var(--button-secondary-text);
     border: none;
     background: none;
 }
 
+/* text input should have round borders, larger padding and bigger font size */
 .locationPrompt input[type="text"] {
     width: max(250px, 30vw);
     font-family: Inter;
@@ -63,12 +65,14 @@
     width: max(250px, 30vw);
 }
 
+/* wrapper to allow absolute positoning for the dropdown box. allows the dropdown box to appear in front of other elements*/
 .locationPrompt .locationInputWrap {
     position: relative;
     right: 2.7rem;
     width: max(250px, 30vw);
 }
 
+/* error box for manual location form */
 .locationPrompt .formError {
     background-color: rgba(255, 131, 131, 0.5);
     display: flex;
@@ -84,6 +88,7 @@
     margin-top: 0.5rem;
 }
 
+/* set absolute positioning for dropdown menu */
 .locationPrompt .searchDropdown {
     background-color: var(--card-bg);
     width: max(280px, 32vw);
