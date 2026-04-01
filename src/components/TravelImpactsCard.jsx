@@ -126,7 +126,7 @@ function RailStatus() {
 }
 
 
-function TravelImpactsCard({ onDragStart }) {
+function TravelImpactsCard({ onDragStart}) {
     const [currentSec, setCurrentSec] = useState("rail");
 
     return ( 

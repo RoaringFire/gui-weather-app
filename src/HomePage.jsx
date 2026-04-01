@@ -19,10 +19,27 @@ import { useData } from "./components/useData";
 function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
   const { data } = useData();
 
+  const isLondon = () => {
+  return (
+    currentWeatherData.latitude >= 51.28 &&
+    currentWeatherData.latitude <= 51.70 &&
+    currentWeatherData.longitude >= -0.51 &&
+    currentWeatherData.longitude <= 0.33
+  );
+  };
+
   useEffect(() => {
     setDraggableWidgets([
       {id: 0, condition: data.isForecastVisible, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
-      {id: 1, condition: data.weatherAdviceVisible, content: <WeatherAdvisoryCard onDragStart={() => handleDragStart(1)} />},
+      {
+        id: 1, 
+        condition: data.weatherAdviceVisible, 
+        content: <WeatherAdvisoryCard 
+          onDragStart={() => handleDragStart(1)} 
+          temperature={currentWeatherData.main.temp}
+          weatherType={currentWeatherData.weather[0].main} 
+        />
+      },
       {
         id: 2, 
         condition: true,
@@ -37,7 +54,7 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
           airIndex = {airPollutionData.list[0].main.aqi}
         />
       },
-      {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+      {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)}/>}
     ]);
   }, [data, hourlyWeatherData, currentWeatherData, airPollutionData]);
 
@@ -58,7 +75,7 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
         airIndex = {airPollutionData.list[0].main.aqi}
       />
     },
-    {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+    {id: 3, condition: data.commuteConditionsVisible, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} isLondon ={isLondon()}/>}
   ]);
 
   const [draggedWidgetId, setDraggedWidgetId] = useState(null); // assume no item is initially dragged
