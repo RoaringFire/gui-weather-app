@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 
+import "../styles/TfLRailServiceStyles.css";
 import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
 import {TflStatus, getBusStatus} from "../tfl.jsx";
@@ -111,7 +112,7 @@ function RailStatus() {
                 <tbody>
                     {(!isLoading && lines.length > 0) && lines.map((line) => (
                         <tr>
-                            <td>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
+                            <td className={line.name.charAt(0).toUpperCase() + line.name.slice(1)}>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
                             <td>{line.status}</td>   
                         </tr>
                     ))}
