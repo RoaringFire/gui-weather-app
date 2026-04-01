@@ -4,10 +4,11 @@ import axios from 'axios';
 import data from "./key.json";
 const apiKey = data.tfl_key;
 
-//Get lines from json file
+//Get lines from json file (Underground, Overground and Elizabeth)
 import lineFile from "./lines.json";
 const lines = lineFile.lines;
 
+//Get the status from the TfL API, use for bus routes
 async function getBusStatus(route){
     const response = await axios.get('https://api.tfl.gov.uk/Line/'+ route +'/Status' , {
         params: {
