@@ -17,6 +17,10 @@ function Settings({goBack}) {
       setHumidityVisible,
       setSunsetTimeVisible,
       setCommuteConditionsVisible,
+      setMinimumHotTemp,
+      setMinimumWarmTemp,
+      setMinimumChillyTemp,
+      setVisibilityUnit
     } = useData();
 
   return (
@@ -80,6 +84,56 @@ function Settings({goBack}) {
               <option value="mm">mm</option>
               <option value="in">inches</option>
             </select>
+          </div>
+        </div>
+
+        <div className="setting_row">
+          <span>Visibility Units</span>
+          <div className="customSelectContainer">
+            <select 
+              className="selectBox"
+              value={data.visibilityUnit}
+              onChange={(e) => setVisibilityUnit(e.target.value)}
+            >
+              <option value="km">km</option>
+              <option value="mile">miles</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="setting_row">
+          <span>Min Hot temp</span>
+          <div className="customSelectContainer">
+            <input
+                type="number"
+                className="numberInput"
+                value={data.minimumHotTemp}
+                onChange={(e) => setMinimumHotTemp(Number(e.target.value))}
+              />
+          </div>
+        </div>
+
+        <div className="setting_row">
+          <span>Min Warm temp</span>
+          <div className="customSelectContainer">
+            <input
+                type="number"
+                className="numberInput"
+                value={data.minimumWarmTemp}
+                onChange={(e) => setMinimumWarmTemp(Number(e.target.value))}
+              />
+          </div>
+        </div>
+
+        <div className="setting_row">
+          <span>Min Chilly temp</span>
+          <div className="customSelectContainer">
+            <input
+                type="number"
+                className="numberInput"
+                value={data.minimumChillyTemp}
+                onChange={(e) => setMinimumChillyTemp(Number(e.target.value))}
+              />
           </div>
         </div>
       </div>

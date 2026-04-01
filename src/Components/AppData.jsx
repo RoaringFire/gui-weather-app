@@ -8,6 +8,7 @@ export const AppData = ({ children }) => {
       tempUnit: "°C",
       windSpeedUnit: "mph",
       rainUnit: "mm",
+      visibilityUnit: "km",
       isDarkMode: false,
       weatherAdviceVisible: true,
       isForecastVisible: true,
@@ -20,6 +21,9 @@ export const AppData = ({ children }) => {
       commuteConditionsVisible: true,
       isNotifications: true,
       headerWeatherTheme: "default",
+      minimumHotTemp: 20,
+      minimumWarmTemp: 19,
+      minimumChillyTemp: 18,
     };
 
     try {
@@ -51,8 +55,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode, data.isNotifications, data.headerWeatherTheme])
-
+  }, [data])
 
   const setTempUnit = (newUnit) =>
     setData(prev => ({...prev, tempUnit: newUnit}))
@@ -62,12 +65,61 @@ export const AppData = ({ children }) => {
   
   const setRainUnit = (newUnit) =>
     setData(prev => ({...prev, rainUnit : newUnit}))
+
+  const setVisibilityUnit = (newUnit) =>
+    setData(prev => ({...prev, visibilityUnit : newUnit}))
   
   const toggleDarkMode = (newValue) =>
     setData(prev => ({...prev, isDarkMode : newValue}))
 
   const setWeatherAdviceVisible = (newValue) =>
     setData(prev => ({...prev, weatherAdviceVisible : newValue}))
+  
+  const setMinimumHotTemp = (newValue) => {
+    setData(prev => ({
+      ...prev,
+      minimumHotTemp: newValue
+    }));
+  };
+
+  const setMinimumWarmTemp = (newValue) => {
+    setData(prev => {
+      let minimumHotTemp = prev.minimumHotTemp;
+
+      if (newValue >= minimumHotTemp) {
+        minimumHotTemp = newValue + 1;
+      }
+
+      return {
+        ...prev,
+        minimumWarmTemp: newValue,
+        minimumHotTemp
+      };
+    });
+  };
+
+  const setMinimumChillyTemp = (newValue) => {
+    setData(prev => {
+      let minimumWarmTemp = prev.minimumWarmTemp;
+      let minimumHotTemp = prev.minimumHotTemp;
+
+      if (newValue >= minimumWarmTemp) {
+        minimumWarmTemp = newValue + 1;
+      }
+
+      if (minimumWarmTemp >= minimumHotTemp) {
+        minimumHotTemp = minimumWarmTemp + 1;
+      }
+
+      return {
+        ...prev,
+        minimumChillyTemp: newValue,
+        minimumWarmTemp,
+        minimumHotTemp
+      };
+    });
+  };
+      
   
   const setIsForecastVisible = (newValue) =>
     setData(prev => ({...prev, isForecastVisible : newValue}))
@@ -113,7 +165,11 @@ export const AppData = ({ children }) => {
       setHumidityVisible,
       setSunsetTimeVisible,
       setCommuteConditionsVisible,
-      setHeaderWeatherTheme
+      setHeaderWeatherTheme,
+      setMinimumHotTemp, 
+      setMinimumWarmTemp,
+      setMinimumChillyTemp,
+      setVisibilityUnit
     }}>
     
       {children}
