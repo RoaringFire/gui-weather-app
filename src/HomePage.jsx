@@ -16,6 +16,12 @@ import { AppData } from "./components/AppData.jsx";
 
 function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
 
+  const isLondon = () =>{
+    console.log(currentWeatherData.latitude > 51.25 && currentWeatherData.latitude < 51.72 && currentWeatherData.longitude > -0.57 && currentWeatherData.longitude < 0.37)
+    return currentWeatherData.latitude > 51.25 && currentWeatherData.latitude < 51.72 && 
+            currentWeatherData.longitude > -0.57 && currentWeatherData.longitude < 0.37
+  }
+
   const draggableWidgetsList = [
     {id: 0, content: <WeatherForecastTable data={[]} onDragStart={() => handleDragStart(0)}  dataList={hourlyWeatherData.list}/>},
     {
@@ -39,7 +45,7 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
         airIndex = {airPollutionData.list[0].main.aqi}
       />
     },
-    {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} />}
+    {id: 3, content: <TravelImpactsCard onDragStart={() => handleDragStart(3)} isLondon ={isLondon()}/>}
   ];
 
   const [draggableWidgets, setDraggableWidgets] = useState(draggableWidgetsList);

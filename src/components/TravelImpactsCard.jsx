@@ -94,8 +94,12 @@ function RailStatus() {
 }
 
 
-function TravelImpactsCard({ onDragStart }) {
+function TravelImpactsCard({ onDragStart,isLondon}) {
     const [currentSec, setCurrentSec] = useState("rail");
+
+    if (!isLondon){
+        return
+    }
 
     return ( 
         <div className="advisoryCard travelImpacts" onDragStart={onDragStart} draggable>
