@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { DataContext } from "./DataContext";
+import { DataContext } from "./DataContext.js";
 
 export const AppData = ({ children }) => {
   const [data, setData] = useState(() => {
@@ -18,6 +18,8 @@ export const AppData = ({ children }) => {
       humidityVisible: true,
       sunsetTimeVisible: true,
       commuteConditionsVisible: true,
+      isNotifications: true,
+      headerWeatherTheme: "default",
     };
 
     try {
@@ -49,7 +51,7 @@ export const AppData = ({ children }) => {
   useEffect(() => {
     // save settings data as cookie, so it persists even during reloads
     localStorage.setItem("settings", JSON.stringify(data));
-  }, [data])
+  }, [data.tempUnit, data.windSpeedUnit, data.rainUnit, data.isDarkMode, data.isNotifications, data.headerWeatherTheme])
 
 
   const setTempUnit = (newUnit) =>
@@ -91,6 +93,9 @@ export const AppData = ({ children }) => {
   const setCommuteConditionsVisible = (newValue) =>
     setData(prev => ({...prev, commuteConditionsVisible : newValue}))
 
+  const setHeaderWeatherTheme = (newTheme) =>
+    setData(prev =>({...prev, headerWeatherTheme : newTheme}))
+  
 
   return (
     <DataContext.Provider value={{ 
@@ -108,7 +113,9 @@ export const AppData = ({ children }) => {
       setHumidityVisible,
       setSunsetTimeVisible,
       setCommuteConditionsVisible,
+      setHeaderWeatherTheme
     }}>
+    
       {children}
     </DataContext.Provider>
   );
