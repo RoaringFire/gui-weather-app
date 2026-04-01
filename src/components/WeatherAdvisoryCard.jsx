@@ -65,7 +65,6 @@ function WeatherAdvisoryCard({onDragStart,weatherType,temperature}) {
         <div className="advisoryCard weatherAdvisory" onDragStart={onDragStart} draggable>
             <div>
                 <div className="advisoryHeader">Weather conditions</div>
-                <p>Partly cloudy conditions expected for the rest of the day.</p>
                 <p><strong>Advice:</strong></p>
                 <div className="weatherAdviceLabel">
                     💡- {weatherAdvicesList[weatherType] ?? "No advice"}
