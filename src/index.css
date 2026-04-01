@@ -1,8 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
+@import "./styles/GlobalStyleVars.css";
 
+/* added styles */
 body {
     font-family: Inter;
     font-size: 0.85rem;
     margin: 0;
-    background-image: linear-gradient(180deg, #09F 0%, #68ACDA 26.92%, #B0DFFF 100%);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+svg path {
+    fill: var(--svg-primary);
+}
+
+/* prevents svg shapes that turn black from becoming transparent */
+svg mask * {
+    fill: #fff;
 }

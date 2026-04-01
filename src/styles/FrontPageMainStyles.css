@@ -1,0 +1,279 @@
+/* main front page panel styling */
+
+/* container styling - fill height to 100% of the viewport height */
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
+
+.mainPanel {
+    flex: 2.5;
+    padding: 2.5rem;
+    background-color: var(--bg-primary);
+    box-shadow: var(--card-shadow);
+    color: var(--text-primary);
+}
+
+/* weather forecast table - display each cell horizontally. also add a scrollbar for smaller widths */
+.weatherForecastTableContainer {
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    padding: 0.9rem;
+    background-color: var(--card-bg);
+}
+
+.weatherForecastTable {
+    display: flex;
+    overflow: auto;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: center;
+    color: var(--text-primary);
+}
+
+.weatherForecastCell {
+    padding: 0.5rem;
+}
+
+/* advisory card - has a black shadow, a border radius so it looks little circular*/
+.advisoryCard {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding-top: 1.25rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    /* border: 1px solid var(--border-color); */
+    background: var(--advisory-card-bg);
+    box-shadow: var(--card-shadow);
+}
+
+.advisoryCard * {
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+}
+
+.advisoryCard a {
+    border-radius: 20px;
+    color: var(--advisory-link-color);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+.advisoryCard a:hover {
+    opacity: 0.8;
+}
+
+/* button styling - primary and secondary button styling */
+.advisoryCard button {
+    font-family: Inter; 
+    padding: 1rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+}
+
+.advisoryCard .buttonPrimary {
+    border: none;
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+    border-radius: 30px;
+    box-shadow: var(--card-shadow);
+}
+
+.advisoryCard .buttonPrimary svg path {
+    fill: var(--button-primary-text);
+}
+
+.advisoryCard .buttonPrimary:hover, .container .buttonSecondary:hover {
+    opacity: 0.8;
+}
+
+.advisoryCard input[type="text"] {
+    width: max(250px, 30vw);
+    font-family: Inter;
+    border-radius: 30px;
+    padding: 1rem;
+    border: 1px solid var(--border-primary);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.advisoryCard .advisoryHeader {
+    font-size: 1.3rem;
+    font-weight: 1000;
+    color: var(--text-primary);
+}
+
+.weatherAdvisory {
+    background-color: var(--advisory-card-bg);
+    padding: 1.5rem;
+}
+
+.weatherAdvisory .weatherAdviceLabel {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: var(--card-shadow);
+    margin: 0.6rem;
+    padding: 0.6rem;
+    background-color: var(--advisory-card-bg);
+    color: var(--text-primary);
+}
+
+.travelConditions, .travelImpacts {
+    flex-flow: column;
+}
+
+.travelConditions ul {
+    list-style-type: none;
+    color: var(--text-primary);
+}
+
+.travelModeImpactContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.1rem;
+    margin-bottom: 1.1rem;
+    justify-content: center;
+}
+
+.travelModeImpact {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    padding: 0.8rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    cursor: pointer;
+    background-color: var(--travel-mode-bg);
+    color: var(--travel-mode-text);
+}
+
+.travelModeImpact .group1 {
+    display: flex;
+    align-items: center;
+}
+
+.travelModeImpact:hover {
+    opacity: 0.75;
+}
+
+.travelModeImpact * {
+    margin-bottom: 0.2rem;
+}
+
+.busStatusForm {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 12px;
+    row-gap: 8px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.busStatusCard {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    border-radius: 20px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+}
+
+.busStatusCard .busStatusCardHeader {
+    font-size: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border-primary);
+    font-weight: 700;
+    margin-bottom: 0.9rem;
+}
+
+.railStatusTable {
+    font-family: Inter;
+    font-size: 16px;
+    border-collapse: collapse;
+    width: 70vw;
+    margin-bottom: 1rem;
+    table-layout: fixed;
+    color: var(--text-primary);
+}
+
+.railStatusTable tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.railStatusTable th, .railStatusTable td {
+    padding: 1.05rem;
+    text-align: left;
+}
+
+.railStatusTable td .statusGood {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+.railStatusTable td .statusWarning {
+    color: #8e8e00;
+    font-weight: 700;
+}
+
+.railStatusTable td .statusDanger {
+    color: #940c00;
+    font-weight: 700;
+}
+
+.travelModeGood {
+    color: #0d6913;
+    background-color: #42ff1c;
+}
+
+.travelModeWarning {
+    color: #5d5d00;
+    background-color: #ffff00;
+}
+
+.travelModeDanger {
+    color: #940c00;
+    background-color: #ff7777;
+}
+
+.statsTileContainer {
+    display: flex;
+}
+
+.statsTileCard {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    margin: 0.8rem 0.4rem;
+    padding: 1.3rem;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.statsTileCard .statsTileValue {
+    font-weight: 1000;
+    font-size: max(1.4rem, 2.5vw);
+    display: flex;
+    align-items: center;
+    column-gap: 0.3rem;
+}
+
+.atmosConditionsCard {
+    padding: 0.9rem;
+}

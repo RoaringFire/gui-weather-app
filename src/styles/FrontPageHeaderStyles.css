@@ -1,5 +1,7 @@
+/* main header styling */
+
 .WeatherDisplay {
-    background: linear-gradient(to bottom, #7db3ff, #b7d6ff);
+    background: var(--frontpage-header-bg-gradient);
     box-sizing: border-box;
     width: 100%;
     height: 25vh;
@@ -8,8 +10,36 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: #000;
 }
 
+.WeatherDisplay.default {background: linear-gradient(to bottom, #6668ee, #4c92e2);}
+
+.WeatherDisplay.cloudy {background: linear-gradient(to bottom, #4d93e3, #b7c4d8);}
+
+.WeatherDisplay.sunny {background: linear-gradient(to bottom, #ffd93d, #ff6b35);}
+
+.WeatherDisplay.rainy {background: linear-gradient(to bottom, #2d3748, #6d7380);}
+
+.WeatherDisplay.snowy {background: linear-gradient(to bottom, #e3f2fd, #ffffff);}
+
+.WeatherDisplay.thunderstorm {background: linear-gradient(to bottom, #1c3a8b, #110e3c);}
+
+.WeatherDisplay.drizzle {background: linear-gradient(to bottom, #71bffa, #93c5fd);}
+
+.WeatherDisplay.mist {background: linear-gradient(to bottom, #89cff4, #ced1da);}
+
+.WeatherDisplay.fog {background: linear-gradient(to bottom, #94a3b8, #c6d393);}
+
+
+.WeatherDisplay svg path {
+    fill: #000;
+}
+
+/* prevents svg shapes that turn black from becoming transparent */
+.WeatherDisplay svg mask * {
+    fill: #fff;
+}
 
 .TopBar {
     position: relative;
@@ -26,11 +56,11 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    line-height: 1;
+    border-radius: 3rem;
 }
 
 .menu:hover {
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .Location {
@@ -61,7 +91,7 @@
 }
 
 .Temp {
-    font-size: 5rem; 
+    font-size: max(2.25rem, 5vw); 
     font-weight: 800;
     line-height: 1;
 }
@@ -69,11 +99,10 @@
 .Divider {
     width: 0.2rem;
     height: 4rem;
-    background: black;
+    background: #000;
 }
 
 .FeelsLike {
-    color: #000;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 700;
@@ -85,3 +114,4 @@
     font-size: 1.5rem;
     font-weight: 700;
 }
+

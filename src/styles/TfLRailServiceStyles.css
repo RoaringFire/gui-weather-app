@@ -1,0 +1,72 @@
+/* tfl line colours */
+.railStatusTable td.Bakerloo {
+    border-left: 10px solid  rgb(178, 99, 0);
+}
+
+.railStatusTable td.Central {
+    border-left: 10px solid  rgb(220, 36, 0);
+}
+
+.railStatusTable td.Circle {
+    border-left: 10px solid  rgb(255, 200, 10);
+}
+
+.railStatusTable td.District {
+    border-left: 10px solid  rgb(0, 125, 50);
+}
+
+.railStatusTable td.Hammersmith-city {
+    border-left: 10px solid rgb(245, 137, 166);
+}
+
+.railStatusTable td.Jubilee {
+    border-left: 10px solid rgb(131, 141, 147);
+}
+
+.railStatusTable td.Metropolitan  {
+    border-left: 10px solid rgb(155, 0, 88);
+}
+
+.railStatusTable td.Northern {
+    border-left: 10px solid rgb(0, 0, 0);
+}
+
+.railStatusTable td.Piccadilly {
+    border-left: 10px solid rgb(0, 25, 168);
+}
+
+.railStatusTable td.Victoria {
+    border-left: 10px solid rgb(3, 155, 229);
+}
+
+.railStatusTable td.Waterloo-city {
+    border-left: 10px solid rgb(118, 208, 189);
+}
+
+.railStatusTable td.Elizabeth {
+    border-left: 10px solid rgb(96, 57, 158);
+}
+
+.railStatusTable td.Liberty {
+    border-left: 10px solid rgb(93, 96, 97);
+}
+
+.railStatusTable td.Lioness {
+    border-left: 10px solid rgb(250, 166, 26);
+}
+
+.railStatusTable td.Mildmay {
+    border-left: 10px solid rgb(0, 119, 173);
+}
+
+.railStatusTable td.Suffragette {
+    border-left: 10px solid rgb(91, 189, 114);
+}
+
+.railStatusTable td.Weaver {
+    border-left: 10px solid rgb(130, 58, 98);
+}
+
+.railStatusTable td.Windrush {
+    border-left: 10px solid rgb(237, 27, 0);
+}

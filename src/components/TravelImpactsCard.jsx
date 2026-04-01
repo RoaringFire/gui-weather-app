@@ -1,92 +1,139 @@
-import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { useRef, useState, useEffect } from "react";
 
+import "../styles/TfLRailServiceStyles.css";
 import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
 import {TflStatus, getBusStatus} from "../tfl.jsx";
 
 //Use to search for and display bus statuses
 function BusStatus() {
+    const inputRef = useRef("");
+
     const [busRoute, setBusRoute] = useState("");
-    const [status, setStatus] = useState(null);
+    const [isRouteBlank, setIsRouteBlank] = useState(false);
+    const [isReqError, setIsReqError] = useState(false);
+    const [reqStatusCode, setReqStatusCode] = useState(null);
+    const [busStatusData, setBusStatusData] = useState(null);
 
-    //Get the status from the TfL API if the route exists
     const busStatus = async () => {
-        if (!busRoute) return;
+        const route = inputRef.current.value.trim();
 
-        const result = await getBusStatus(busRoute);
-        setStatus(result);
+        // clear previous data from previous request
+        setBusStatusData(null);
+        setReqStatusCode(null);
+        setIsReqError(false);
+
+        if(!route) {
+            setIsRouteBlank(true);
+            return;
+        }
+
+        const result = await getBusStatus(route);
+        setBusStatusData(result.data);
+        setReqStatusCode(result.statusCode);
+
+        setIsRouteBlank(false);
+        setIsReqError(result.statusCode !== 200);
     };
 
-    //Input box, button and area to display bus statuses
     return (
         <>
             <h3>Bus status</h3>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div>Find a bus route to see its current status:</div>
                 <div className="busStatusForm">
-                    {/* Input and button to set the bus route to get the status from */}
                     <input
+                        ref={inputRef}
                         type="text"
                         value={busRoute}
                         onChange={(e) => setBusRoute(e.target.value)}
                     />
                     <button className="buttonPrimary" onClick={busStatus}>Get status</button>
                 </div>
-            </div>
+                {(busStatusData && reqStatusCode === 200 && !isReqError) && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Bus status for {busStatusData.name}</div>
+                        <div style={{ fontSize: "0.92rem", fontWeight: "700" }}>{busStatusData.lineStatuses[0].statusSeverityDescription}</div>
+                        {busStatusData.lineStatuses[0].reason && <p>{busStatusData.lineStatuses[0].reason}</p>}
+                    </div>
+                )}
+                
+                {isReqError && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Error</div>
+                        <div>There is no data available for this bus route. A route might not exist, or there is a connection error with TfL's server.</div>
+                    </div>
+                )}
 
-            {/* If a status exists then display the route name and route status, as well as the status description if there is one */}
-            {status && (
-                <div style={{ marginTop: "1rem" }}>
-                    <strong>{status.name}</strong>: {status.lineStatuses[0].statusSeverityDescription}
-                    {status.lineStatuses[0].reason && <div>{status.lineStatuses[0].reason}</div>}
-                </div>
-            )}
+                {isRouteBlank && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Error</div>
+                        <div>Please enter a bus route</div>
+                    </div>
+                )}
+            </div>
         </>
     );
 }
 
 //Use to display rail statuses
 function RailStatus() {
+    const STATUS_LIST = [
+        "statusGood",
+        "statusWarning",
+        "statusDanger"
+    ];
+
+    const [isLoading, setIsLoading] = useState(true);
     const [lines, setLines] = useState([]);
 
-    //Get the rail statuses from TfL API, calculate how its sorted and then return a list of lines and their info
     useEffect(() => {
         const fetchData = async () => {
             const tflStatus = new TflStatus(17);
             await tflStatus.calculateOutput();
             setLines(tflStatus.getOutput());
+            setIsLoading(false);
         };
 
         fetchData();
     }, []);
 
-    //Area to display rail statuses
     return (
         <>
             <h3>Rail status</h3>
-            <table className="railStatusTable">   
+            <table className="railStatusTable">  
+                <thead>
+                    <tr>
+                        <th>Line</th>
+                        <th>Status</th>
+                    </tr>
+                </thead> 
                 <tbody>
-                    {/* Iterate through the list of lines and create a row in the table for each, displaying the name of the line and its status */}
-                    {lines.map((line) => (
+                    {(!isLoading && lines.length > 0) && lines.map((line) => (
                         <tr>
-                            <td>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
+                            <td className={line.name.charAt(0).toUpperCase() + line.name.slice(1)}>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
                             <td>{line.status}</td>   
                         </tr>
                     ))}
+
+                    {isLoading && <tr><td colSpan="2" style={{ textAlign: "center" }}>Please wait for the data to load.</td></tr>}
+
+                    {(!isLoading && lines.length == 0) && <tr><td colSpan="2" style={{ textAlign: "center" }}>No data is currently available.</td></tr>}
                 </tbody>
             </table>
         </>
     );
 }
 
-//Select between bus and rail statuses
-function TravelImpactsCard({ onDragStart }) {
+
+function TravelImpactsCard({ onDragStart}) {
     const [currentSec, setCurrentSec] = useState("rail");
 
     return ( 
         <div className="advisoryCard travelImpacts" onDragStart={onDragStart} draggable>
             <div className="advisoryHeader">Commuting conditions</div>
-            {/* setup navigation links for bus and rail */}
+            {/* setup navigation links for bus, rail and tram statuses */}
             <nav className="travelModeImpactContainer">
                 <a type="button" onClick={() => setCurrentSec("bus")}>
                     <div className="travelModeImpact">

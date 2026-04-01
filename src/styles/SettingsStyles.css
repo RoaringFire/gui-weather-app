@@ -1,0 +1,271 @@
+/* settings page styling */
+
+.settings_page {
+    width: 100vw;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    font-family: Inter;
+    background-color: var(--bg-primary);
+    min-height: 100vh; 
+    box-sizing: border-box;
+    color: var(--text-primary);
+}
+
+
+/* number input styling - for both light and dark modes */
+.settings_page input[type="number"] {
+    width: max(100px, 10vw);
+    font-size: 16px;
+    font-family: Inter;
+    border-radius: 30px;
+    padding: 1rem;
+    border: 1px solid var(--border-primary);
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+
+/* hide the built in number spinner buttons in the number input boxes in chromium based browsers */
+.settings_page input[type="number"]::-webkit-outer-spin-button,
+.settings_page input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* hide the spinner in firefox */
+.settings_page input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.settings_header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0rem 1rem;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+}
+
+.settings_header span {
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.settings_page h1 {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: var(--text-primary);
+}
+
+.settings_section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    box-shadow: var(--card-shadow);
+}
+
+.setting_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-primary);
+}
+
+/* Widget Styles */
+.widget {
+    margin-bottom: 20px;
+}
+
+.widget > span {
+    display: block;
+    color: var(--text-primary);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.tagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag, .available_tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    background-color: transparent;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+.tag {
+    background-color: transparent;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+.red_tag {
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+    color: #c62828;
+}
+
+.green_tag {
+    background-color: #e8f5e8;
+    border-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.blue_tag {
+    background-color: #e3f2fd;
+    border-color: #bbdefb;
+    color: #1565c0;
+}
+
+.available_tag {
+    background-color: transparent;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.available_tag:hover {
+    background-color: var(--tag-hover);
+    color: var(--tag-hover-text);
+    border-color: var(--border-primary);
+}
+
+.tag_latched {
+    background-color: var(--tag-latched);
+    color: var(--tag-latched-text);
+}
+
+.tag_latched svg path {
+    fill: var(--tag-latched-text);
+}
+
+.back_button {
+    font-size: 32px;
+    cursor: pointer; 
+    display: flex;
+    align-items: center;
+    border-radius: 3rem;
+    color: var(--text-primary);
+}
+
+.back_button:hover {
+    background-color: var(--bg-primary);
+}
+
+.remove_item {
+    font-size: 14px;
+    margin-left: 4px;
+    cursor: pointer;
+    color: #f44336;
+}
+
+.tick_add {
+    font-size: 14px;
+    margin-left: auto;
+    color: #4caf50;
+}
+
+/* make the default "input" checkbox invisible */
+.checkboxContainer input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    height: 0;
+    width: 0; 
+}
+
+.checkboxContainer .checkmark {
+    background: #ccc;
+    border-radius: 7px;
+    height: 25px;
+    width: 25px;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.05);
+    position: relative;
+    cursor: pointer;
+}
+
+.checkboxContainer .checkmark:hover {
+    background: #aaa;
+}
+
+/* by default, the check symbol should be invisible */
+.checkboxContainer .checkmark:after {
+    content: "";
+    position: absolute; /* position the checkmark inside the checkbox div */
+    left: 8px;
+    bottom: 6.5px;
+    width: 5px;
+    height: 12px;
+    border: 2px solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+    display: none;
+}
+
+/* colour the checkbox when the original hidden checkbox is clicked */
+.checkboxContainer input[type="checkbox"]:checked + .checkmark {
+    background: var(--button-primary-bg);
+}
+
+/* display the check symbol when the checkbox is ticked */
+.checkboxContainer input[type="checkbox"]:checked + .checkmark:after {
+    display: block;  
+}
+
+/* custom select box container styling - set the selectbox to fixed width */
+.customSelectContainer {
+    position: relative; /* "position: relative;" so the arrow can be placed inside the select box*/
+    width: 160px;
+}
+
+.customSelectContainer select {
+    appearance: none;
+    font-family: Inter;
+    width: 100%;
+    padding: 10px 5px 10px 15px;
+    font-size: 16px;
+    border: 1px solid var(--border-primary);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.customSelectContainer::after {
+    content: "▶";
+    font-size: 16px;
+    position: absolute;
+    right: 15px;
+    top: 25%;
+    color: var(--text-primary);
+}
+
+.customSelectContainer:focus-within::after { /* change arrow when container's descendant select button is focused */
+    content: "▼";
+}
+
+.customSelectContainer select:focus {
+    background-color: var(--bg-primary);
+}

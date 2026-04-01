@@ -1,0 +1,71 @@
+/* theme colour variables */
+
+/* light mode colours - lighter, more vibrant colouring */
+:root {
+    --bg-primary: #ffffff;
+    --text-primary: #000000;
+    --svg-primary: #000000;
+
+    --tag-hover: #e0e0e0;
+    --tag-hover-text: #000000;
+    --tag-latched: #1e1e1e;
+    --tag-latched-text: #eee;
+
+    --border-primary: #ccc;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+
+    --menu-button-border: #ccc;
+    --menu-button-hover: #ccc;
+    --card-bg: #fff;
+    --card-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.25);
+    --input-bg: #fff;
+    --button-primary-bg: #3c88f4;
+    --button-primary-text: #fff;
+    --button-secondary-bg: none;
+    --button-secondary-text: #3c88f4;
+
+    --frontpage-header-bg-gradient: linear-gradient(to bottom, #7db3ff, #b7d6ff);
+    --frontpage-header-divider-color: #000;
+
+    --advisory-card-bg: rgba(217, 217, 217, 0.00);
+
+    --travel-mode-bg: #ffffff;
+    --travel-mode-text: #000000;
+}
+
+/* dark mode colours - darker, more focused colouring */
+html.darkMode {
+    --bg-primary: #1e1e1e;
+    --text-primary: #ffffff;
+    --svg-primary: #ffffff;
+
+    --tag-hover: #dddddd;
+    --tag-hover-text: #000000;
+    --tag-latched: #ffffff;
+    --tag-latched-text: #1e1e1e;
+
+    --border-primary: #4e4e4e;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+
+    --menu-button-border: #4e4e4e;
+    --menu-button-hover: #4e4e4e;
+    --card-bg: #2d2d2d;
+    --card-shadow: 0 4px 4px 3px rgba(0, 0, 0, 0.5);
+    --input-bg: #222;
+    --button-primary-bg: #004d8b;
+    --button-primary-text: #ffffff;
+    --button-secondary-bg: #3a3a3a;
+    --button-secondary-text: #ffffff;
+
+    --frontpage-header-bg-gradient: linear-gradient(to bottom, #1a3a5c, #2d5a8c);
+    --frontpage-header-divider-color: #fff;
+
+    --advisory-card-bg: rgba(60, 60, 60, 0.5);
+
+    --travel-mode-bg: #3a3a3a;
+    --travel-mode-text: #ffffff;
+}
+
+* {
+    transition: 0.3s;
+}
