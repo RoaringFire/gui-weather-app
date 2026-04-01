@@ -95,19 +95,17 @@ function WeatherDisplayMain({ menuOpen, openMenu, closeMenu, temp, feelsTemp, we
             </div>
             <div className="Condition">
                 <div>{weatherType == "Clear" ? "Sunny" : weatherType}</div>
-                {(weatherType == "Clear") && (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
-                        <circle cx="96" cy="96" r="96" fill="url(#paint0_radial_2_34)"/>
-                        <circle cx="95.1273" cy="95.1273" r="79.4182" fill="#FFF700"/>
-                        <defs>
-                            <radialGradient id="paint0_radial_2_34" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 96) rotate(90) scale(96)">
-                                <stop offset="0.764423" stop-color="#FFFB7B"/>
-                                <stop offset="0.764523" stop-color="#FFFB7B"/>
-                                <stop offset="1" stop-color="#FFF700" stop-opacity="0"/>
-                            </radialGradient>
-                        </defs>
-                    </svg>
-                )}
+                <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" style={{ visibility: weatherType === "Clear" ? "visible" : "hidden" }}>
+                    <circle cx="96" cy="96" r="96" fill="url(#paint0_radial_2_34)"/>
+                    <circle cx="95.1273" cy="95.1273" r="79.4182" fill="#FFF700"/>
+                    <defs>
+                        <radialGradient id="paint0_radial_2_34" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(96 96) rotate(90) scale(96)">
+                            <stop offset="0.764423" stop-color="#FFFB7B"/>
+                            <stop offset="0.764523" stop-color="#FFFB7B"/>
+                            <stop offset="1" stop-color="#FFF700" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
             </div>
         </div>
     )
