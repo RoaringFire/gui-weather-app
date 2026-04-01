@@ -1,16 +1,15 @@
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
 import {TflStatus, getBusStatus} from "../tfl.jsx";
 
-// currently hardcoded. add actual data here (pass the data as parameters in this widget)
-// add them as tables or lists here, i'll try by best to style them :)
+//Use to search for and display bus statuses
 function BusStatus() {
     const [busRoute, setBusRoute] = useState("");
     const [status, setStatus] = useState(null);
 
+    //Get the status from the TfL API if the route exists
     const busStatus = async () => {
         if (!busRoute) return;
 
@@ -18,12 +17,14 @@ function BusStatus() {
         setStatus(result);
     };
 
+    //Input box, button and area to display bus statuses
     return (
         <>
             <h3>Bus status</h3>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div>Find a bus route to see its current status:</div>
                 <div className="busStatusForm">
+                    {/* Input and button to set the bus route to get the status from */}
                     <input
                         type="text"
                         value={busRoute}
@@ -33,6 +34,7 @@ function BusStatus() {
                 </div>
             </div>
 
+            {/* If a status exists then display the route name and route status, as well as the status description if there is one */}
             {status && (
                 <div style={{ marginTop: "1rem" }}>
                     <strong>{status.name}</strong>: {status.lineStatuses[0].statusSeverityDescription}
@@ -43,15 +45,11 @@ function BusStatus() {
     );
 }
 
+//Use to display rail statuses
 function RailStatus() {
-    const STATUS_LIST = [
-        "statusGood",
-        "statusWarning",
-        "statusDanger"
-    ];
-
     const [lines, setLines] = useState([]);
 
+    //Get the rail statuses from TfL API, calculate how its sorted and then return a list of lines and their info
     useEffect(() => {
         const fetchData = async () => {
             const tflStatus = new TflStatus(17);
@@ -62,11 +60,13 @@ function RailStatus() {
         fetchData();
     }, []);
 
+    //Area to display rail statuses
     return (
         <>
             <h3>Rail status</h3>
             <table className="railStatusTable">   
                 <tbody>
+                    {/* Iterate through the list of lines and create a row in the table for each, displaying the name of the line and its status */}
                     {lines.map((line) => (
                         <tr>
                             <td>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
@@ -79,14 +79,14 @@ function RailStatus() {
     );
 }
 
-
+//Select between bus and rail statuses
 function TravelImpactsCard({ onDragStart }) {
     const [currentSec, setCurrentSec] = useState("rail");
 
     return ( 
         <div className="advisoryCard travelImpacts" onDragStart={onDragStart} draggable>
             <div className="advisoryHeader">Commuting conditions</div>
-            {/* setup navigation links for bus, rail and tram statuses */}
+            {/* setup navigation links for bus and rail */}
             <nav className="travelModeImpactContainer">
                 <a type="button" onClick={() => setCurrentSec("bus")}>
                     <div className="travelModeImpact">
