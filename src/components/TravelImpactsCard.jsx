@@ -1,14 +1,42 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import BusIcon from "./vector_icons/BusIcon.jsx"
 import TrainIcon from "./vector_icons/RailIcon.jsx"
-import TramIcon from "./vector_icons/TramIcon.jsx"
+import {TflStatus, getBusStatus} from "../tfl.jsx";
 
 // currently hardcoded. add actual data here (pass the data as parameters in this widget)
 // add them as tables or lists here, i'll try by best to style them :)
 function BusStatus() {
+    const inputRef = useRef("");
+
     const [busRoute, setBusRoute] = useState("");
+    const [isRouteBlank, setIsRouteBlank] = useState(false);
+    const [isReqError, setIsReqError] = useState(false);
+    const [reqStatusCode, setReqStatusCode] = useState(null);
+    const [busStatusData, setBusStatusData] = useState(null);
+
+    const busStatus = async () => {
+        const route = inputRef.current.value.trim();
+
+        // clear previous data from previous request
+        setBusStatusData(null);
+        setReqStatusCode(null);
+        setIsReqError(false);
+
+        if(!route) {
+            setIsRouteBlank(true);
+            return;
+        }
+
+        const result = await getBusStatus(route);
+        setBusStatusData(result.data);
+        setReqStatusCode(result.statusCode);
+
+        setIsRouteBlank(false);
+        setIsReqError(result.statusCode !== 200);
+    };
+
     return (
         <>
             <h3>Bus status</h3>
@@ -16,12 +44,34 @@ function BusStatus() {
                 <div>Find a bus route to see its current status:</div>
                 <div className="busStatusForm">
                     <input
+                        ref={inputRef}
                         type="text"
                         value={busRoute}
                         onChange={(e) => setBusRoute(e.target.value)}
                     />
-                    <button class="buttonPrimary">Get status</button>
+                    <button className="buttonPrimary" onClick={busStatus}>Get status</button>
                 </div>
+                {(busStatusData && reqStatusCode === 200 && !isReqError) && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Bus status for {busStatusData.name}</div>
+                        <div style={{ fontSize: "0.92rem", fontWeight: "700" }}>{busStatusData.lineStatuses[0].statusSeverityDescription}</div>
+                        {busStatusData.lineStatuses[0].reason && <p>{busStatusData.lineStatuses[0].reason}</p>}
+                    </div>
+                )}
+                
+                {isReqError && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Error</div>
+                        <div>There is no data available for this bus route. A route might not exist, or there is a connection error with TfL's server.</div>
+                    </div>
+                )}
+
+                {isRouteBlank && (
+                    <div className="busStatusCard">
+                        <div className="busStatusCardHeader">Error</div>
+                        <div>Please enter a bus route</div>
+                    </div>
+                )}
             </div>
         </>
     );
@@ -33,60 +83,42 @@ function RailStatus() {
         "statusWarning",
         "statusDanger"
     ];
+
+    const [isLoading, setIsLoading] = useState(true);
+    const [lines, setLines] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const tflStatus = new TflStatus(17);
+            await tflStatus.calculateOutput();
+            setLines(tflStatus.getOutput());
+            setIsLoading(false);
+        };
+
+        fetchData();
+    }, []);
+
     return (
         <>
             <h3>Rail status</h3>
-            <table className="railStatusTable">
+            <table className="railStatusTable">  
                 <thead>
                     <tr>
                         <th>Line</th>
                         <th>Status</th>
                     </tr>
-                </thead>
+                </thead> 
                 <tbody>
-                    <tr>
-                        <td>Central</td>
-                        <td><div className="statusGood">Good service</div></td>
-                    </tr>
-                    <tr>
-                        <td>Circle</td>
-                        <td><div className="statusWarning">Minor delays</div></td>
-                    </tr>
-                    <tr>
-                        <td>District</td>
-                        <td>
-                            <div className="statusDanger">Severe delays</div>
-                            <div>District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line District Line: Severe delays between High Street Kensington and Edgware Road and MINOR DELAYS between Earl's Court and Kensington (Olympia) due to an earlier temporary unavailability of train operators. GOOD SERVICE on the rest of the line</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Hammersmith & City</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Metropolitan</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Waterloo & City</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Piccadilly</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Bakerloo</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Northern</td>
-                        <td>Good service</td>
-                    </tr>
-                    <tr>
-                        <td>Elizabeth line</td>
-                        <td>Good service</td>
-                    </tr>
+                    {(!isLoading && lines.length > 0) && lines.map((line) => (
+                        <tr>
+                            <td>{line.name.charAt(0).toUpperCase() + line.name.slice(1)}</td>
+                            <td>{line.status}</td>   
+                        </tr>
+                    ))}
+
+                    {isLoading && <tr><td colSpan="2" style={{ textAlign: "center" }}>Please wait for the data to load.</td></tr>}
+
+                    {(!isLoading && lines.length == 0) && <tr><td colSpan="2" style={{ textAlign: "center" }}>No data is currently available.</td></tr>}
                 </tbody>
             </table>
         </>

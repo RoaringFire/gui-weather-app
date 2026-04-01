@@ -102,12 +102,12 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="container">
       <Routes>
         <Route 
           path="/" 
           element={
-            <div className="container">
+            <>
               <header>
                 <WeatherDisplayMain 
                   menuOpen={menuOpen} 
@@ -139,14 +139,14 @@ function HomePage({ currentWeatherData,hourlyWeatherData,airPollutionData}) {
                 <AtmosConditionsCard />
                 <TravelImpactsCard /> */}
               </main>
-            </div>
+            </>
           } 
         />
         <Route path="/settings" element={<Settings goBack={() => {navigate("/")}}/>} />
         <Route path="/customise" element={<Customisation goBack={() => {navigate("/")}}/>} />
         <Route path="/help" element={<HelpPage goBack={() => {navigate("/")}}/>} />
       </Routes>
-    </>
+    </div>
   )
 }
 
