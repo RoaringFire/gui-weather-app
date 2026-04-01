@@ -102,39 +102,33 @@ function Settings({goBack}) {
         </div>
 
         <div className="setting_row">
-          <span>Min Hot temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Hot" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumHotTemp}
                 onChange={(e) => setMinimumHotTemp(Number(e.target.value))}
               />
-          </div>
         </div>
 
         <div className="setting_row">
-          <span>Min Warm temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Warm" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumWarmTemp}
                 onChange={(e) => setMinimumWarmTemp(Number(e.target.value))}
               />
-          </div>
         </div>
 
         <div className="setting_row">
-          <span>Min Chilly temp</span>
-          <div className="customSelectContainer">
+          <span>Minimum "Chilly" temperature</span>
             <input
                 type="number"
                 className="numberInput"
                 value={data.minimumChillyTemp}
                 onChange={(e) => setMinimumChillyTemp(Number(e.target.value))}
               />
-          </div>
         </div>
       </div>
     </div>
