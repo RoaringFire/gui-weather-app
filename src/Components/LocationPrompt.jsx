@@ -117,36 +117,38 @@ function LocationPrompt() {
                     </div>}
 
                     <div className="locationForm">
-                        <input 
-                            type="text" 
-                            value={locationName} 
-                            onChange={(e) => {
-                                getLocationByName(e);
-                                setIsLocationSelected(false);
-                            }}
-                        />
+                        <div className="locationInputWrap">
+                            <input 
+                                type="text" 
+                                value={locationName} 
+                                onChange={(e) => {
+                                    getLocationByName(e);
+                                    setIsLocationSelected(false);
+                                }}
+                            />
+
+                            { locationsList.length > 0 &&
+                            <div className="searchDropdown">
+                                {locationsList.map((l, i) => (
+                                    <button 
+                                        className="searchDropdownItem"
+                                        onClick={() => {
+                                            setLocationName(`${l["name"]}, ${l["admin1"]}, ${l["country"]}`);
+                                            setLocationCoords([ l["latitude"], l["longitude"] ]);
+                                            setLocationsList([]);
+                                            setIsLocationSelected(true);
+                                        }}
+                                    >
+                                        {l["name"]}, {l["admin1"]}, {l["country"]}
+                                    </button>
+                                ))}
+                            </div>
+                            }
+                        </div>
                         <button className="buttonPrimary" onClick={() => loadWeatherFromManual()}>
                             <LocationPin size="20" />
                         </button>
                     </div>
-
-                    { locationsList.length > 0 &&
-                    <div className="searchDropdown">
-                        {locationsList.map((l, i) => (
-                            <button 
-                                className="searchDropdownItem"
-                                onClick={() => {
-                                    setLocationName(`${l["name"]}, ${l["admin1"]}, ${l["country"]}`);
-                                    setLocationCoords([ l["latitude"], l["longitude"] ]);
-                                    setLocationsList([]);
-                                    setIsLocationSelected(true);
-                                }}
-                            >
-                                {l["name"]}, {l["admin1"]}, {l["country"]}
-                            </button>
-                        ))}
-                    </div>
-                    }
                     <button className="buttonSecondary" onClick={() => setOption("auto")}>&lt;&lt; Get location automatically</button>
                 </>
                 }

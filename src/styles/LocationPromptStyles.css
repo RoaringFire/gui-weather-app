@@ -1,3 +1,4 @@
+/* container for all elements in the location prompt page */
 .locationPrompt {
     font-size: 16px;
     display: flex;
@@ -12,6 +13,7 @@
     color: var(--text-primary);
 }
 
+/* button decoration - set font and text size */
 .locationPrompt button {
     font-size: 16px;
     font-family: Inter; 
@@ -20,6 +22,7 @@
     margin-bottom: 0.1rem;
 }
 
+/* set background for primary button for emphasis*/
 .locationPrompt .buttonPrimary {
     border: none;
     color: var(--button-primary-text);
@@ -28,6 +31,7 @@
     box-shadow: var(--card-shadow);
 }
 
+/* white colour */
 .locationPrompt .buttonPrimary svg path {
     fill: #fff;
 }
@@ -55,7 +59,14 @@
 
 .locationPrompt .locationForm {
     display: flex;
-    column-gap: 0.5rem;
+    align-items: center;
+    width: max(250px, 30vw);
+}
+
+.locationPrompt .locationInputWrap {
+    position: relative;
+    right: 2.7rem;
+    width: max(250px, 30vw);
 }
 
 .locationPrompt .formError {
@@ -75,11 +86,18 @@
 
 .locationPrompt .searchDropdown {
     background-color: var(--card-bg);
-    width: max(250px, 30vw);
+    width: max(280px, 32vw);
     display: flex;
     flex-flow: column;
     text-align: left;
     box-shadow: 3px 4px 4px 3px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.30rem);
+    z-index: 20;
+    border-radius: 16px;
+    overflow: auto;
+    max-height: 14rem;
 }
 
 .locationPrompt .searchDropdownItem {
